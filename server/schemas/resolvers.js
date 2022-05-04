@@ -1,5 +1,5 @@
 const { createSourceEventStream } = require('graphql');
-const { Cooking, Recipe, User } = require('../models');
+const { Recipe, User } = require('../models');
 
 const resolvers = {
   Query: {
