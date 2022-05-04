@@ -1,10 +1,18 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const recipeSchema = require('./Recipe');
+const Recipe = require('./Recipe');
 
 const userSchema = new Schema(
     {
+        firstName: {
+            type: String,
+            required: true,
+        },
+        lastName: {
+            type: String,
+            required: true,
+        },
         username: {
             type: String,
             required: true,
@@ -20,7 +28,8 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        savedRecipe: [recipeSchema],
+        savedRecipes: [Recipe.schema]
+
     },
     {
         toJSON: {
