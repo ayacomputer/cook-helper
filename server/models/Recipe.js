@@ -7,7 +7,11 @@ const recipeSchema = new Schema({
         type: Number,
         required: true,
     },
-    name: {
+    image: {
+        type: String,
+        required: true,
+    },
+    recipeName: {
         type: String,
         required: true,
     },
