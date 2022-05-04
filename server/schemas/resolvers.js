@@ -32,12 +32,12 @@ const resolvers = {
 
       return { token, user };
     },
-    createUser: async (parent, args) => {
+    createUser: async (_, args) => {
       const user = await User.create(args);
       const token = signToken(user);
       return { token, user };
     },
-    saveRecipe: async (parent, { input }, context) => {
+    saveRecipe: async (_, { input }, context) => {
 
       if (context.user) {
         return await User.findOneAndUpdate({ _id: context.user._id },
@@ -46,7 +46,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeRecipe: async (parent, { recipeId }, context) => {
+    removeRecipe: async (_, { recipeId }, context) => {
 
       if (context.user) {
         return await User.findOneAndUpdate(
