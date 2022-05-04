@@ -34,6 +34,8 @@ const typeDefs = gql`
   
   type Query {
     me: User
+    getRecipes: Recipe
+    getOneRecipe: Recipe 
   }
    
   input RecipeInput {
