@@ -1,4 +1,4 @@
-const { Cooking, Task, Recipe } = require('../models');
+const { Cooking, Recipe } = require('../models');
 
 const resolvers = {
   Query: {
