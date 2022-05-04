@@ -24,6 +24,7 @@ const typeDefs = gql`
      cook: Int
      total:Int
    }
+   createdAt: String
   }
   
 

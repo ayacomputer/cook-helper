@@ -3,23 +3,22 @@ const { Cooking, Recipe, User } = require('../models');
 
 const resolvers = {
   Query: {
-    me: async (parent, args, context) => {
+    me: async (_, _, context) => {
       if (context.user) {
         return await User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    getRecipes: async (parent, args) => {
-      return await Recipe.find({});
+    getRecipes: async () => {
+      return await Recipe.find().sort({ createdAt: -1 });
     },
-    getOneRecipe: {
-      return await Recipe.findOne({});
-
+    getOneRecipe: async (_, { recipeId }) => {
+      return await Recipe.findOne({ _id: recipeId });
     }
   },
 
   mutation: {
-    login: async (parent, { email, password }) => {
+    login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
         throw new AuthenticationError('No user found with this email address');
@@ -59,5 +58,6 @@ const resolvers = {
     },
 
   }
+};
 
-  module.exports = resolvers;
+module.exports = resolvers;
