@@ -15,11 +15,21 @@ const typeDefs = gql`
    createdAt: String
    recipeName: String
    ingredients: [String]
-   instructions: [String]
-   time: [String]
+   instructions: Instructions
+   time: Time
   }
-  
+ 
+  type Time {
+    prep: Int
+    cook: Int
+    total: Int
+  }
 
+  type Instructions {
+    prep: String
+    steps: String
+  }
+ 
   type Auth {
     token: ID!
     user: User
@@ -31,22 +41,27 @@ const typeDefs = gql`
     getOneRecipe: Recipe 
   }
    
+  
+
   input RecipeData {
     recipeId: ID
     image: String
     createdAt: String
     recipeName: String
     ingredients: [String]
-    instructions: [Instructions]
-    time: [Time]
+    instructions: [InstructionsData]
+    time: [TimeData]
   }
 
-  input Instructions {
+  input InstructionsData {
     prep: String
     steps: String
   }
 
-  input Time {
+
+
+
+  input TimeData {
     prep: Int
     cook: Int
     total: Int
