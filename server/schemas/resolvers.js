@@ -13,8 +13,8 @@ const resolvers = {
     getRecipes: async () => {
       return await Recipe.find().sort({ createdAt: -1 });
     },
-    getOneRecipe: async (_, { recipeId }) => {
-      return await Recipe.findOne({ _id: recipeId });
+    getOneRecipe: async (_, { _id }) => {
+      return await Recipe.findOne({ _id });
     }
   },
 

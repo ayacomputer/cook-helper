@@ -10,6 +10,7 @@ const typeDefs = gql`
   }
 
   type Recipe {
+   _id: ID!
    recipeName: String
    image: String
    createdAt: String
@@ -25,8 +26,8 @@ const typeDefs = gql`
   
   type Query {
     me: User
-    getRecipes: Recipe
-    getOneRecipe: Recipe 
+    getRecipes: [Recipe]
+    getOneRecipe(_id: ID!): Recipe 
   }
    
    input RecipeData {
