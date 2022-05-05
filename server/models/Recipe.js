@@ -5,6 +5,7 @@ const recipeSchema = new Schema({
 
     recipeName: {
         type: String,
+        required: true,
     },
     image: {
         type: String,
@@ -18,10 +19,9 @@ const recipeSchema = new Schema({
     },
     instruction: {
         type: String,
-        required: true
     },
     totalTime: {
-        type: String,
+        type: Number,
         required: true,
     }
 });

@@ -14,8 +14,8 @@ const typeDefs = gql`
    image: String
    createdAt: String
    ingredients: String
-   instruction: String!
-   totalTime: String!
+   instruction: String
+   totalTime: Int
   }
  
   type Auth {
@@ -34,8 +34,8 @@ const typeDefs = gql`
     createdAt: String
     recipeName: String
     ingredients: String
-    instruction: String!
-    totalTime: String!
+    instruction: String
+    totalTime: Int
   }
 
 

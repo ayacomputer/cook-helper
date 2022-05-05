@@ -1,0 +1,37 @@
+[
+  {
+    "recipeName": "curry",
+    "image": "test",
+    "ingredients": "apple",
+    "instruction": "cook everything",
+    "totalTime": 50
+  },
+  {
+    "recipeName": "Mashed Potato",
+    "image": "test",
+    "ingredients": "potatoes",
+    "instruction": "cook everything",
+    "totalTime": 30
+  },
+  {
+    "recipeName": "miso soup",
+    "image": "test",
+    "ingredients": "miso",
+    "instruction": "cook everything",
+    "totalTime": 40
+  },
+  {
+    "recipeName": "sushi",
+    "image": "test",
+    "ingredients": "fish",
+    "instruction": "cook everything",
+    "totalTime": 60
+  },
+  {
+    "recipeName": "pasta",
+    "image": "test",
+    "ingredients": "pasta",
+    "instruction": "cook everything",
+    "totalTime": 15
+  }
+]

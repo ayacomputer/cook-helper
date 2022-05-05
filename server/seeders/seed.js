@@ -4,7 +4,7 @@ const { Recipe } = require('../models');
 const recipeData = require('./recipeData.json');
 
 db.once('open', async () => {
-  await Cooking.deleteMany({});
+  await Recipe.deleteMany({});
 
   const recipes = await Recipe.insertMany(recipeData);
 
