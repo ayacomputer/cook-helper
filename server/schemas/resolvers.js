@@ -4,7 +4,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    me: async (_, _, context) => {
+    me: async (_, args, context) => {
       if (context.user) {
         return await User.findOne({ _id: context.user._id });
       }
@@ -18,9 +18,10 @@ const resolvers = {
     }
   },
 
-  mutation: {
+  Mutation: {
     login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
+
       if (!user) {
         throw new AuthenticationError('No user found with this email address');
       }
@@ -37,6 +38,10 @@ const resolvers = {
       const user = await User.create(args);
       const token = signToken(user);
       return { token, user };
+    },
+    createRecipe: async (_, { input }) => {
+      console.log(input)
+      return await Recipe.create(input);
     },
     saveRecipe: async (_, { input }, context) => {
 

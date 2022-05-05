@@ -5,12 +5,10 @@ const moment = require('moment');
 const recipeSchema = new Schema({
 
     recipeId: {
-        type: Number,
-        required: true,
+        type: String,
     },
     image: {
         type: String,
-        required: true,
     },
     createdAt: {
         type: String,
@@ -18,39 +16,38 @@ const recipeSchema = new Schema({
     },
     recipeName: {
         type: String,
-        required: true,
     },
     ingredients: {
         type: [String],
-        required: true,
     },
-    instructions: {
-        prep: {
-            type: String,
-            required: true,
-        },
-        steps: {
-            type: [String],
-            required: true,
+    instructions: [
+        {
+            prep: {
+                type: String,
+                required: true,
+            },
+            steps: {
+                type: String,
+                required: true,
+            }
+
         }
-    },
-    time: {
+    ]
+    ,
+    time: [{
         prep: {
             type: Number,
             min: 0,
-            default: 0,
         },
         cook: {
             type: Number,
             min: 0,
-            default: 0,
         },
         total: {
             type: Number,
             min: 0,
-            default: 0,
         }
-    },
+    }],
 });
 
 const Recipe = model('Recipe', recipeSchema);
