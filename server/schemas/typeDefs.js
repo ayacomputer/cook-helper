@@ -14,7 +14,7 @@ const typeDefs = gql`
    image: String
    createdAt: String
    ingredients: String
-   instructions: String!
+   instruction: String!
    totalTime: String!
   }
  
@@ -34,7 +34,7 @@ const typeDefs = gql`
     createdAt: String
     recipeName: String
     ingredients: String
-    instructions: String!
+    instruction: String!
     totalTime: String!
   }
 

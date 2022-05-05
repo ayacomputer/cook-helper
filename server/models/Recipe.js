@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const moment = require('moment');
 
 
 const recipeSchema = new Schema({
@@ -11,8 +10,8 @@ const recipeSchema = new Schema({
         type: String,
     },
     createdAt: {
-        type: String,
-        default: moment(new Date()).format('DD MMM YYYY [at] hh:mm a'),
+        type: Date,
+        default: new Date()
     },
     ingredients: {
         type: String,

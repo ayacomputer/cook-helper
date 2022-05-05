@@ -39,12 +39,12 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    createRecipe: async (_, { input }, context) => {
+    createRecipe: async (_, { input },) => {
       console.log(input)
-      if (context.user) {
-        return await Recipe.create(input);
-      }
-      throw new AuthenticationError('You need to be logged in!');
+      // if (context.user) {
+      return await Recipe.create(input);
+      // // }
+      // throw new AuthenticationError('You need to be logged in!');
 
     },
     saveRecipe: async (_, { input }, context) => {
