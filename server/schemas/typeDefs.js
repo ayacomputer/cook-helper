@@ -10,24 +10,12 @@ const typeDefs = gql`
   }
 
   type Recipe {
-   recipeId: String
+   recipeName: String
    image: String
    createdAt: String
-   recipeName: String
-   ingredients: [String]
-   instructions: Instructions
-   time: Time
-  }
- 
-  type Time {
-    prep: Int
-    cook: Int
-    total: Int
-  }
-
-  type Instructions {
-    prep: String
-    steps: String
+   ingredients: String
+   instructions: String!
+   totalTime: String!
   }
  
   type Auth {
@@ -41,33 +29,16 @@ const typeDefs = gql`
     getOneRecipe: Recipe 
   }
    
-  
-
-  input RecipeData {
-    recipeId: ID
+   input RecipeData {
     image: String
     createdAt: String
     recipeName: String
-    ingredients: [String]
-    instructions: [InstructionsData]
-    time: [TimeData]
-  }
-
-  input InstructionsData {
-    prep: String
-    steps: String
+    ingredients: String
+    instructions: String!
+    totalTime: String!
   }
 
 
-
-
-  input TimeData {
-    prep: Int
-    cook: Int
-    total: Int
-  }
-  
- 
    type Mutation {
     login( email: String!, password: String!): Auth
     createUser( firstName: String!, lastName: String!, email: String!, password: String!): Auth
