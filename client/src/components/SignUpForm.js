@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { ADD_USER } from '../utils/mutations'
+import { CREATE_USER } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
-    const [userFormData, setUserFormData] = useState({ firstName: '', lastName: '', email: '', password: '' });
+    const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-    const [addUser, { error }] = useMutation(ADD_USER);
+    const [addUser, { error }] = useMutation(CREATE_USER);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -18,7 +18,7 @@ const SignupForm = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-
+        // check if form has everything (as per react-bootstrap docs)
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -35,8 +35,7 @@ const SignupForm = () => {
         }
 
         setUserFormData({
-            firstName: '',
-            lastName: '',
+            username: '',
             email: '',
             password: '',
         });
@@ -46,34 +45,22 @@ const SignupForm = () => {
         <>
             {/* This is needed for the validation functionality above */}
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-                {/* alert if server response is bad */}
+                {/* show alert if server response is bad */}
                 <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                     Something went wrong with your signup!
                 </Alert>
 
                 <Form.Group>
-                    <Form.Label htmlFor='firstName'>First Name</Form.Label>
+                    <Form.Label htmlFor='username'>Username</Form.Label>
                     <Form.Control
                         type='text'
-                        placeholder='First Name'
-                        name='First Name'
+                        placeholder='Your username'
+                        name='username'
                         onChange={handleInputChange}
-                        value={userFormData.firstName}
+                        value={userFormData.username}
                         required
                     />
-                    <Form.Control.Feedback type='invalid'>Please Enter Your First Name!</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor='lastName'>Last Name</Form.Label>
-                    <Form.Control
-                        type='text'
-                        placeholder='Last Name'
-                        name='Last Name'
-                        onChange={handleInputChange}
-                        value={userFormData.lastName}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Please Enter Your Last Name!</Form.Control.Feedback>
+                    <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group>
@@ -102,7 +89,7 @@ const SignupForm = () => {
                     <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
                 </Form.Group>
                 <Button
-                    disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password)}
+                    disabled={!(userFormData.username && userFormData.email && userFormData.password)}
                     type='submit'
                     variant='success'>
                     Submit

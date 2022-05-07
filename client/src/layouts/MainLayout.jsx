@@ -1,4 +1,5 @@
 import React from 'react'
+import NavBar from './NavBar'
 import Footer from './Footer'
 // import '../App.css'
 
@@ -7,8 +8,9 @@ import Footer from './Footer'
 export default function MainLayout(props) {
   return (
     <main>
+      <NavBar />
       {props.children}
-      <Footer></Footer>
+      <Footer />
     </main>
   )
 }
