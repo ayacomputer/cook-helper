@@ -11,14 +11,21 @@ const typeDefs = gql`
 
   type Recipe {
    _id: ID!
-   recipeName: String
+   name: String
    image: String
    createdAt: String
-   ingredients: String
-   instruction: String
+   ingredients: [Ingredients]
+   steps: [String]
    totalTime: Int
+   serves: Int
   }
- 
+
+  type Ingredients {
+    name: String
+    qty: String
+  }
+
+
   type Auth {
     token: ID!
     user: User
@@ -30,21 +37,26 @@ const typeDefs = gql`
     getOneRecipe(_id: ID!): Recipe 
   }
    
-   input RecipeData {
+   input RecipeInput {
     image: String
-    createdAt: String
-    recipeName: String
-    ingredients: String
-    instruction: String
+    name: String
+    ingredients: [IngredientInput]
+    steps: [String]
     totalTime: Int
+    serves: Int
+  }
+
+  input IngredientInput {
+    name: String
+    qty: String
   }
 
 
    type Mutation {
     login( email: String!, password: String!): Auth
     createUser( firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    saveRecipe( input: RecipeData! ): User
-    createRecipe( input: RecipeData!): Recipe
+    saveRecipe( input: RecipeInput! ): User
+    createRecipe( input: RecipeInput!): Recipe
     removeRecipe(recipeId: ID!): User
    }
 `;

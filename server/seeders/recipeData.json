@@ -1,37 +1,107 @@
 [
   {
-    "recipeName": "curry",
+    "name": "Apple",
     "image": "test",
-    "ingredients": "apple",
-    "instruction": "cook everything",
-    "totalTime": 50
+    "ingredients": [
+      {
+        "name": "apple",
+        "qty": "1"
+      },
+      {
+        "name": "apple",
+        "qty": "1"
+      },
+      {
+        "name": "apple",
+        "qty": "1"
+      },
+      {
+        "name": "apple",
+        "qty": "1"
+      },
+      {
+        "name": "apple",
+        "qty": "1"
+      },
+      {
+        "name": "apple",
+        "qty": "1"
+      }
+    ],
+    "instruction": [
+      "Wash apple",
+      "Peel apple",
+      "Cut apple"
+    ],
+    "totalTime": 50,
+    "serves": 4
   },
   {
-    "recipeName": "Mashed Potato",
+    "name": "Mashed Potato",
     "image": "test",
-    "ingredients": "potatoes",
-    "instruction": "cook everything",
-    "totalTime": 30
+    "ingredients": [
+      {
+        "name": "Potato",
+        "qty": "4"
+      },
+      {
+        "name": "Salt",
+        "qty": "handful"
+      },
+      {
+        "name": "Butter",
+        "qty": "A lot!"
+      },
+      {
+        "name": "Pepper",
+        "qty": "To taste"
+      }
+    ],
+    "instruction": [
+      "Cut potato in the same size and put them into a pot.",
+      "Fill water to cover the potato,",
+      "Cook potato until you can poke with a skewer easily.",
+      "Drain the water and put the pan back to the stove for 1 to 2 minutes to dry.",
+      "Mash the potato and add butter and pepper."
+    ],
+    "totalTime": 40,
+    "serves": 4
   },
   {
-    "recipeName": "miso soup",
+    "name": "Fusilli with Spinach and Anchovies",
     "image": "test",
-    "ingredients": "miso",
-    "instruction": "cook everything",
-    "totalTime": 40
-  },
-  {
-    "recipeName": "sushi",
-    "image": "test",
-    "ingredients": "fish",
-    "instruction": "cook everything",
-    "totalTime": 60
-  },
-  {
-    "recipeName": "pasta",
-    "image": "test",
-    "ingredients": "pasta",
-    "instruction": "cook everything",
-    "totalTime": 15
+    "ingredients": [
+      {
+        "name": "Garlic",
+        "qty": "5 cloves"
+      },
+      {
+        "name": "Olive oil",
+        "qty": "4 tbsp"
+      },
+      {
+        "name": "Anchovies",
+        "qty": "10 fillets"
+      },
+      {
+        "name": "Frozen spinach",
+        "qty": "250g"
+      },
+      {
+        "name": "Fusilli Pasta",
+        "qty": "500g"
+      }
+    ],
+    "steps": [
+      "1. Take out a packet of frozen spinach from the freezer and defrost at room temperature.",
+      "Put water in a big pot and bring it to boil, then add a handful of salt in the pot, put pasta for 11 mins from as the packet tells you.",
+      "Meanwhile, put a glug of olieve oil into a cold pan, then crush the garlic cloves onto it.",
+      "Turn the stove on, start at very very low heat.",
+      "Then add defrost spinach, and then cook it for a while.",
+      "Add anchovies and its oil and stir, right before adding pasta to it.",
+      "Take out pasta from the pot, drain, then add it to the pan. ( add a bit of pasta water if it is dry. )"
+    ],
+    "totalTime": 30,
+    "serves": 4
   }
 ]
