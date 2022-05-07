@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { Alert } from '@mui/material';
+import { Alert } from '@mui/material';
 
 function Copyright(props) {
     return (
@@ -33,7 +33,7 @@ const theme = createTheme();
 export default function SignUp() {
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
     const [validated] = useState(false);
-    // const [showAlert, setShowAlert] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const [addUser, { error }] = useMutation(CREATE_USER);
 
     const handleInputChange = (event) => {
@@ -43,7 +43,6 @@ export default function SignUp() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // check if form has everything (as per react-bootstrap docs)
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -56,7 +55,7 @@ export default function SignUp() {
             Auth.login(data.addUser.token);
         } catch (error) {
             console.error(error);
-            // setShowAlert(true);
+            setShowAlert(true);
         }
 
         setUserFormData({
@@ -85,9 +84,9 @@ export default function SignUp() {
                         Sign up
                     </Typography>
                     <Box component="form" noValidate validated={validated} onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                        <Alert dismissible="true" onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                             Something went wrong with your signup!
-                        </Alert> */}
+                        </Alert>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -139,7 +138,7 @@ export default function SignUp() {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="/login" variant="body2">
+                                <Link href="/" variant="body2">
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>

@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Alert } from '@mui/material';
 
 import Auth from '../utils/auth';
 import { USER_LOGIN } from '../utils/mutations';
@@ -33,7 +34,7 @@ const theme = createTheme();
 export default function Login() {
     const [userFormData, setUserFormData] = useState({ email: '', password: '' });
     const [validated] = useState(false);
-    // const [showAlert, setShowAlert] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const [userLogin, { error }] = useMutation(USER_LOGIN);
 
     const handleInputChange = (event) => {
@@ -58,7 +59,7 @@ export default function Login() {
             Auth.login(data.login.token);
         } catch (err) {
             console.error(err);
-            // setShowAlert(true);
+            setShowAlert(true);
         }
 
         setUserFormData({
@@ -103,9 +104,9 @@ export default function Login() {
                             Sign in
                         </Typography>
                         <Box component="form" noValidate validated={validated} onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                            {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                            <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                                 Something went wrong with your login credentials!
-                            </Alert> */}
+                            </Alert>
                             <TextField
                                 margin="normal"
                                 required
