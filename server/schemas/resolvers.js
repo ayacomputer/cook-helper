@@ -15,7 +15,7 @@ const resolvers = {
     },
     getOneRecipe: async (_, { _id }) => {
       return await Recipe.findOne({ _id });
-    },
+    }
   },
 
   Mutation: {
@@ -56,12 +56,12 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeRecipe: async (_, { recipeId }, context) => {
+    removeRecipe: async (_, { _id }, context) => {
 
       if (context.user) {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedRecipes: { recipeId } } },
+          { $pull: { savedRecipes: { _id } } },
           { new: true });
       }
       throw new AuthenticationError('You need to be logged in!');

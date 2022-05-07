@@ -5,11 +5,7 @@ const Recipe = require('./Recipe');
 
 const userSchema = new Schema(
     {
-        firstName: {
-            type: String,
-            required: true,
-        },
-        lastName: {
+        username: {
             type: String,
             required: true,
         },
