@@ -21,6 +21,11 @@ export default function NavBar() {
 
         },
         {
+            title: "Cooking",
+            link: "/cooking",
+
+        },
+        {
             title: "Create Recipe",
             link: "/create",
 

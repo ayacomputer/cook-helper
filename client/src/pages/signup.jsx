@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { CREATE_USER } from '../utils/mutations'
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { Alert } from '@mui/material';
 
 function Copyright(props) {
     return (
@@ -29,12 +31,38 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-    const handleSubmit = (event) => {
+    const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+    const [validated] = useState(false);
+    // const [showAlert, setShowAlert] = useState(false);
+    const [addUser, { error }] = useMutation(CREATE_USER);
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setUserFormData({ ...userFormData, [name]: value });
+    };
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+
+        // check if form has everything (as per react-bootstrap docs)
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        try {
+            const { data } = await addUser(
+                { variables: { ...userFormData } });
+            Auth.login(data.addUser.token);
+        } catch (error) {
+            console.error(error);
+            // setShowAlert(true);
+        }
+
+        setUserFormData({
+            username: '',
+            email: '',
+            password: '',
         });
     };
 
@@ -56,7 +84,10 @@ export default function SignUp() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" noValidate validated={validated} onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                        {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                            Something went wrong with your signup!
+                        </Alert> */}
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -64,6 +95,8 @@ export default function SignUp() {
                                     name="username"
                                     required
                                     fullWidth
+                                    onChange={handleInputChange}
+                                    value={userFormData.username}
                                     id="username"
                                     label="Username"
                                     autoFocus
@@ -73,6 +106,8 @@ export default function SignUp() {
                                 <TextField
                                     required
                                     fullWidth
+                                    onChange={handleInputChange}
+                                    value={userFormData.email}
                                     id="email"
                                     label="Email Address"
                                     name="email"
@@ -83,6 +118,8 @@ export default function SignUp() {
                                 <TextField
                                     required
                                     fullWidth
+                                    onChange={handleInputChange}
+                                    value={userFormData.password}
                                     name="password"
                                     label="Password"
                                     type="password"
@@ -90,12 +127,7 @@ export default function SignUp() {
                                     autoComplete="new-password"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
-                                <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                    label="I want to receive inspiration, marketing promotions and updates via email."
-                                />
-                            </Grid>
+
                         </Grid>
                         <Button
                             type="submit"
