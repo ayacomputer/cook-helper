@@ -73,6 +73,6 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     }
-  };
-
-  module.exports = resolvers;
+  }
+}
+module.exports = resolvers;
