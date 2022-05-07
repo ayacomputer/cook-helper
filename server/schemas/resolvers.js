@@ -66,8 +66,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    deleteRecipe: async (_, { _id }, context) => {
 
-  }
-};
+      if (context.user) {
+        return Recipe.findOneAndDelete({ _id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    }
+  };
 
-module.exports = resolvers;
+  module.exports = resolvers;
