@@ -127,7 +127,7 @@ export default function Recipes() {
                                             {recipe.name}
                                         </Typography>
                                         <Typography style={styles.wheat}>
-                                            Cooking time:{recipe.totalTime}mins
+                                            Cooking time: {recipe.totalTime} mins
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
