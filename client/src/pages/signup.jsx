@@ -34,10 +34,11 @@ export default function SignUp() {
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-    const [addUser, { error }] = useMutation(CREATE_USER);
+    const [createUser, { error }] = useMutation(CREATE_USER);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
+        console.log(event.target)
         setUserFormData({ ...userFormData, [name]: value });
     };
     const handleSubmit = async (event) => {
@@ -50,9 +51,10 @@ export default function SignUp() {
         }
 
         try {
-            const { data } = await addUser(
+            const { data } = await createUser(
                 { variables: { ...userFormData } });
-            Auth.login(data.addUser.token);
+            Auth.login(data.createUser.token);
+            console.log(data.createUser.token)
         } catch (error) {
             console.error(error);
             setShowAlert(true);
@@ -84,7 +86,7 @@ export default function SignUp() {
                         Sign up
                     </Typography>
                     <Box component="form" noValidate validated={validated} onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        <Alert dismissible="true" onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                        <Alert dismissible="true" onClose={() => setShowAlert(false)} variant='danger'>
                             Something went wrong with your signup!
                         </Alert>
                         <Grid container spacing={2}>

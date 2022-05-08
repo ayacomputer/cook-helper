@@ -39,6 +39,7 @@ export default function Login() {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
+        console.log(event.target)
         setUserFormData({ ...userFormData, [name]: value });
     };
 
@@ -57,6 +58,7 @@ export default function Login() {
                 variables: { ...userFormData },
             });
             Auth.login(data.login.token);
+            console.log(data.login.token)
         } catch (err) {
             console.error(err);
             setShowAlert(true);
@@ -104,7 +106,7 @@ export default function Login() {
                             Sign in
                         </Typography>
                         <Box component="form" noValidate validated={validated} onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                            <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                            <Alert dismissible="true" onClose={() => setShowAlert(false)} variant='danger'>
                                 Something went wrong with your login credentials!
                             </Alert>
                             <TextField

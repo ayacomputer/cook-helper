@@ -48,31 +48,30 @@ const resolvers = {
 
     },
     saveRecipe: async (_, { input }, context) => {
-
-      if (context.user) {
-        return await User.findOneAndUpdate({ _id: context.user._id },
-          { $addToSet: { savedRecipes: input } },
-          { new: true });
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    removeRecipe: async (_, { _id }, context) => {
-
-      if (context.user) {
-        return await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedRecipes: { _id } } },
-          { new: true });
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    deleteRecipe: async (_, { _id }, context) => {
-
-      if (context.user) {
-        return Recipe.findOneAndDelete({ _id });
-      }
-      throw new AuthenticationError('You need to be logged in!');
+      console.log(input)
+      return await User.findOneAndUpdate({ _id: context.user._id },
+        { $addToSet: { savedRecipes: input } },
+        { new: true });
     }
+      throw new AuthenticationError('You need to be logged in!');
+  },
+  removeRecipe: async (_, { _id }, context) => {
+
+    if (context.user) {
+      return await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { savedRecipes: { _id } } },
+        { new: true });
+    }
+    throw new AuthenticationError('You need to be logged in!');
+  },
+  deleteRecipe: async (_, { _id }, context) => {
+
+    if (context.user) {
+      return Recipe.findOneAndDelete({ _id });
+    }
+    throw new AuthenticationError('You need to be logged in!');
   }
+}
 }
 module.exports = resolvers;
