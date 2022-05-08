@@ -4,7 +4,9 @@ import Auth from '../utils/auth';
 import { selectRecipeIds, getSelectedRecipeIds } from '../utils/localStorage';
 import { GET_RECIPES } from '../utils/queries';
 import { SELECT_RECIPE, DELETE_RECIPE } from '../utils/mutations'
-import { Button, Card, Container } from '@mui/material';
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import NavBar from '../layouts/NavBar';
+import { Icon } from '@iconify/react'
 
 
 export default function Recipes() {
@@ -61,41 +63,87 @@ export default function Recipes() {
         }
     }
 
+    const fontFamily = [
+        'Nunito',
+        'Comforter',
+        'Roboto'
+    ].join(',');
+
+    const styles = {
+        mainContainer: {
+            background: "rgb(32, 33, 36)",
+            height: "100%"
+        },
+        cardContainer: {
+            maxWidth: "80%",
+            margin: "3rem auto",
+            background: "inherit",
+        },
+        wheat: {
+            color: "wheat",
+            border: "none",
+            fontWeight: "bold",
+            fontFamily: fontFamily
+        },
+        green: {
+            color: "rgba(150, 202, 27, 0.911)",
+            fontFamily: fontFamily,
+            fontWeight: "Bold"
+        },
+        img: {
+            background: "rgb(32, 33, 36)",
+            maxWidth: "100%",
+            objectFit: "cover top"
+        }
+    };
+
 
 
     return (
         <>
-            <Container fluid className='text-light bg-dark'>
-                <Container>
-                    <h1>Recipes</h1>
-                </Container>
-            </Container>
-            <Container>
+            <NavBar />
+            <Box component="div" style={styles.mainContainer}>
+                <h3>RECIPES</h3>
                 <h2>
                     {recipes.length
                         ? `You have ${recipes.length} ${recipes.length === 1 ? 'recipe' : 'recipes'}:`
                         : 'You have no recipes!'}
                 </h2>
-                <Card>
-                    {recipes.map((recipe, i) => {
-                        return (
-                            <div key={recipe._id} border='dark'>
-                                {recipe.image ? <img src={recipe.image} alt={`The cover for ${recipe.name}`} variant='top' /> : null}
-                                <div>
-                                    <p>{recipe.name}</p>
-                                    <Button className='btn-block btn-danger' onClick={() => handleSelectRecipe(recipe._id)}>
-                                        Select
-                                    </Button>
-                                    <Button className='btn-block btn-danger' onClick={() => handleDeleteRecipe(recipe._id)}>
-                                        Delete
-                                    </Button>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </Card>
-            </Container>
-        </>
-    )
+                <Grid container justify="center">
+                    {recipes.map((recipe, i) => (
+                        <Grid item xs={12} sm={6} md={4} xl={3} key={recipe._id} >
+                            <Card style={styles.cardContainer} elevation="8" className="project">
+                                <CardActionArea>
+                                    <CardMedia
+                                        component="img"
+                                        alt={`The cover for ${recipe.name}`}
+                                        height="300vh"
+                                        image={recipe.image}
+                                        style={styles.img}
+
+                                    />
+                                    <CardContent>
+                                        <Typography variant="h5" gutterBottom style={styles.green}>
+                                            {recipe.name}
+                                        </Typography>
+                                        <Typography style={styles.wheat}>
+                                            Cooking time:{recipe.totalTime}mins
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+
+                                    <Button variant="outlined" style={styles.wheat} onClick={() => handleSelectRecipe(recipe._id)} startIcon={<Icon icon="fluent:select-all-on-20-filled" />} >Select</Button>
+                                    <Button variant="outlined" style={styles.wheat} onClick={() => handleDeleteRecipe(recipe._id)} startIcon={<Icon icon="fluent:delete-24-filled" />}>Delete</Button>
+
+
+                                </CardActions>
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+            </Box>
+
+        </>)
 
 }

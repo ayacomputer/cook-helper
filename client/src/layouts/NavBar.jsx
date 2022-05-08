@@ -16,8 +16,8 @@ export default function NavBar() {
             link: "/",
         },
         {
-            title: "Dashboard",
-            link: "/dashboard",
+            title: "Recipes",
+            link: "/recipes",
 
         },
         {
@@ -27,7 +27,7 @@ export default function NavBar() {
         },
         {
             title: "Create Recipe",
-            link: "/create",
+            link: "/createRecipe",
 
         },
 
