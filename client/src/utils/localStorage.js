@@ -1,30 +1,30 @@
-export const getSavedRecipeIds = () => {
-  const savedRecipeIds = localStorage.getItem('saved_recipes')
-    ? JSON.parse(localStorage.getItem('saved_recipes'))
+export const getSelectedRecipeIds = () => {
+  const selectedRecipeIds = localStorage.getItem('selected_recipes')
+    ? JSON.parse(localStorage.getItem('selected_recipes'))
     : [];
 
-  return savedRecipeIds;
+  return selectedRecipeIds;
 };
 
-export const saveRecipeIds = (recipeIdArr) => {
+export const selectRecipeIds = (recipeIdArr) => {
   if (recipeIdArr.length) {
-    localStorage.setItem('saved_recipes', JSON.stringify(recipeIdArr));
+    localStorage.setItem('selected_recipes', JSON.stringify(recipeIdArr));
   } else {
-    localStorage.removeItem('saved_recipes');
+    localStorage.removeItem('selected_recipes');
   }
 };
 
 export const removeRecipeId = (recipeId) => {
-  const savedRecipeIds = localStorage.getItem('saved_recipes')
-    ? JSON.parse(localStorage.getItem('saved_recipes'))
+  const selectedRecipeIds = localStorage.getItem('selected_recipes')
+    ? JSON.parse(localStorage.getItem('selected_recipes'))
     : null;
 
-  if (!savedRecipeIds) {
+  if (!selectedRecipeIds) {
     return false;
   }
 
-  const updatedSavedRecipeIds = savedRecipeIds?.filter((savedRecipeId) => savedRecipeId !== recipeId);
-  localStorage.setItem('saved_recipes', JSON.stringify(updatedSavedRecipeIds));
+  const updatedSelectedRecipeIds = selectedRecipeIds?.filter((selectedRecipeId) => selectedRecipeId !== recipeId);
+  localStorage.setItem('saved_recipes', JSON.stringify(updatedSelectedRecipeIds));
 
   return true;
 };
