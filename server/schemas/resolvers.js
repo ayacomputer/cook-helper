@@ -52,6 +52,7 @@ const resolvers = {
       return await User.findOneAndUpdate({ _id: context.user._id },
         { $addToSet: { savedRecipes: input } },
         { new: true });
+
       throw new AuthenticationError('You need to be logged in!');
     },
     removeRecipe: async (_, { _id }, context) => {
