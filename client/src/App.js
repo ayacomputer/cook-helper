@@ -10,10 +10,10 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 
-import Login from './pages/login';
+// import Login from './pages/login';
 import Cooking from './pages/cooking';
 import Recipes from './pages/recipes';
-import SignUp from './pages/signup';
+// import SignUp from './pages/signup';
 import CreateRecipe from './pages/createRecipe'
 
 
@@ -48,8 +48,8 @@ function App() {
             />
             <Route
               path="/signup"
-              element={<SignUp />} */}
-            />
+              element={<SignUp />}
+            /> */}
             <Route
               path="/"
               element={<Cooking />}
