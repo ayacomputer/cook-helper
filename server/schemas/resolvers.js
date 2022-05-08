@@ -47,10 +47,10 @@ const resolvers = {
       // throw new AuthenticationError('You need to be logged in!');
 
     },
-    saveRecipe: async (_, { input }, context) => {
+    selectRecipe: async (_, { input }, context) => {
       console.log(input)
       return await User.findOneAndUpdate({ _id: context.user._id },
-        { $addToSet: { savedRecipes: input } },
+        { $addToSet: { selectedRecipes: input } },
         { new: true });
 
       throw new AuthenticationError('You need to be logged in!');
@@ -60,7 +60,7 @@ const resolvers = {
       if (context.user) {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedRecipes: { _id } } },
+          { $pull: { selectedRecipes: { _id } } },
           { new: true });
       }
       throw new AuthenticationError('You need to be logged in!');

@@ -19,7 +19,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        savedRecipes: [Recipe.schema]
+        selectedRecipes: [Recipe.schema]
 
     },
     {
@@ -44,7 +44,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 
 userSchema.virtual('recipeCount').get(function () {
-    return this.savedRecipes.length;
+    return this.selectedRecipes.length;
 });
 
 const User = model('User', userSchema);

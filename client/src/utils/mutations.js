@@ -20,7 +20,7 @@ mutation CreateUser($username: String!, $email: String!, $password: String!) {
         _id
         username
         email
-        savedRecipes {
+        selectedRecipes {
           _id
           name
           image
@@ -38,13 +38,13 @@ mutation CreateUser($username: String!, $email: String!, $password: String!) {
   }`
 
 
-export const SAVE_RECIPE = gql`
+export const SELECT_RECIPE = gql`
 mutation SaveRecipe($input: RecipeInput!) {
     saveRecipe(input: $input) {
       _id
       username
       email
-      savedRecipes {
+      selectedRecipes {
         name
         image
         ingredients {
@@ -83,7 +83,7 @@ mutation RemoveRecipe($id: ID!) {
       _id
       username
       email
-      savedRecipes {
+      selectedRecipes {
         _id
         name
         image

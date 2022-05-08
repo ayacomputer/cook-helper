@@ -7,7 +7,7 @@ export const QUERY_ME = gql`
         username
         email
         bookCount
-        savedRecipes {
+        selectedRecipes {
           _id
           name
           image

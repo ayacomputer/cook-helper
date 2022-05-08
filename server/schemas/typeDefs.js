@@ -5,7 +5,7 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String!
-    savedRecipes:[Recipe]
+    selectedRecipes:[Recipe]
   }
 
   type Recipe {
@@ -54,7 +54,7 @@ const typeDefs = gql`
    type Mutation {
     login( email: String!, password: String!): Auth
     createUser( username: String!, email: String!, password: String!): Auth
-    saveRecipe( input: RecipeInput! ): User
+    selectRecipe( input: RecipeInput! ): User
     createRecipe( input: RecipeInput!): Recipe
     removeRecipe(_id: ID!): User
     deleteRecipe(_id: ID!): Recipe
