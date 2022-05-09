@@ -20,6 +20,7 @@ mutation CreateUser($username: String!, $email: String!, $password: String!) {
         _id
         username
         email
+        recipeCount
         selectedRecipes {
           _id
           name
@@ -44,6 +45,7 @@ mutation SaveRecipe($input: RecipeInput!) {
       _id
       username
       email
+      recipeCount
       selectedRecipes {
         name
         image
@@ -83,6 +85,7 @@ mutation RemoveRecipe($id: ID!) {
       _id
       username
       email
+      recipeCount
       selectedRecipes {
         _id
         name

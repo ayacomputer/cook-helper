@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { selectRecipeIds, getSelectedRecipeIds } from '../utils/localStorage';
-import { GET_ONE_RECIPES } from '../utils/queries';
+import { GET_ONE_RECIPE } from '../utils/queries';
 import { SELECT_RECIPE, DELETE_RECIPE } from '../utils/mutations'
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import NavBar from '../layouts/NavBar';
-import { Icon } from '@iconify/react'
+// import { Icon } from '@iconify/react'
 
 
-export default function Recipe() {
+export default function Recipe(_id) {
     const [getOneRecipe] = useQuery(GET_ONE_RECIPE);
     const selectedRecipe = getOneRecipe({ variables: { _id } });
 
 
-    c
     const fontFamily = [
         'Nunito',
         'Comforter',
@@ -87,16 +86,14 @@ export default function Recipe() {
 
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions>
+                            {/* <CardActions>
 
                                 <Button variant="outlined" style={styles.wheat} onClick={() => handleEditRecipe(recipe._id)} startIcon={<Icon icon="fluent:select-all-on-20-filled" />} >Select</Button>
-                                <Button variant="outlined" style={styles.wheat} onClick={() => handleDeleteRecipe(recipe._id)} startIcon={<Icon icon="fluent:delete-24-filled" />}>Delete</Button>
-
-
-                            </CardActions>
+                                <Button variant="outlined" style={styles.wheat} onClick={() => handleDeleteRecipe(recipe._id)} startIcon={<Icon icon="fluent:delete-24-filled" />}>Delete</Button> 
+                              </CardActions>  */}
                         </Card>
                     </Grid>
-                    ))}
+
                 </Grid>
             </Box>
 
