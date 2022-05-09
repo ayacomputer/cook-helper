@@ -25,8 +25,11 @@ export default function Recipes() {
     });
 
 
-    const handleSelectRecipe = async (recipeId) => {
-        const recipeToSelect = recipes.find((recipe) => recipe._id === recipeId);
+    const handleSelectRecipe = async (selectedRecipeId) => {
+        console.log('selectedRecipeId', selectedRecipeId);
+
+        const recipeToSelect = recipes.find((recipe) => recipe._id === selectedRecipeId);
+        console.log("recipeToSelect", recipeToSelect)
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
@@ -34,7 +37,7 @@ export default function Recipes() {
         }
 
         try {
-            const { data } = await selectRecipe({
+            await selectRecipe({
                 variables: { input: { ...recipeToSelect } },
             });
 
@@ -50,7 +53,7 @@ export default function Recipes() {
             return false;
         }
         try {
-            const { data } = await deleteRecipe({
+            await deleteRecipe({
                 variables: { recipeId },
             });
 

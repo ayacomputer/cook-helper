@@ -55,7 +55,6 @@ export default function Footer() {
       ))
       }
       <div style={styles.footer}>
-        <p>Updated May 2022</p>
         2022 © <br />
         Powered by <a href="https://github.com/ayacomputer" target="_blank" rel="noreferrer" style={styles.link}>Ayako Woollan</a>
       </div>

@@ -26,7 +26,7 @@ export default function Recipe(_id) {
             height: "100%"
         },
         cardContainer: {
-            maxwidth: "80%",
+            maxWidth: "80%",
             margin: "3rem auto",
             background: "inherit",
         },
@@ -43,7 +43,7 @@ export default function Recipe(_id) {
         },
         img: {
             background: "rgb(32, 33, 36)",
-            maxwidth: "100%",
+            maxWidth: "100%",
             objectFit: "cover top"
         }
     };

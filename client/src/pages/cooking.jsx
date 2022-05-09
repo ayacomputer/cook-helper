@@ -12,6 +12,7 @@ const Cooking = () => {
     const { loading, data } = useQuery(QUERY_ME);
     const [removeRecipe] = useMutation(REMOVE_RECIPE);
     const userData = data?.me || {};
+    console.log("selected", data)
 
     const handleRemoveRecipe = async (recipeId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -21,7 +22,7 @@ const Cooking = () => {
         }
 
         try {
-            const { data } = await removeRecipe({
+            await removeRecipe({
                 variables: { recipeId },
             });
 

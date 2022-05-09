@@ -40,8 +40,8 @@ mutation CreateUser($username: String!, $email: String!, $password: String!) {
 
 
 export const SELECT_RECIPE = gql`
-mutation SaveRecipe($input: RecipeInput!) {
-    saveRecipe(input: $input) {
+mutation SelectRecipe($input: RecipeInput!) {
+    selectRecipe(input: $input) {
       _id
       username
       email
