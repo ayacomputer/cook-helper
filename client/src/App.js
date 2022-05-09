@@ -15,6 +15,7 @@ import Cooking from './pages/cooking';
 import Recipes from './pages/recipes';
 import SignUp from './pages/signup';
 import CreateRecipe from './pages/createRecipe'
+import MainLayout from './layouts/MainLayout';
 
 
 const httpLink = createHttpLink({
@@ -39,32 +40,29 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
+      <MainLayout>
+        <Router>
+
+
           <Routes>
-            <Route
-              path="/"
-              element={<Login />}
+            <Route path="/" element={<Login />}
             />
-            <Route
-              path="/signup"
-              element={<SignUp />}
+            <Route path="/signup" element={<SignUp />}
             />
-            <Route
-              path="/cooking"
-              element={<Cooking />}
+            <Route path="/cooking" element={<Cooking />}
             />
-            <Route
-              path="/recipes"
-              element={<Recipes />}
+            <Route path="/recipes" element={<Recipes />}
             />
-            <Route
-              path="/createRecipe"
-              element={<CreateRecipe />}
+            <Route path="/createRecipe" element={<CreateRecipe />}
             />
+
           </Routes>
-        </div>
-      </Router>
+
+        </Router>
+
+
+      </MainLayout>
+
     </ApolloProvider >
   );
 }
