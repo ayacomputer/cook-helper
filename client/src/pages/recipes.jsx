@@ -37,13 +37,15 @@ export default function Recipes() {
         }
 
         try {
+
+            console.log("recipeToSelect: ", recipeToSelect)
             await selectRecipe({
                 variables: { input: { ...recipeToSelect } },
             });
-
+            console.log('recipeToSelectId', recipeToSelect._id)
             setSelectedRecipeIds([...selectedRecipeIds, recipeToSelect._id]);
         } catch (err) {
-            console.error(err);
+            console.error("Error in handleSelectRecipe: ", err);
         }
     };
 

@@ -37,7 +37,19 @@ const typeDefs = gql`
     getOneRecipe(_id: ID!): Recipe 
   }
    
-   input RecipeInput {
+   input SelectedRecipeInput {
+    _id: String 
+    image: String
+    name: String
+    createdAt: String
+    ingredients: [IngredientInput]
+    steps: [String]
+    totalTime: Int
+    serves: Int
+  }
+
+  input RecipeInput {
+    _id: String 
     image: String
     name: String
     ingredients: [IngredientInput]
@@ -55,7 +67,7 @@ const typeDefs = gql`
    type Mutation {
     login( email: String!, password: String!): Auth
     createUser( username: String!, email: String!, password: String!): Auth
-    selectRecipe( input: RecipeInput! ): User
+    selectRecipe( input: SelectedRecipeInput! ): User
     createRecipe( input: RecipeInput!): Recipe
     removeRecipe(_id: ID!): User
     deleteRecipe(_id: ID!): Recipe
