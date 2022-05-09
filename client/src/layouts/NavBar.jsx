@@ -85,8 +85,8 @@ export default function NavBar() {
     return (
 
         <>
-            <AppBar position="static" style={styles.navBar} elevation='0' maxWidth="xl">
-                <Container maxWidth="xl">
+            <AppBar position="static" style={styles.navBar} elevation={0} maxwidth="xl">
+                <Container maxwidth="xl">
                     <Toolbar disableGutters>
                         <Typography
                             variant="h6"
@@ -129,8 +129,8 @@ export default function NavBar() {
                                 }}
                             >
                                 {listItems.map((listItem, i) => (
-                                    <Paper elevation={0}>
-                                        <MenuItem key={i} onClick={handleCloseNavMenu}>
+                                    <Paper elevation={0} key={i}>
+                                        <MenuItem onClick={handleCloseNavMenu}>
                                             <Typography textAlign="center"><Link href={listItem.link} style={styles.link}>{listItem.title}</Link></Typography>
                                         </MenuItem>
                                     </Paper>

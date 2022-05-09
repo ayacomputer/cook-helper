@@ -75,7 +75,7 @@ export default function Recipes() {
             height: "100%"
         },
         cardContainer: {
-            maxWidth: "80%",
+            maxwidth: "80%",
             margin: "3rem auto",
             background: "inherit",
         },
@@ -92,7 +92,7 @@ export default function Recipes() {
         },
         img: {
             background: "rgb(32, 33, 36)",
-            maxWidth: "100%",
+            maxwidth: "100%",
             objectFit: "cover top"
         }
     };
@@ -112,7 +112,7 @@ export default function Recipes() {
                 <Grid container justify="center">
                     {recipes.map((recipe, i) => (
                         <Grid item xs={12} sm={6} md={4} xl={3} key={recipe._id} >
-                            <Card style={styles.cardContainer} elevation="8" className="project">
+                            <Card style={styles.cardContainer} elevation={8} className="project">
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"

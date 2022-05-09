@@ -10,7 +10,7 @@ import NavBar from '../layouts/NavBar';
 
 const Cooking = () => {
     const { loading, data } = useQuery(QUERY_ME);
-    const [removeRecipe, { error }] = useMutation(REMOVE_RECIPE);
+    const [removeRecipe] = useMutation(REMOVE_RECIPE);
     const userData = data?.me || {};
 
     const handleRemoveRecipe = async (recipeId) => {
@@ -37,6 +37,7 @@ const Cooking = () => {
 
     return (
         <>
+            <NavBar />
             <Box>
                 <Container fluid="true" className='text-light bg-dark'>
                     <Container>

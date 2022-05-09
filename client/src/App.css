@@ -79,7 +79,7 @@ main {
 }
 
 svg:hover {
-    transform: scale(1.5);
+    transform: scale(1.2);
     transition: all 0.5s ease-in-out;
 }
 
@@ -87,7 +87,7 @@ svg:hover {
 
 .project:hover,
 button:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     transition: all 1s ease-in-out;
 }
 
