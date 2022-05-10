@@ -1,18 +1,25 @@
 import * as React from 'react';
 
 import Auth from '../utils/auth';
-import { removeRecipeId } from '../utils/localStorage';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME, GET_ONE_RECIPE } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
 import { Button, Box, Grid, Card, CardActionArea, CardMedia, CardContent, Container, Typography } from '@mui/material';
 import NavBar from '../layouts/NavBar';
 
 const Cooking = () => {
-    const { loading, data } = useQuery(QUERY_ME);
-    const [removeRecipe] = useMutation(REMOVE_RECIPE);
-    const userData = data?.me || {};
-    console.log("selected", data)
+    const meData = useQuery(QUERY_ME);
+
+    const [removeRecipeId] = useMutation(REMOVE_RECIPE);
+    const userData = meData.data?.me || {};
+    const selectedRecipeIds = meData.data?.selectedRecipeIds || [];
+
+    console.log("selected", selectedRecipeIds)
+    console.log("userData", userData)
+
+    // const recipes = useQuery(GET_ONE_REC, { variables: selectedRecipeIds });
+
+
 
     const handleRemoveRecipe = async (recipeId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -22,19 +29,18 @@ const Cooking = () => {
         }
 
         try {
-            await removeRecipe({
+            await removeRecipeId({
                 variables: { recipeId },
             });
 
-            removeRecipeId(recipeId);
         } catch (err) {
             console.error(err);
         }
     };
 
-    if (loading) {
-        return <h2>LOADING...</h2>;
-    }
+    // if (loading) {
+    //     return <h2>LOADING...</h2>;
+    // }
 
     return (
         <>
@@ -47,13 +53,13 @@ const Cooking = () => {
                 </Container>
                 <Grid container justify="center">
                     <h2>
-                        {userData.selectedRecipes.length
-                            ? `Viewing ${userData.selectedRecipes.length} saved ${userData.selectedRecipes.length === 1 ? 'recipe' : 'recipes'}:`
+                        {userData.selectedRecipeId.length
+                            ? `Viewing ${userData.selectedRecipeIds.length} saved ${userData.selectedRecipeIds.length === 1 ? 'recipe' : 'recipes'}:`
                             : 'You have not chosen any recipe yet!'}
                     </h2>
                     <Card>
 
-                        {userData.selectedRecipes.map((recipe) => {
+                        {userData.selectedRecipe.map((recipe) => {
                             return (
                                 <CardActionArea key={recipe._id} border='dark'>
 

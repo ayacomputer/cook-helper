@@ -29,7 +29,7 @@ export default function Recipes() {
         console.log('selectedRecipeId', selectedRecipeId);
 
         const recipeToSelect = recipes.find((recipe) => recipe._id === selectedRecipeId);
-        console.log("recipeToSelect", recipeToSelect)
+        console.log("recipeToSelect", recipeToSelect._id)
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
@@ -38,9 +38,9 @@ export default function Recipes() {
 
         try {
 
-            console.log("recipeToSelect: ", recipeToSelect)
+            console.log("recipeToSelect: ", recipeToSelect._id)
             await selectRecipe({
-                variables: { input: { ...recipeToSelect } },
+                variables: { selectedRecipeIds: recipeToSelect._id }
             });
             console.log('recipeToSelectId', recipeToSelect._id)
             // setSelectedRecipeIds([...selectedRecipeIds, recipeToSelect._id]);

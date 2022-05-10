@@ -35,6 +35,7 @@ const typeDefs = gql`
     me: User
     getRecipes: [Recipe]
     getOneRecipe(_id: ID!): Recipe 
+    getRecipesByIds(_id: [ID]!): [Recipe] 
   }
    
    input SelectedRecipeInput {

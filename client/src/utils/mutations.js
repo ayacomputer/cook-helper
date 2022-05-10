@@ -21,19 +21,7 @@ mutation CreateUser($username: String!, $email: String!, $password: String!) {
         username
         email
         recipeCount
-        selectedRecipes {
-          _id
-          name
-          image
-          createdAt
-          ingredients {
-            name
-            qty
-          }
-          steps
-          totalTime
-          serves
-        }
+        selectedRecipeIds 
       }
     }
   }`
@@ -46,17 +34,7 @@ mutation SelectRecipe($input: SelectedRecipeInput!) {
       username
       email
       recipeCount
-      selectedRecipes {
-        name
-        image
-        ingredients {
-          name
-          qty
-        }
-        steps
-        totalTime
-        serves
-      }
+      selectedRecipeIds 
     }
   }`
 
@@ -86,19 +64,7 @@ mutation RemoveRecipe($id: ID!) {
       username
       email
       recipeCount
-      selectedRecipes {
-        _id
-        name
-        image
-        createdAt
-        ingredients {
-          name
-          qty
-        }
-        steps
-        totalTime
-        serves
-      }
+      selectedRecipeIds 
     }
   }`
 

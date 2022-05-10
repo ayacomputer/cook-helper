@@ -14,7 +14,12 @@ const resolvers = {
       return await Recipe.find().sort({ createdAt: -1 });
     },
     getOneRecipe: async (_, { _id }) => {
+      console.log("-----id:", _id)
       return await Recipe.findOne({ _id });
+    },
+    getRecipesByIds: async (_, { _id }) => {
+      console.log("-----ids:", _id)
+      return await Recipe.find({ _id: { $in: _id } });
     }
   },
 
@@ -47,12 +52,12 @@ const resolvers = {
       // throw new AuthenticationError('You need to be logged in!');
 
     },
-    selectRecipe: async (_, { input }, context) => {
-      console.log("input for selectRecipe mutation", input)
+    selectRecipe: async (_, { selectedRecipeId }, context) => {
+      console.log("input for selectRecipe mutation", selectedRecipeId)
       console.log("context for selectRecipe mutation", context)
       if (context.user) {
         return await User.findOneAndUpdate({ _id: context.user._id },
-          { $addToSet: { selectedRecipes: input } },
+          { $addToSet: { selectedRecipeIds: selectedRecipeId } },
           { new: true });
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -62,7 +67,7 @@ const resolvers = {
       if (context.user) {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { selectedRecipes: { _id } } },
+          { $pull: { selectedRecipeIds: { _id } } },
           { new: true });
       }
       throw new AuthenticationError('You need to be logged in!');

@@ -44,7 +44,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 
 userSchema.virtual('recipeCount').get(function () {
-    return this.selectedRecipes.length;
+    return this.selectedRecipeIds.length;
 });
 
 const User = model('User', userSchema);
