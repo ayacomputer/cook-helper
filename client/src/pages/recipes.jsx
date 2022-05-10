@@ -30,6 +30,7 @@ export default function Recipes() {
         console.log('selectedRecipeId', selectedRecipeId);
 
         const recipeToSelect = recipes.find((recipe) => recipe._id === selectedRecipeId);
+        const recipeIdToAdd = recipeToSelect._id
         console.log("recipeToSelect", recipeToSelect)
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -40,9 +41,9 @@ export default function Recipes() {
         try {
             console.log('recipeToSelectId---------', recipeToSelect._id)
             console.log("typeof_", typeof (recipeToSelect._id))
-            console.log("recipeToSelectId: ", recipeToSelect._id)
-            await selectRecipe({ variables: { selectedRecipeIds: recipeToSelect._id } });
-            console.log('recipeToSelectId---------', recipeToSelect._id)
+            console.log("recipeId to add: ", recipeIdToAdd)
+            const { data } = await selectRecipe({ variables: { selectedRecipeIds: recipeIdToAdd } });
+            console.log('recipeToSelectId---------', recipeIdToAdd)
             // setSelectedRecipeIds([...selectedRecipeIds, recipeToSelect._id]);
         } catch (err) {
             console.error("Error in handleSelectRecipe: ", err);

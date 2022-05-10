@@ -28,7 +28,7 @@
         "qty": "1"
       }
     ],
-    "instruction": [
+    "steps": [
       "Wash apple",
       "Peel apple",
       "Cut apple"
@@ -57,7 +57,7 @@
         "qty": "To taste"
       }
     ],
-    "instruction": [
+    "steps": [
       "Cut potato in the same size and put them into a pot.",
       "Fill water to cover the potato,",
       "Cook potato until you can poke with a skewer easily.",
@@ -95,7 +95,7 @@
     "steps": [
       "1. Take out a packet of frozen spinach from the freezer and defrost at room temperature.",
       "Put water in a big pot and bring it to boil, then add a handful of salt in the pot, put pasta for 11 mins from as the packet tells you.",
-      "Meanwhile, put a glug of olieve oil into a cold pan, then crush the garlic cloves onto it.",
+      "Meanwhile, put a glug of olive oil into a cold pan, then crush the garlic cloves onto it.",
       "Turn the stove on, start at very very low heat.",
       "Then add defrost spinach, and then cook it for a while.",
       "Add anchovies and its oil and stir, right before adding pasta to it.",
