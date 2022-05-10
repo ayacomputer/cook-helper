@@ -10,6 +10,7 @@ import { Icon } from '@iconify/react'
 
 
 export default function Recipes() {
+    console.log("-------------------------recipe page---------------------------------")
     const { loading, data } = useQuery(GET_RECIPES);
     console.log("data", data)
     const recipes = data?.getRecipes || [];
@@ -29,25 +30,25 @@ export default function Recipes() {
         console.log('selectedRecipeId', selectedRecipeId);
 
         const recipeToSelect = recipes.find((recipe) => recipe._id === selectedRecipeId);
-        console.log("recipeToSelect", recipeToSelect._id)
+        console.log("recipeToSelect", recipeToSelect)
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
             return false;
         }
-
+        ///// Need to figure out the bug here: back end works  
         try {
-
-            console.log("recipeToSelect: ", recipeToSelect._id)
-            await selectRecipe({
-                variables: { selectedRecipeIds: recipeToSelect._id }
-            });
-            console.log('recipeToSelectId', recipeToSelect._id)
+            console.log('recipeToSelectId---------', recipeToSelect._id)
+            console.log("typeof_", typeof (recipeToSelect._id))
+            console.log("recipeToSelectId: ", recipeToSelect._id)
+            await selectRecipe({ variables: { selectedRecipeIds: recipeToSelect._id } });
+            console.log('recipeToSelectId---------', recipeToSelect._id)
             // setSelectedRecipeIds([...selectedRecipeIds, recipeToSelect._id]);
         } catch (err) {
             console.error("Error in handleSelectRecipe: ", err);
         }
     };
+
 
     const handleDeleteRecipe = async (recipeId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;

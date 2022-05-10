@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME, GET_ONE_RECIPE } from '../utils/queries';
+import { QUERY_ME, GET_RECIPES_BY_IDS } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
 import { Button, Box, Grid, Card, CardActionArea, CardMedia, CardContent, Container, Typography } from '@mui/material';
 import NavBar from '../layouts/NavBar';
@@ -17,9 +17,9 @@ const Cooking = () => {
     console.log("selected", selectedRecipeIds)
     console.log("userData", userData)
 
-    // const recipes = useQuery(GET_ONE_REC, { variables: selectedRecipeIds });
+    let recipes = useQuery(GET_RECIPES_BY_IDS, { variables: { _id: selectedRecipeIds } });
 
-
+    console.log("---------recipes:", recipes)
 
     const handleRemoveRecipe = async (recipeId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -38,9 +38,12 @@ const Cooking = () => {
         }
     };
 
-    // if (loading) {
-    //     return <h2>LOADING...</h2>;
-    // }
+    // const errors = meData.error || recipes.error;
+    const loading = meData.loading || recipes.loading;
+
+    if (loading) {
+        return <h2>LOADING...</h2>;
+    }
 
     return (
         <>
@@ -53,31 +56,35 @@ const Cooking = () => {
                 </Container>
                 <Grid container justify="center">
                     <h2>
-                        {userData.selectedRecipeId.length
-                            ? `Viewing ${userData.selectedRecipeIds.length} saved ${userData.selectedRecipeIds.length === 1 ? 'recipe' : 'recipes'}:`
+                        {recipes.length
+                            ? `Viewing ${recipes.length} saved ${recipes.length === 1 ? 'recipe' : 'recipes'}:`
                             : 'You have not chosen any recipe yet!'}
                     </h2>
                     <Card>
 
-                        {userData.selectedRecipe.map((recipe) => {
-                            return (
-                                <CardActionArea key={recipe._id} border='dark'>
+                        {Array.isArray(recipes) ?
+                            recipes.map((recipe) => {
+                                return (
+                                    <CardActionArea key={recipe._id} border='dark'>
 
-                                    {recipe.image ? <CardMedia component="img" image={recipe.image} alt={`The photo for ${recipe.name}`} /> : null}
-                                    <CardContent>
-                                        <Typography>{recipe.name}</Typography>
-                                        {recipe.steps.map((step) => {
-                                            return (
-                                                <p key={step._id}>{step}</p>
-                                            )
-                                        })}
-                                        <Button className='btn-block btn-danger' onClick={() => handleRemoveRecipe(recipe._id)}>
-                                            Remove this Recipe!
-                                        </Button>
-                                    </CardContent>
-                                </CardActionArea>
-                            );
-                        })}
+                                        {recipe.image ? <CardMedia component="img" image={recipe.image} alt={`The photo for ${recipe.name}`} /> : null}
+                                        <CardContent>
+                                            <Typography>{recipe.name}</Typography>
+                                            {recipe.steps.map((step) => {
+                                                return (
+                                                    <p key={step._id}>{step}</p>
+                                                )
+                                            })}
+                                            <Button className='btn-block btn-danger' onClick={() => handleRemoveRecipe(recipe._id)}>
+                                                Remove this Recipe!
+                                            </Button>
+                                        </CardContent>
+                                    </CardActionArea>
+                                );
+                            })
+                            :
+                            ''
+                        }
 
 
 

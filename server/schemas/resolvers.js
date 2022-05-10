@@ -52,12 +52,12 @@ const resolvers = {
       // throw new AuthenticationError('You need to be logged in!');
 
     },
-    selectRecipe: async (_, { selectedRecipeId }, context) => {
-      console.log("input for selectRecipe mutation", selectedRecipeId)
+    selectRecipe: async (_, { _id }, context) => {
+      console.log("input for selectRecipe mutation", _id)
       console.log("context for selectRecipe mutation", context)
       if (context.user) {
         return await User.findOneAndUpdate({ _id: context.user._id },
-          { $addToSet: { selectedRecipeIds: selectedRecipeId } },
+          { $addToSet: { selectedRecipeIds: _id } },
           { new: true });
       }
       throw new AuthenticationError('You need to be logged in!');
