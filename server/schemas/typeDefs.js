@@ -6,7 +6,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     recipeCount: Int
-    selectedRecipes:[Recipe]
+    selectedRecipeIds:[String]
   }
 
   type Recipe {

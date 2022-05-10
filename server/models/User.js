@@ -19,7 +19,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        selectedRecipes: [Recipe.schema]
+        selectedRecipeIds: [String]
 
     },
     {

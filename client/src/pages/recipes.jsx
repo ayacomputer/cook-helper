@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { selectRecipeIds, getSelectedRecipeIds } from '../utils/localStorage';
+// import { selectRecipeIds, getSelectedRecipeIds } from '../utils/localStorage';
 import { GET_RECIPES } from '../utils/queries';
 import { SELECT_RECIPE, DELETE_RECIPE } from '../utils/mutations'
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
@@ -16,13 +16,13 @@ export default function Recipes() {
     console.log("recipes", recipes)
     const [selectRecipe] = useMutation(SELECT_RECIPE);
     const [deleteRecipe] = useMutation(DELETE_RECIPE);
-    // const [searchInput, setSearchInput] = useState('');
+    const [searchInput, setSearchInput] = useState('');
 
-    const [selectedRecipeIds, setSelectedRecipeIds] = useState(getSelectedRecipeIds());
+    // const [selectedRecipeIds, setSelectedRecipeIds] = useState(getSelectedRecipeIds());
 
-    useEffect(() => {
-        return () => selectRecipeIds(selectedRecipeIds);
-    });
+    // useEffect(() => {
+    //     return () => selectRecipeIds(selectedRecipeIds);
+    // });
 
 
     const handleSelectRecipe = async (selectedRecipeId) => {
@@ -43,7 +43,7 @@ export default function Recipes() {
                 variables: { input: { ...recipeToSelect } },
             });
             console.log('recipeToSelectId', recipeToSelect._id)
-            setSelectedRecipeIds([...selectedRecipeIds, recipeToSelect._id]);
+            // setSelectedRecipeIds([...selectedRecipeIds, recipeToSelect._id]);
         } catch (err) {
             console.error("Error in handleSelectRecipe: ", err);
         }
