@@ -32,6 +32,7 @@ export default function Recipes() {
         const recipeToSelect = recipes.find((recipe) => recipe._id === selectedRecipeId);
         const recipeIdToAdd = recipeToSelect._id
         console.log("recipeToSelect", recipeToSelect)
+        console.log("recipeIdToADD", recipeIdToAdd)
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
@@ -42,7 +43,7 @@ export default function Recipes() {
             console.log('recipeToSelectId---------', recipeToSelect._id)
             console.log("typeof_", typeof (recipeToSelect._id))
             console.log("recipeId to add: ", recipeIdToAdd)
-            const { data } = await selectRecipe({ variables: { selectedRecipeIds: recipeIdToAdd } });
+            const { data } = await selectRecipe({ variables: { id: recipeIdToAdd } });
             console.log('recipeToSelectId---------', recipeIdToAdd)
             // setSelectedRecipeIds([...selectedRecipeIds, recipeToSelect._id]);
         } catch (err) {
@@ -111,11 +112,11 @@ export default function Recipes() {
             <NavBar />
             <Box component="div" style={styles.mainContainer}>
                 <h3>RECIPES</h3>
-                <h2>
+                <h4 style={styles.green}>
                     {recipes.length
                         ? `You have ${recipes.length} ${recipes.length === 1 ? 'recipe' : 'recipes'}:`
                         : 'You have no recipes!'}
-                </h2>
+                </h4>
                 <Grid container justify="center">
                     {recipes.map((recipe, i) => (
                         <Grid item xs={12} sm={6} md={4} xl={3} key={recipe._id} >
