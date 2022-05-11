@@ -119,7 +119,7 @@ export default function Recipes() {
                 <Grid container justify="center">
                     {recipes.map((recipe, i) => (
                         <Grid item xs={12} sm={6} md={4} xl={3} key={recipe._id} >
-                            <Card style={styles.cardContainer} elevation={8} className="project">
+                            <Card style={styles.cardContainer} elevation={8} className="recipe">
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"

@@ -1,7 +1,7 @@
 [
   {
     "name": "Apple",
-    "image": "test",
+    "image": "https://homecookbasics.com/wp-content/uploads/2020/12/How-to-Cut-an-Apple.jpg.webp",
     "ingredients": [
       {
         "name": "apple",
@@ -38,7 +38,7 @@
   },
   {
     "name": "Mashed Potato",
-    "image": "test",
+    "image": "https://images.media-allrecipes.com/userphotos/9420958.jpg",
     "ingredients": [
       {
         "name": "Potato",
@@ -69,7 +69,7 @@
   },
   {
     "name": "Fusilli with Spinach and Anchovies",
-    "image": "test",
+    "image": "https://www.saltandlavender.com/wp-content/uploads/2020/05/spinach-goat-cheese-pasta-1.jpg",
     "ingredients": [
       {
         "name": "Garlic",
