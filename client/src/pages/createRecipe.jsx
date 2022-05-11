@@ -1,22 +1,20 @@
-import { Container, Typography } from '@mui/material';
-import React from 'react';
+import { Box, TextField, Typography, Container, Button, Card } from '@mui/material';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import NavBar from '../layouts/NavBar';
 import { CREATE_RECIPE } from '../utils/mutations';
+import IngredientForm from '../components/ingredientForm';
 
 export default function CreateRecipe() {
-    const [userFormData, setUserFormData] = useState({ image: '', name: '', ingredients: '', steps: '', totalTime: '', serves: '' });
-    const [createRecipe] = useMutation(CREATE_RECIPE);
+    // const [recipeFormData, setRecipeFormData] = useState({ image: '', name: '', ingredients: '', steps: '', totalTime: '', serves: '' });
+    // const [createRecipe] = useMutation(CREATE_RECIPE);
 
 
 
     return (
         <>
-            <NavBar />
-            <Container>
-                <Typography>Create Recipe</Typography>
-                <Form>
-                </Form>
-            </Container>
+            <IngredientForm />
+
 
         </>
 
