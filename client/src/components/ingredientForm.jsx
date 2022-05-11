@@ -6,7 +6,7 @@ export default function IngredientForm() {
 
     const [ingredientsFields, setIngredientsFields] = useState([
         { name: '', qty: '' },
-    ], [])
+    ])
     const handleFormChange = (event, index) => {
         let data = [...ingredientsFields];
         data[index][event.target.name] = event.target.value;
@@ -30,7 +30,7 @@ export default function IngredientForm() {
         <>
             <Card container style={{ width: "30%", padding: "0.2em" }}>
                 <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
-                {ingredientsFields.map((form, index) => {
+                {ingredientsFields.map((ingredient, index) => {
                     return (
                         <> <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center" }}>
                             <TextField
@@ -40,7 +40,7 @@ export default function IngredientForm() {
                                 label="quantity"
                                 type="text"
                                 onChange={event => handleFormChange(event, index)}
-                                value={form.qty}
+                                value={ingredient.qty}
                                 size="standard"
                             />
                             <TextField
@@ -50,7 +50,7 @@ export default function IngredientForm() {
                                 label="Ingredient name"
                                 type="text"
                                 onChange={event => handleFormChange(event, index)}
-                                value={form.name}
+                                value={ingredient.name}
                                 size="standard"
                             />
                             <Button onClick={() => removeIngredientsFields(index)}>Remove </Button>
