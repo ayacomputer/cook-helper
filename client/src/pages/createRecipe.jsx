@@ -33,57 +33,80 @@ export default function CreateRecipe() {
                         flexDirection: 'column',
                         alignItems: 'center',
                     }} style={{ padding: "0.2em" }}>
-                        <TextField
-                            item
-                            id="recipeName"
-                            name="name"
-                            label="Recipe Name"
-                            type="text"
-                            onChange={event => handleRecipeFormChange(event)}
-                            value="name"
-                            size="standard"
-                            fullWidth
-                        />
-                        <TextField
-                            item
-                            id="imageUrl"
-                            name="imageUrl"
-                            label="Image URL"
-                            type="text"
-                            onChange={event => handleRecipeFormChange(event)}
-                            value="image"
-                            size="standard"
-                            fullWidth
-                        />
-                        <TextField
-                            item
-                            id="totalTime"
-                            name="totalTime"
-                            label="Total Time (mins)"
-                            type="number"
-                            onChange={event => handleRecipeFormChange(event)}
-                            value="totalTime"
-                            size="standard"
+                        <Grid container>
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    item
+                                    required
+                                    id="recipeName"
+                                    name="name"
+                                    label="Recipe Name"
+                                    type="text"
+                                    onChange={event => handleRecipeFormChange(event)}
+                                    value="name"
+                                    size="standard"
+                                    fullWidth
+                                    autoFocus
+                                />
+                                <TextField
+                                    item
+                                    id="imageUrl"
+                                    name="imageUrl"
+                                    label="Image URL"
+                                    type="text"
+                                    onChange={event => handleRecipeFormChange(event)}
+                                    value="image"
+                                    size="standard"
+                                    fullWidth
+                                    autoFocus
+                                />
+                                <TextField
+                                    item
+                                    required
+                                    id="totalTime"
+                                    name="totalTime"
+                                    label="Total Time (mins)"
+                                    type="number"
+                                    onChange={event => handleRecipeFormChange(event)}
+                                    value="totalTime"
+                                    size="standard"
+                                    autoFocus
 
-                        />
-                        <TextField
-                            item
-                            id="serves"
-                            name="serves"
-                            label="Serves"
-                            type="number"
-                            onChange={event => handleRecipeFormChange(event)}
-                            value="serves"
-                            size="standard"
+                                />
+                                <TextField
+                                    item
+                                    required
+                                    id="serves"
+                                    name="serves"
+                                    label="Serves"
+                                    type="number"
+                                    onChange={event => handleRecipeFormChange(event)}
+                                    value="serves"
+                                    size="standard"
+                                    autoFocus
 
-                        />
+                                />
+
+
+
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <IngredientForm />
+                                <StepsForm />
+
+
+                            </Grid>
+
+
+                        </Grid>
 
                     </Box>
-                    <Grid item>
-                        <IngredientForm />
-                        <StepsForm />
-                    </Grid>
-                    <Button>Save</Button>
+
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}>Save</Button>
                 </Container>
             </FormGroup>
 
