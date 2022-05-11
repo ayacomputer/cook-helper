@@ -6,6 +6,7 @@ import { QUERY_ME, GET_RECIPES_BY_IDS } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
 import { Button, Box, Grid, Card, CardActionArea, CardMedia, CardContent, Container, Typography } from '@mui/material';
 import NavBar from '../layouts/NavBar';
+import { styles } from '../utils/style'
 
 const Cooking = () => {
     const meData = useQuery(QUERY_ME);
@@ -47,40 +48,6 @@ const Cooking = () => {
         return <h2>LOADING...</h2>;
     }
 
-    const fontFamily = [
-        'Nunito',
-        'Comforter',
-        'Roboto'
-    ].join(',');
-
-    const styles = {
-        mainContainer: {
-            background: "rgb(32, 33, 36)",
-            height: "100%"
-        },
-        cardContainer: {
-            maxwidth: "80%",
-            margin: "3rem auto",
-            background: "inherit",
-        },
-        wheat: {
-            color: "wheat",
-            border: "none",
-            fontWeight: "bold",
-            fontFamily: fontFamily
-        },
-        green: {
-            color: "rgba(150, 202, 27, 0.911)",
-            fontFamily: fontFamily,
-            fontWeight: "Bold"
-        },
-        img: {
-            background: "rgb(32, 33, 36)",
-            width: "50%",
-            height: "100px",
-            objectFit: "cover top"
-        }
-    };
 
     return (
         <>

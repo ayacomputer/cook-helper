@@ -7,6 +7,7 @@ import { SELECT_RECIPE, DELETE_RECIPE } from '../utils/mutations'
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import NavBar from '../layouts/NavBar';
 import { Icon } from '@iconify/react'
+import { fontFamily, styles } from '../utils/style'
 
 
 export default function Recipes() {
