@@ -1,14 +1,21 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, GET_RECIPES_BY_IDS } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
-import { Button, Box, Grid, Card, CardActionArea, CardMedia, CardContent, Container, Typography } from '@mui/material';
+import { Button, Box, Grid, Card, CardActionArea, CardMedia, CardContent, Container, Typography, Collapse } from '@mui/material';
 import NavBar from '../layouts/NavBar';
 import { styles } from '../utils/style'
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 
 const Cooking = () => {
+
+    const [open, setOpen] = useState(true);
+    function handleClickStep() {
+        setOpen(!open);
+    };
     const meData = useQuery(QUERY_ME);
 
     const [removeRecipeId] = useMutation(REMOVE_RECIPE);
@@ -83,7 +90,11 @@ const Cooking = () => {
 
                                     <CardContent >
                                         {recipe.steps.map((step, i) => (
-                                            <Card key={step._id} style={{ "textAlign": "left", "padding": "0.2em" }}><p><b>Step {i + 1}:</b> {step}</p></Card>
+
+                                            <Card key={step._id} style={{ "textAlign": "left", "padding": "0.2em" }}>
+                                                <p key={step._id} onClick={handleClickStep}>{open ? <ExpandLess style={{ "justifyContent": 'right' }} /> : <ExpandMore style={{ "justifyContent": 'right' }} />}</p>
+                                                <Collapse in={open} timeout="auto" unmountOnExit><p><b>Step {i + 1}:</b> {step} </p></Collapse></Card>
+
                                         ))}
                                         <Button className='btn-block btn-danger' onClick={() => handleRemoveRecipe(recipe._id)}>
                                             Remove this Recipe!
