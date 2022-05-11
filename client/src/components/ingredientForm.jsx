@@ -29,7 +29,7 @@ export default function IngredientForm() {
     return (
         <>
             <Card container style={{ width: "30%", padding: "0.2em" }}>
-                <Typography variant="h4">Ingredients :</Typography>
+                <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
                 {ingredientsFields.map((form, index) => {
                     return (
                         <> <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center" }}>
