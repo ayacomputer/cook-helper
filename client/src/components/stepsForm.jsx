@@ -37,7 +37,7 @@ export default function StepsForm() {
                                 item
                                 id="ingredientName"
                                 name="step"
-                                label="Step"
+                                label={`Step ${index + 1}`}
                                 type="text"
                                 onChange={event => handleFormChange(event, index)}
                                 value={form.step}
