@@ -62,11 +62,11 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     removeRecipe: async (_, { _id }, context) => {
-
+      console.log("input for removeRecipe mutation", _id)
       if (context.user) {
         return await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { selectedRecipeIds: { _id } } },
+          { $pull: { selectedRecipeIds: _id } },
           { new: true });
       }
       throw new AuthenticationError('You need to be logged in!');

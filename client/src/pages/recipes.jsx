@@ -59,9 +59,8 @@ export default function Recipes() {
         }
         try {
             await deleteRecipe({
-                variables: { recipeId },
+                variables: { id: recipeId },
             });
-
 
         } catch (err) {
             console.error(err);

@@ -33,7 +33,7 @@ const Cooking = () => {
 
         try {
             await removeRecipeId({
-                variables: { recipeId },
+                variables: { id: recipeId }
             });
 
         } catch (err) {
