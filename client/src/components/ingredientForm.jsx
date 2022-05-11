@@ -6,7 +6,7 @@ export default function IngredientForm() {
 
     const [ingredientsFields, setIngredientsFields] = useState([
         { name: '', qty: '' },
-    ])
+    ], [])
     const handleFormChange = (event, index) => {
         let data = [...ingredientsFields];
         data[index][event.target.name] = event.target.value;
@@ -33,17 +33,6 @@ export default function IngredientForm() {
                 {ingredientsFields.map((form, index) => {
                     return (
                         <> <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center" }}>
-
-                            <TextField
-                                item
-                                id="ingredientName"
-                                name="name"
-                                label="Ingredient name"
-                                type="text"
-                                onChange={event => handleFormChange(event, index)}
-                                value={form.name}
-                                size="standard"
-                            />
                             <TextField
                                 item
                                 id="ingredientQty"
@@ -52,6 +41,16 @@ export default function IngredientForm() {
                                 type="text"
                                 onChange={event => handleFormChange(event, index)}
                                 value={form.qty}
+                                size="standard"
+                            />
+                            <TextField
+                                item
+                                id="ingredientName"
+                                name="name"
+                                label="Ingredient name"
+                                type="text"
+                                onChange={event => handleFormChange(event, index)}
+                                value={form.name}
                                 size="standard"
                             />
                             <Button onClick={() => removeIngredientsFields(index)}>Remove </Button>

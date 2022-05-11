@@ -7,7 +7,7 @@ import { SELECT_RECIPE, DELETE_RECIPE } from '../utils/mutations'
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import NavBar from '../layouts/NavBar';
 import { Icon } from '@iconify/react'
-import { fontFamily, styles } from '../utils/style'
+import { fontFamily } from '../utils/style'
 
 
 export default function Recipes() {
@@ -70,12 +70,6 @@ export default function Recipes() {
             return <h2>LOADING...</h2>;
         }
     }
-
-    const fontFamily = [
-        'Nunito',
-        'Comforter',
-        'Roboto'
-    ].join(',');
 
     const styles = {
         mainContainer: {

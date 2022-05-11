@@ -7,16 +7,11 @@ import IngredientForm from '../components/ingredientForm';
 import StepsForm from '../components/stepsForm';
 
 export default function CreateRecipe() {
-    const [recipeFormData, setRecipeFormData] = useState();
-    const [createRecipe] = useMutation(CREATE_RECIPE);
-
-
-    const formSubmitHandler = () => {
-
-    }
-
-
-
+    // const [recipeFormData, setRecipeFormData] = useState();
+    // const [createRecipe] = useMutation(CREATE_RECIPE);
+    const [recipeFields, setRecipeFields] = useState([
+        { image: '', name: '', serves: '' },
+    ], [])
     return (
         <>
             <NavBar />
