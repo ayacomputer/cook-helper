@@ -21,6 +21,8 @@ const Cooking = () => {
     let recipes = results?.data?.getRecipesByIds || [];
 
     console.log("---------recipes:", recipes)
+    // const errors = meData.error || results.error;
+    const loading = meData.loading || results.loading;
 
     const handleRemoveRecipe = async (recipeId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -39,12 +41,12 @@ const Cooking = () => {
         }
     };
 
-    // const errors = meData.error || recipes.error;
-    // const loading = meData.loading || recipes.loading;
 
-    // if (loading) {
-    //     return <h2>LOADING...</h2>;
-    // }
+
+    if (loading) {
+        return <h2>LOADING...</h2>;
+    }
+
     const fontFamily = [
         'Nunito',
         'Comforter',
@@ -101,6 +103,7 @@ const Cooking = () => {
                                 <CardActionArea border='dark'>
                                     <Typography variant="h5" style={styles.green}>{recipe.name}</Typography>
                                     <Typography variant="h6" style={styles.wheat}>Total Time: {recipe.totalTime} mins</Typography>
+                                    <Typography variant="h6" style={styles.wheat}>Serves: {recipe.serves}</Typography>
                                     <Grid container style={{ "textAlign": "left", "padding": "0.2em" }}>
                                         {recipe.image ? <CardMedia component="img" image={recipe.image} alt={`The photo for ${recipe.name}`} style={styles.img} /> : null}
                                         <Card item xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", "width": "50%" }}>
