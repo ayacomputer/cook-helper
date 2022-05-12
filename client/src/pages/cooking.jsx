@@ -91,7 +91,7 @@ const Cooking = () => {
 
                                     {recipe.steps.map((step, i) => (
 
-                                        <Accordion defaultExpanded={true} key={step._id} style={{ "textAlign": "left", "padding": "0.2em" }} disableGutters={true} TransitionProps={{ unmountOnExit: true }}>
+                                        <Accordion key={step._id} defaultExpanded={true} style={{ "textAlign": "left", "padding": "0.2em" }} disableGutters={true} TransitionProps={{ unmountOnExit: true }}>
 
                                             <AccordionSummary
                                                 disableSpacing={true}

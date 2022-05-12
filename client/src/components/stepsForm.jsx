@@ -1,12 +1,10 @@
-import { TextField, Typography, Container, Button, Card } from '@mui/material';
-import React, { useState } from 'react';
+import { TextField, Typography, Container, Button, Box } from '@mui/material';
+import React from 'react';
 
 
-export default function StepsForm() {
+export default function StepsForm({ steps, setSteps }) {
 
-    const [steps, setSteps] = useState([
-        { step: '' }
-    ])
+
     const handleFormChange = (event, index) => {
         let data = [...steps];
         data[index][event.target.name] = event.target.value;
@@ -27,38 +25,28 @@ export default function StepsForm() {
 
     return (
         <>
-            <Card container style={{ width: "30%", padding: "0.2em" }}>
+            <Box container style={{ padding: "0.2em" }}>
                 <Typography variant="h5" style={{ textAlign: "left" }}>Instructions :</Typography>
-                {steps.map((form, index) => {
-                    return (
-                        <> <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center" }}>
-
+                {steps.map((step, index) => (
+                    <div key={index}>
+                        <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center" }}>
                             <TextField
-                                item
                                 id="ingredientName"
                                 name="step"
                                 label={`Step ${index + 1}`}
                                 type="text"
                                 onChange={event => handleFormChange(event, index)}
-                                value={form.step}
                                 size="standard"
                                 fullWidth
                             />
                             <Button onClick={() => removeIngredientsFields(index)}>Remove </Button>
                         </Container>
 
-                        </>
+                    </div>
 
-                    )
-                })
-                }
+                ))}
                 <Button onClick={addFields}>Add More..</Button>
-            </Card>
-
-
-
-
-
+            </Box>
 
         </>
 

@@ -1,16 +1,14 @@
-import { TextField, Typography, Container, Button, Card } from '@mui/material';
-import React, { useState } from 'react';
+import { TextField, Typography, Container, Button, Box } from '@mui/material';
+import React from 'react';
 
 
-export default function IngredientForm() {
+export default function IngredientForm({ ingredients, setIngredients }) {
 
-    const [ingredientsFields, setIngredientsFields] = useState([
-        { name: '', qty: '' },
-    ])
+
     const handleFormChange = (event, index) => {
-        let data = [...ingredientsFields];
+        let data = [...ingredients];
         data[index][event.target.name] = event.target.value;
-        setIngredientsFields(data);
+        setIngredients(data);
     }
 
     const addFields = () => {
@@ -18,23 +16,23 @@ export default function IngredientForm() {
             name: '',
             qty: ''
         }
-        setIngredientsFields([...ingredientsFields, object])
+        setIngredients([...ingredients, object])
     }
+
     const removeIngredientsFields = (index) => {
-        let data = [...ingredientsFields];
+        let data = [...ingredients];
         data.splice(index, 1)
-        setIngredientsFields(data)
+        setIngredients(data)
     }
 
     return (
         <>
-            <Card container style={{ width: "30%", padding: "0.2em" }}>
+            <Box container style={{ padding: "0.2em" }}>
                 <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
-                {ingredientsFields.map((ingredient, index) => {
-                    return (
-                        <> <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center" }}>
+                {ingredients.map((ingredient, index) => (
+                    <div key={index}>
+                        <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center" }}>
                             <TextField
-                                item
                                 id="ingredientQty"
                                 name="qty"
                                 label="quantity"
@@ -44,7 +42,6 @@ export default function IngredientForm() {
                                 size="standard"
                             />
                             <TextField
-                                item
                                 id="ingredientName"
                                 name="name"
                                 label="Ingredient name"
@@ -55,14 +52,13 @@ export default function IngredientForm() {
                             />
                             <Button onClick={() => removeIngredientsFields(index)}>Remove </Button>
                         </Container>
+                    </div>
 
-                        </>
-
-                    )
-                })
+                )
+                )
                 }
                 <Button onClick={addFields}>Add More..</Button>
-            </Card>
+            </Box>
 
 
 

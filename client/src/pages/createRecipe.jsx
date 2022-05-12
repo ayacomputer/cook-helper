@@ -12,6 +12,12 @@ export default function CreateRecipe() {
     // const [createRecipe] = useMutation(CREATE_RECIPE);
     const [recipeFields, setRecipeFields] = useState([
         { image: '', name: '', serves: '' },
+    ]);
+    const [ingredientsFields, setIngredientsFields] = useState([
+        { name: '', qty: '' },
+    ]);
+    const [stepsFields, setStepsFields] = useState([
+        { step: '' }
     ])
 
     const handleRecipeFormChange = (event, index) => {
@@ -20,95 +26,116 @@ export default function CreateRecipe() {
         setRecipeFields(data);
     }
 
+    const handleSubmitForm = (data) => {
+        console.log(data);
 
+        // CreateRecipe({
+        //     variables: {
+        //         recipeFields,
+        //         ingredientFields
+        //     }
+        // })
+    }
+
+    const fullWidthForms = [
+        {
+            name: {
+                label: "Recipe Name",
+                name: "name",
+                id: "name",
+                type: "text"
+            },
+            image: {
+                label: "Image URL",
+                name: "imageUrl",
+                id: "image",
+                type: "image"
+            }
+
+        }
+    ]
+
+    const numberForms = [
+        {
+            totalTime: {
+                label: "Total Time (mins)",
+                name: "Total Time (mins)",
+                id: "totalTime",
+            }
+        },
+        {
+            serves: {
+                label: "Serves",
+                name: "Serves",
+                id: "serves",
+            }
+        }
+    ]
     return (
         <>
             <NavBar />
-            <Typography variant="h3">Create Recipe</Typography>
-            <FormGroup>
-                <Container component="main" maxWidth="xs" >
-                    <Box sx={{
-                        marginTop: 3,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }} style={{ padding: "0.2em" }}>
-                        <Grid container>
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    item
-                                    required
-                                    id="recipeName"
-                                    name="name"
-                                    label="Recipe Name"
-                                    type="text"
-                                    onChange={event => handleRecipeFormChange(event)}
-                                    value="name"
-                                    size="standard"
-                                    fullWidth
-                                    autoFocus
-                                />
-                                <TextField
-                                    item
-                                    id="imageUrl"
-                                    name="imageUrl"
-                                    label="Image URL"
-                                    type="text"
-                                    onChange={event => handleRecipeFormChange(event)}
-                                    value="image"
-                                    size="standard"
-                                    fullWidth
-                                    autoFocus
-                                />
-                                <TextField
-                                    item
-                                    required
-                                    id="totalTime"
-                                    name="totalTime"
-                                    label="Total Time (mins)"
-                                    type="number"
-                                    onChange={event => handleRecipeFormChange(event)}
-                                    value="totalTime"
-                                    size="standard"
-                                    autoFocus
+            <Card>
+                <Typography variant="h3">Create Recipe</Typography>
+                <FormGroup>
+                    <Container component="main">
+                        <Box sx={{
+                            marginTop: 3,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }} style={{ padding: "0.2em" }}>
+                            <Grid container>
+                                <Grid item xs={12} md={12}>
+                                    {fullWidthForms.map((form, i) => (
+                                        <TextField key={i}
+                                            required
+                                            id={form.id}
+                                            name={form.name}
+                                            label={form.label}
+                                            type={form.type}
+                                            onChange={event => handleRecipeFormChange(event)}
+                                            size="standard"
+                                            fullWidth
+                                            autoFocus
+                                            style={{ padding: "0.3em" }}
+                                        />
+                                    ))}
+                                    {numberForms.map((numForm, i) => (
+                                        <TextField
+                                            required
+                                            id={numForm.id}
+                                            name={numForm.name}
+                                            label={numForm.label}
+                                            type="number"
+                                            onChange={event => handleRecipeFormChange(event)}
+                                            size="standard"
+                                            autoFocus
+                                            style={{ padding: "0.3em" }}
+                                        />
 
-                                />
-                                <TextField
-                                    item
-                                    required
-                                    id="serves"
-                                    name="serves"
-                                    label="Serves"
-                                    type="number"
-                                    onChange={event => handleRecipeFormChange(event)}
-                                    value="serves"
-                                    size="standard"
-                                    autoFocus
-
-                                />
+                                    ))}
+                                </Grid>
 
 
-
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <IngredientForm />
-                                <StepsForm />
+                                <Grid item xs={12} md={12}>
+                                    <IngredientForm setIngredients={setIngredientsFields} ingredients={ingredientsFields} />
+                                    <StepsForm setSteps={setStepsFields} steps={stepsFields} />
+                                </Grid>
 
 
                             </Grid>
 
+                        </Box>
 
-                        </Grid>
-
-                    </Box>
-
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}>Save</Button>
-                </Container>
-            </FormGroup>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                            onClick={event => handleSubmitForm(event)}>Save</Button>
+                    </Container>
+                </FormGroup>
+            </Card>
 
 
 
