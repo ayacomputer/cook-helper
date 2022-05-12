@@ -4,19 +4,20 @@ import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, GET_RECIPES_BY_IDS } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
-import { Button, Box, Grid, Card, CardActionArea, CardMedia, CardContent, Container, Typography, Collapse } from '@mui/material';
+import { Button, Box, Grid, Card, CardActionArea, CardMedia, Container, Typography, Accordion, AccordionSummary, AccordionDetails, AccordionActions } from '@mui/material';
 import NavBar from '../layouts/NavBar';
 import { styles } from '../utils/style'
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const Cooking = () => {
-
-    const [open, setOpen] = useState(true);
-    function handleClickStep() {
-        setOpen(!open);
-    };
     const meData = useQuery(QUERY_ME);
+
+    // const [expanded, setExpanded] = useState(true);
+    // const handleClickStep = (panel) => (event, isExpanded) => {
+    //     console.log(panel)
+    //     console.log(isExpanded)
+    //     setClosed(isExpanded ? panel : false);
+    // };
 
     const [removeRecipeId] = useMutation(REMOVE_RECIPE);
     const userData = meData.data?.me || {};
@@ -50,7 +51,6 @@ const Cooking = () => {
     };
 
 
-
     if (loading) {
         return <h2>LOADING...</h2>;
     }
@@ -72,7 +72,7 @@ const Cooking = () => {
                 </Container>
                 <Grid container style={{ "justifyContent": "center" }}>
                     {recipes.map((recipe, i) => (
-                        <Grid item xs={12} sm={6} md={4} xl={3} key={recipe._id} >
+                        <Grid item key={recipe._id} xs={12} sm={6} md={4} xl={3} style={{ margin: "0.2rem" }} >
                             <Card style={styles.cardContainer} elevation={8} className="cookingRecipe">
                                 <CardActionArea border='dark'>
                                     <Typography variant="h5" style={styles.green}>{recipe.name}</Typography>
@@ -88,18 +88,32 @@ const Cooking = () => {
                                         </Card>
                                     </Grid>
 
-                                    <CardContent >
-                                        {recipe.steps.map((step, i) => (
 
-                                            <Card key={step._id} style={{ "textAlign": "left", "padding": "0.2em" }}>
-                                                <p key={step._id} onClick={handleClickStep}>{open ? <ExpandLess style={{ "justifyContent": 'right' }} /> : <ExpandMore style={{ "justifyContent": 'right' }} />}</p>
-                                                <Collapse in={open} timeout="auto" unmountOnExit><p><b>Step {i + 1}:</b> {step} </p></Collapse></Card>
+                                    {recipe.steps.map((step, i) => (
 
-                                        ))}
-                                        <Button className='btn-block btn-danger' onClick={() => handleRemoveRecipe(recipe._id)}>
-                                            Remove this Recipe!
-                                        </Button>
-                                    </CardContent>
+                                        <Accordion defaultExpanded={true} key={step._id} style={{ "textAlign": "left", "padding": "0.2em" }} disableGutters={true} TransitionProps={{ unmountOnExit: true }}>
+
+                                            <AccordionSummary
+                                                disableSpacing={true}
+                                                expandIcon={<ExpandMoreIcon />}
+                                                aria-controls="panel1bh-content"
+                                                id="panel1bh-header">
+                                                <Typography key={step._id}>
+                                                    Step {i + 1}:
+                                                </Typography>
+                                            </AccordionSummary>
+                                            <AccordionDetails>
+                                                <Typography>
+                                                    {step}
+                                                </Typography>
+                                            </AccordionDetails>
+                                        </Accordion>
+
+                                    ))}
+                                    <Button className='btn-block btn-danger' onClick={() => handleRemoveRecipe(recipe._id)}>
+                                        Remove this Recipe!
+                                    </Button>
+
                                 </CardActionArea>
                             </Card>
                         </Grid>
