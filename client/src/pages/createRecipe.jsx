@@ -5,11 +5,9 @@ import NavBar from '../layouts/NavBar';
 import { CREATE_RECIPE } from '../utils/mutations';
 import IngredientForm from '../components/ingredientForm';
 import StepsForm from '../components/stepsForm';
-import CssBaseline from '@mui/material/CssBaseline';
 
 export default function CreateRecipe() {
-    // const [recipeFormData, setRecipeFormData] = useState();
-    // const [createRecipe] = useMutation(CREATE_RECIPE);
+    const [CreateRecipe] = useMutation(CREATE_RECIPE);
     const [recipeFields, setRecipeFields] = useState([
         { image: '', name: '', serves: '' },
     ]);
@@ -17,41 +15,40 @@ export default function CreateRecipe() {
         { name: '', qty: '' },
     ]);
     const [stepsFields, setStepsFields] = useState([
-        { step: '' }
+        { step: '' },
     ])
 
     const handleRecipeFormChange = (event, index) => {
         let data = [...recipeFields];
-        data[index][event.target.name] = event.target.value;
+        data[index || 0][event.target.name] = event.target.value;
+
         setRecipeFields(data);
     }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log(event.target.value);
+        console.log("data-------", ...recipeFields, stepsFields, ingredientsFields);
 
         try {
             const { data } = await CreateRecipe({
                 variables: {
-                    recipeFields,
-                    stepsFields,
-                    ingredientsFields
-                },
+                    input: {
+                        ...recipeFields[0],
+                        totalTime: Number(recipeFields[0].totalTime),
+                        serves: Number(recipeFields[0].serves),
+                        steps: stepsFields.map((s) => s.step),
+                        ingredients: ingredientsFields
+                    }
+                }
             });
 
-            setRecipeFields('');
-            setIngredientsFields('');
-            setStepsFields('');
+            setRecipeFields([{ image: '', name: '', serves: '' }]);
+            setIngredientsFields([{ name: '', qty: '' },]);
+            setStepsFields([{ step: '' },]);
         } catch (err) {
             console.error(err);
         }
-
-        // CreateRecipe({
-        //     variables: {
-        //         recipeFields,
-        //         ingredientFields
-        //     }
-        // })
     }
 
     const fullWidthForms = [
@@ -63,7 +60,7 @@ export default function CreateRecipe() {
         },
         {
             label: "Image URL",
-            name: "imageUrl",
+            name: "image",
             id: "image",
             type: "text"
         }
@@ -72,13 +69,13 @@ export default function CreateRecipe() {
     const numberForms = [
         {
             label: "Total Time (mins)",
-            name: "Total Time (mins)",
+            name: "totalTime",
             id: "totalTime",
         },
         {
 
             label: "Serves",
-            name: "Serves",
+            name: "serves",
             id: "serves",
         }
     ]
