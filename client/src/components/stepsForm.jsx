@@ -25,11 +25,11 @@ export default function StepsForm({ steps, setSteps }) {
 
     return (
         <>
-            <Box container style={{ padding: "0.2em" }}>
+            <Box container style={{ padding: "0.2em", margin: "0.2em" }}>
                 <Typography variant="h5" style={{ textAlign: "left" }}>Instructions :</Typography>
                 {steps.map((step, index) => (
                     <div key={index}>
-                        <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center" }}>
+                        <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                             <TextField
                                 id="ingredientName"
                                 name="step"

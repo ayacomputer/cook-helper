@@ -26,8 +26,25 @@ export default function CreateRecipe() {
         setRecipeFields(data);
     }
 
-    const handleSubmitForm = (data) => {
-        console.log(data);
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(event.target.value);
+
+        try {
+            const { data } = await CreateRecipe({
+                variables: {
+                    recipeFields,
+                    stepsFields,
+                    ingredientsFields
+                },
+            });
+
+            setRecipeFields('');
+            setIngredientsFields('');
+            setStepsFields('');
+        } catch (err) {
+            console.error(err);
+        }
 
         // CreateRecipe({
         //     variables: {
@@ -39,42 +56,36 @@ export default function CreateRecipe() {
 
     const fullWidthForms = [
         {
-            name: {
-                label: "Recipe Name",
-                name: "name",
-                id: "name",
-                type: "text"
-            },
-            image: {
-                label: "Image URL",
-                name: "imageUrl",
-                id: "image",
-                type: "image"
-            }
-
+            label: "Recipe Name",
+            name: "name",
+            id: "name",
+            type: "text"
+        },
+        {
+            label: "Image URL",
+            name: "imageUrl",
+            id: "image",
+            type: "text"
         }
     ]
 
     const numberForms = [
         {
-            totalTime: {
-                label: "Total Time (mins)",
-                name: "Total Time (mins)",
-                id: "totalTime",
-            }
+            label: "Total Time (mins)",
+            name: "Total Time (mins)",
+            id: "totalTime",
         },
         {
-            serves: {
-                label: "Serves",
-                name: "Serves",
-                id: "serves",
-            }
+
+            label: "Serves",
+            name: "Serves",
+            id: "serves",
         }
     ]
     return (
         <>
             <NavBar />
-            <Card>
+            <Card style={{ padding: "3rem" }}>
                 <Typography variant="h3">Create Recipe</Typography>
                 <FormGroup>
                     <Container component="main">
@@ -102,6 +113,7 @@ export default function CreateRecipe() {
                                     ))}
                                     {numberForms.map((numForm, i) => (
                                         <TextField
+                                            key={i}
                                             required
                                             id={numForm.id}
                                             name={numForm.name}
@@ -132,7 +144,7 @@ export default function CreateRecipe() {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
-                            onClick={event => handleSubmitForm(event)}>Save</Button>
+                            onClick={event => handleFormSubmit(event)}>Save</Button>
                     </Container>
                 </FormGroup>
             </Card>

@@ -31,7 +31,7 @@ export default function IngredientForm({ ingredients, setIngredients }) {
                 <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
                 {ingredients.map((ingredient, index) => (
                     <div key={index}>
-                        <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center" }}>
+                        <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                             <TextField
                                 id="ingredientQty"
                                 name="qty"
@@ -40,6 +40,7 @@ export default function IngredientForm({ ingredients, setIngredients }) {
                                 onChange={event => handleFormChange(event, index)}
                                 value={ingredient.qty}
                                 size="standard"
+                                style={{ marginRight: "0.2em" }}
                             />
                             <TextField
                                 id="ingredientName"
@@ -49,6 +50,7 @@ export default function IngredientForm({ ingredients, setIngredients }) {
                                 onChange={event => handleFormChange(event, index)}
                                 value={ingredient.name}
                                 size="standard"
+                                style={{ marginLeft: "0.2em" }}
                             />
                             <Button onClick={() => removeIngredientsFields(index)}>Remove </Button>
                         </Container>
