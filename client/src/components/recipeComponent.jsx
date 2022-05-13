@@ -54,7 +54,7 @@ export default function RecipeComponent(_id) {
 
 
             <Grid container justify="center">
-                <Grid item xs={12} sm={6} md={4} xl={3} key={selectedRecipe._id} >
+                <Grid item xs={6} sm={6} md={6} xl={3} key={selectedRecipe._id} >
                     <Card style={styles.cardContainer} elevation={8} className="recipe">
                         <CardActionArea>
                             <CardMedia

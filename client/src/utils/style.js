@@ -7,7 +7,8 @@ export const fontFamily = [
 export const styles = {
     mainContainer: {
         background: "rgb(32, 33, 36)",
-        height: "100%"
+        height: "100%",
+        overFlowX: "scroll"
     },
     cardContainer: {
         maxwidth: "80%",

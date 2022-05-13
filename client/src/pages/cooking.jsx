@@ -75,9 +75,9 @@ const Cooking = () => {
                             : 'You have not selected any recipe yet!'}
                     </h4>
                 </Container>
-                <Grid container style={{ "justifyContent": "center" }}>
+                <Grid container direction="row" style={{ "justifyContent": "center", "overflowX": "scroll" }}>
                     {recipes.map((recipe, i) => (
-                        <Grid item key={recipe._id} xs={12} sm={6} md={4} xl={3} style={{ margin: "0.2rem" }} >
+                        <Grid item key={recipe._id} xs={4} sm={4} md={4} xl={4} style={{ margin: "0.2rem" }} >
                             <Card style={styles.cardContainer} elevation={8} className="cookingRecipe">
                                 <CardActionArea border='dark'>
                                     <Typography variant="h5" style={styles.green}>{recipe.name}</Typography>
