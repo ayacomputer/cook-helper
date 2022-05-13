@@ -51,7 +51,7 @@ export default function CreateRecipe() {
         console.log("data-------", ...recipeFields, stepsFields, ingredientsFields);
 
         try {
-            const { data } = await CreateRecipe({
+            await CreateRecipe({
                 variables: {
                     input: {
                         ...recipeFields[0],
