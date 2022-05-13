@@ -75,9 +75,11 @@ export default function SignUp() {
                         Sign up
                     </Typography>
                     <Box component="form" noValidate validated={validated} onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        <Alert dismissible="true" onClose={() => setShowAlert(false)} variant='danger'>
-                            Something went wrong with your signup!
-                        </Alert>
+                        {showAlert && (
+                            <Alert dismissible="true" onClose={() => setShowAlert(false)} variant='danger'>
+                                Something went wrong with your signup!
+                            </Alert>
+                        )}
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField

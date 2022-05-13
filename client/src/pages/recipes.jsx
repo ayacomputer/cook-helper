@@ -12,7 +12,7 @@ import { fontFamily } from '../utils/style'
 
 export default function Recipes() {
     console.log("-------------------------recipe page---------------------------------")
-    const { loading, data } = useQuery(GET_RECIPES);
+    const { loading, data, refetch: refetchRecipes } = useQuery(GET_RECIPES);
     console.log("data", data)
     const recipes = data?.getRecipes || [];
     console.log("recipes", recipes)
@@ -25,6 +25,8 @@ export default function Recipes() {
     // useEffect(() => {
     //     return () => selectRecipeIds(selectedRecipeIds);
     // });
+
+
 
 
     const handleSelectRecipe = async (selectedRecipeId) => {
@@ -62,6 +64,8 @@ export default function Recipes() {
             await deleteRecipe({
                 variables: { id: recipeId },
             });
+            await refetchRecipes();
+
 
         } catch (err) {
             console.error(err);

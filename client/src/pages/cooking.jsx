@@ -29,6 +29,8 @@ const Cooking = () => {
     let results = useQuery(GET_RECIPES_BY_IDS, { variables: { id: selectedRecipeIds } })
     let recipes = results?.data?.getRecipesByIds || [];
 
+
+
     console.log("---------recipes:", recipes)
     // const errors = meData.error || results.error;
     const loading = meData.loading || results.loading;
@@ -44,6 +46,9 @@ const Cooking = () => {
             await removeRecipeId({
                 variables: { id: recipeId }
             });
+
+            await meData.refetch();
+            await results.refetch();
 
         } catch (err) {
             console.error(err);

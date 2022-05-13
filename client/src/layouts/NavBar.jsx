@@ -4,6 +4,7 @@ import { Container, Button, Toolbar, Typography, Box, IconButton, Link, Paper } 
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import auth from '../utils/auth';
 
 
 
@@ -11,10 +12,7 @@ import Menu from '@mui/material/Menu';
 export default function NavBar() {
 
     const listItems = [
-        {
-            title: "Home",
-            link: "/",
-        },
+
         {
             title: "Recipes",
             link: "/recipes",
@@ -30,7 +28,13 @@ export default function NavBar() {
             link: "/createRecipe",
 
         },
-
+        {
+            title: "Log Out",
+            link: "/",
+            onClick: function () {
+                auth.logout();
+            }
+        },
 
 
     ];
@@ -131,7 +135,13 @@ export default function NavBar() {
                                 {listItems.map((listItem, i) => (
                                     <Paper elevation={0} key={i}>
                                         <MenuItem onClick={handleCloseNavMenu}>
-                                            <Typography textAlign="center"><Link href={listItem.link} style={styles.link}>{listItem.title}</Link></Typography>
+                                            <Typography textAlign="center">
+
+                                                <Link
+                                                    onClick={listItem.onClick || (() => { })}
+                                                    href={listItem.link} style={styles.link}>{listItem.title}</Link>
+
+                                            </Typography>
                                         </MenuItem>
                                     </Paper>
                                 ))}

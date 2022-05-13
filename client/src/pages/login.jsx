@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { Alert } from '@mui/material';
+import { Alert } from '@mui/material';
 
 import Auth from '../utils/auth';
 import { USER_LOGIN } from '../utils/mutations';
@@ -61,6 +61,7 @@ export default function Login() {
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
+
                 <CssBaseline />
                 <Box
                     sx={{
@@ -76,6 +77,11 @@ export default function Login() {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
+                    {showAlert && (
+                        <Alert color='error' icon="X" dismissible="true" onClose={() => setShowAlert(false)} >
+                            Something went wrong with your login!
+                        </Alert>
+                    )}
                     <Box component="form" onSubmit={handleSubmit} validated={validated} noValidate sx={{ mt: 1 }}>
                         <TextField
                             margin="normal"
@@ -119,6 +125,6 @@ export default function Login() {
                     </Box>
                 </Box>
             </Container>
-        </ThemeProvider>
+        </ThemeProvider >
     );
 }

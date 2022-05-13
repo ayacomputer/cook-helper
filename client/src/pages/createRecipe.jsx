@@ -5,6 +5,7 @@ import NavBar from '../layouts/NavBar';
 import { CREATE_RECIPE } from '../utils/mutations';
 import IngredientForm from '../components/ingredientForm';
 import StepsForm from '../components/stepsForm';
+import { useNavigate } from "react-router-dom";
 
 export default function CreateRecipe() {
     const [CreateRecipe] = useMutation(CREATE_RECIPE);
@@ -17,6 +18,11 @@ export default function CreateRecipe() {
     const [stepsFields, setStepsFields] = useState([
         { step: '' },
     ])
+
+    const navigate = useNavigate();
+
+
+
 
     const handleRecipeFormChange = (event, index) => {
         let data = [...recipeFields];
@@ -46,6 +52,11 @@ export default function CreateRecipe() {
             setRecipeFields([{ image: '', name: '', serves: '' }]);
             setIngredientsFields([{ name: '', qty: '' },]);
             setStepsFields([{ step: '' },]);
+
+
+            // redirect to /recipes
+            navigate('/recipes');
+
         } catch (err) {
             console.error(err);
         }
