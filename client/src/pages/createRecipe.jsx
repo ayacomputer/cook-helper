@@ -56,7 +56,7 @@ export default function CreateRecipe() {
                     input: {
                         ...recipeFields[0],
                         totalTime: Number(recipeFields[0].totalTime),
-                        imageUrl: imageUrl.current,
+                        image: imageUrl.current,
                         serves: Number(recipeFields[0].serves),
                         steps: stepsFields.map((s) => s.step),
                         ingredients: ingredientsFields
