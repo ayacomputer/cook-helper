@@ -1,5 +1,5 @@
 import { Box, TextField, Typography, Container, Button, Card, FormGroup, Grid } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useMutation } from '@apollo/client';
 import NavBar from '../layouts/NavBar';
 import { CREATE_RECIPE } from '../utils/mutations';
@@ -18,10 +18,24 @@ export default function CreateRecipe() {
     const [stepsFields, setStepsFields] = useState([
         { step: '' },
     ])
-
+    const imageUrl = useRef('');
     const navigate = useNavigate();
 
+    const myWidget = window.cloudinary?.createUploadWidget({
+        cloudName: 'ayacomputer',
+        uploadPreset: 'cook_helper',
+        multiple: false,
+    }, (error, result) => {
+        if (!error && result && result.event === "success") {
+            console.log('Done! Here is the image info: ', result.info);
+            imageUrl.current = result.info.url;
+        }
+    }
+    )
 
+    const openCloudinaryWidget = () => {
+        myWidget.open();
+    }
 
 
     const handleRecipeFormChange = (event, index) => {
@@ -42,6 +56,7 @@ export default function CreateRecipe() {
                     input: {
                         ...recipeFields[0],
                         totalTime: Number(recipeFields[0].totalTime),
+                        imageUrl: imageUrl.current,
                         serves: Number(recipeFields[0].serves),
                         steps: stepsFields.map((s) => s.step),
                         ingredients: ingredientsFields
@@ -49,7 +64,7 @@ export default function CreateRecipe() {
                 }
             });
 
-            setRecipeFields([{ image: '', name: '', serves: '' }]);
+            setRecipeFields([{ image: '', name: '', serves: '' },]);
             setIngredientsFields([{ name: '', qty: '' },]);
             setStepsFields([{ step: '' },]);
 
@@ -61,21 +76,6 @@ export default function CreateRecipe() {
             console.error(err);
         }
     }
-
-    const fullWidthForms = [
-        {
-            label: "Recipe Name",
-            name: "name",
-            id: "name",
-            type: "text"
-        },
-        {
-            label: "Image URL",
-            name: "image",
-            id: "image",
-            type: "text"
-        }
-    ]
 
     const numberForms = [
         {
@@ -105,20 +105,19 @@ export default function CreateRecipe() {
                         }} style={{ padding: "0.2em" }}>
                             <Grid container>
                                 <Grid item xs={12} md={12}>
-                                    {fullWidthForms.map((form, i) => (
-                                        <TextField key={i}
-                                            required
-                                            id={form.id}
-                                            name={form.name}
-                                            label={form.label}
-                                            type={form.type}
-                                            onChange={event => handleRecipeFormChange(event)}
-                                            size="standard"
-                                            fullWidth
-                                            autoFocus
-                                            style={{ padding: "0.3em" }}
-                                        />
-                                    ))}
+                                    <TextField
+                                        required
+                                        id="name"
+                                        name="name"
+                                        label="Recipe Name"
+                                        type="text"
+                                        onChange={event => handleRecipeFormChange(event)}
+                                        size="standard"
+                                        fullWidth
+                                        autoFocus
+                                        style={{ padding: "0.3em" }}
+                                    />
+                                    <Button variant="contained" onClick={openCloudinaryWidget}>Upload Image</Button>
                                     {numberForms.map((numForm, i) => (
                                         <TextField
                                             key={i}
