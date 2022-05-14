@@ -9,6 +9,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import { Fab } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 
@@ -65,8 +66,8 @@ export default function Recipe() {
         }
     };
 
-    const handleEditRecipe = () => {
-
+    const handleEditRecipe = (selectedRecipeId) => {
+        navigate(`/recipes/${selectedRecipeId}/edit`)
 
     }
     const handleBackToRecipes = () => {
@@ -78,24 +79,27 @@ export default function Recipe() {
             <NavBar />
             <Grid container justify="center">
                 <Fab onClick={handleBackToRecipes}><ArrowBackIcon /></Fab>
-                <Grid container direction="row" style={{ "justifyContent": "center", "overflowX": "scroll" }}>
 
-                    <Grid item xs={4} sm={4} md={4} xl={4} style={{ margin: "0.2rem" }} >
-                        <Card style={styles.cardContainer} elevation={8} className="cookingRecipe">
-                            <CardActionArea border='dark'>
-                                <Typography variant="h5" style={styles.green}>{selectedRecipe.name}</Typography>
-                                <Typography variant="h6" style={styles.wheat}>Total Time: {selectedRecipe.totalTime} mins</Typography>
-                                <Typography variant="h6" style={styles.wheat}>Serves: {selectedRecipe.serves}</Typography>
-                                <Grid container style={{ "textAlign": "left", "padding": "0.2em" }}>
-                                    {selectedRecipe.image ? <CardMedia component="img" image={selectedRecipe.image} alt={`The photo for ${selectedRecipe.name}`} style={styles.img} /> : null}
-                                    <Card xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", "width": "50%" }}>
-                                        <Typography variant="h5">Ingredients: </Typography>
-                                        {selectedRecipe.ingredients.map((ingredient, i) => (
-                                            <Typography key={i}><b>{ingredient.qty}</b>  {ingredient.name}</Typography>
-                                        ))}
-                                    </Card>
-                                </Grid>
 
+                <Grid style={{ "justifyContent": "center" }}>
+                    <Card style={styles.cardContainer} elevation={8} className="cookingRecipe">
+                        <Box xs={12} sm={6} md={6} xl={6}>
+                            <Typography variant="h5" style={styles.green}>{selectedRecipe.name}</Typography>
+                            <Typography variant="h6" style={styles.wheat}>Total Time: {selectedRecipe.totalTime} mins</Typography>
+                            <Typography variant="h6" style={styles.wheat}>Serves: {selectedRecipe.serves}</Typography>
+                        </Box>
+                        <Grid container direction="row" xs={12} sm={12} md={12} xl={12} style={{ margin: "0.2rem" }} >
+
+                            <Grid xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em" }}>
+                                {selectedRecipe.image ? <CardMedia component="img" image={selectedRecipe.image} alt={`The photo for ${selectedRecipe.name}`} style={styles.img} /> : null}
+                            </Grid>
+                            <Grid xs={12} sm={6} md={6} xl={6}>
+                                <Card xs={12} sm={12} md={12} xl={12} style={{ "textAlign": "left", "padding": "0.2em" }}>
+                                    <Typography variant="h5">Ingredients: </Typography>
+                                    {selectedRecipe.ingredients.map((ingredient, i) => (
+                                        <Typography key={i}><b>{ingredient.qty}</b>  {ingredient.name}</Typography>
+                                    ))}
+                                </Card>
 
                                 {selectedRecipe.steps.map((step, i) => (
 
@@ -118,12 +122,14 @@ export default function Recipe() {
 
                                 ))}
 
-                            </CardActionArea>
-                            <Button className='btn-block btn-danger' onClick={() => handleEditRecipe(selectedRecipe._id)}>
+                            </Grid>
+
+                            <Fab variant="extended" onClick={() => handleEditRecipe(selectedRecipe._id)}><EditIcon sx={{ mr: 1 }} />
                                 Edit
-                            </Button>
-                        </Card>
-                    </Grid>
+                            </Fab>
+                        </Grid>
+                    </Card>
+
 
                 </Grid>
 
