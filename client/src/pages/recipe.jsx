@@ -18,7 +18,7 @@ export default function Recipe() {
     const { _id } = useParams();
     const navigate = useNavigate();
     console.log("param is:", _id)
-    const { loading, data, refetch: refetchRecipe } = useQuery(GET_ONE_RECIPE,
+    const { loading, data } = useQuery(GET_ONE_RECIPE,
         { variables: { id: _id } });
 
 
@@ -67,7 +67,7 @@ export default function Recipe() {
     };
 
     const handleEditRecipe = (selectedRecipeId) => {
-        navigate(`/recipes/${selectedRecipeId}/edit`)
+        navigate(`/recipe/edit/${selectedRecipeId}`)
 
     }
     const handleBackToRecipes = () => {

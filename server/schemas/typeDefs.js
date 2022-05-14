@@ -61,6 +61,7 @@ const typeDefs = gql`
     selectRecipe(_id: String! ): User
     createRecipe( input: RecipeInput!): Recipe
     removeRecipe(_id: ID!): User
+    updateRecipe( input: RecipeInput!): Recipe
     deleteRecipe(_id: ID!): Recipe
    }
 `;

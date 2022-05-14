@@ -84,3 +84,20 @@ mutation DeleteRecipe($id: ID!) {
       serves
     }
   }`
+
+export const UPDATE_RECIPE = gql`
+mutation UpdateRecipe($input: RecipeInput!) {
+    updateRecipe(input: $input) {
+      _id
+      name
+      image
+      createdAt
+      ingredients {
+        name
+        qty
+      }
+      steps
+      totalTime
+      serves
+    }
+  }`

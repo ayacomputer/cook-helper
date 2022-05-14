@@ -17,6 +17,7 @@ import SignUp from './pages/signup';
 import CreateRecipe from './pages/createRecipe'
 import MainLayout from './layouts/MainLayout';
 import Recipe from './pages/recipe';
+import EditRecipe from './pages/editRecipe';
 
 
 
@@ -58,7 +59,10 @@ function App() {
             <Route path="/createRecipe" element={<CreateRecipe />}
             />
             <Route
-              path="/recipes/:_id" element={<Recipe />}
+              path="/recipe/:_id" element={<Recipe />}
+            />
+            <Route
+              path="/recipe/edit/:_id" element={<EditRecipe />}
             />
 
           </Routes>

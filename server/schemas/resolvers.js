@@ -1,3 +1,4 @@
+const { convertNodeHttpToRequest } = require('apollo-server-core');
 const { AuthenticationError } = require('apollo-server-express');
 const { Recipe, User, Cooking } = require('../models');
 const { signToken } = require('../utils/auth');
@@ -75,6 +76,12 @@ const resolvers = {
 
       if (context.user) {
         return Recipe.findOneAndDelete({ _id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateRecipe: async (_, { _id }, context) => {
+      if (context.user) {
+        return Recipe.findOneAndUpdate({ _id }, { ...input }, { new: true });
       }
       throw new AuthenticationError('You need to be logged in!');
     }

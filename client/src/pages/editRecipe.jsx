@@ -1,17 +1,34 @@
 import { Box, TextField, Typography, Container, Button, Card, FormGroup, Grid } from '@mui/material';
 import React, { useState, useRef } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import NavBar from '../components/NavBar';
-import { CREATE_RECIPE } from '../utils/mutations';
+import { UPDATE_RECIPE } from '../utils/mutations';
+import { GET_ONE_RECIPE } from '../utils/queries';
 import IngredientForm from '../components/ingredientForm';
 import StepsForm from '../components/stepsForm';
 import { useNavigate } from "react-router-dom";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Fab from '@mui/material/Fab';
+import { useParams } from 'react-router-dom';
 
+export default function EditRecipe() {
+    const { _id } = useParams();
+    const navigate = useNavigate();
+    const imageUrl = useRef('');
 
-export default function CreateRecipe() {
-    const [CreateRecipe] = useMutation(CREATE_RECIPE);
+    console.log("param is:", _id)
+    const { loading, data } = useQuery(GET_ONE_RECIPE,
+        { variables: { id: _id } });
+    console.log("data", data)
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    console.log("selectedRecipe", selectedRecipe)
+
+    const [UpdateRecipe] = useMutation(UPDATE_RECIPE);
+
     const [recipeFields, setRecipeFields] = useState([
         { image: '', name: '', serves: '' },
     ]);
@@ -21,10 +38,6 @@ export default function CreateRecipe() {
     const [stepsFields, setStepsFields] = useState([
         { step: '' },
     ])
-
-    const imageUrl = useRef('');
-    const navigate = useNavigate();
-
 
 
     const myWidget = window.cloudinary?.createUploadWidget({
@@ -57,7 +70,7 @@ export default function CreateRecipe() {
         console.log("data-------", ...recipeFields, stepsFields, ingredientsFields);
 
         try {
-            await CreateRecipe({
+            await UpdateRecipe({
                 variables: {
                     input: {
                         ...recipeFields[0],
@@ -100,7 +113,7 @@ export default function CreateRecipe() {
         <>
             <NavBar />
             <Card style={{ padding: "3rem" }}>
-                <Typography variant="h3">Create Recipe</Typography>
+                <Typography variant="h3">Edit Recipe</Typography>
                 <FormGroup>
                     <Container component="main">
                         <Box sx={{
@@ -159,7 +172,7 @@ export default function CreateRecipe() {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
-                            onClick={event => handleFormSubmit(event)}>Save</Button>
+                            onClick={event => handleFormSubmit(event)}>Edit</Button>
                     </Container>
                 </FormGroup>
             </Card>

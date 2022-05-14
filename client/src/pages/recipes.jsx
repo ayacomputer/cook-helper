@@ -47,7 +47,7 @@ export default function Recipes() {
     };
 
     const handleViewRecipe = async (recipeId) => {
-        navigate(`/recipes/${recipeId}`)
+        navigate(`/recipe/${recipeId}`)
 
     }
 
