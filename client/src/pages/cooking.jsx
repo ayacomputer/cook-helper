@@ -72,23 +72,32 @@ const Cooking = () => {
                         <Grid item key={i} xs={4} sm={4} md={4} xl={4} style={{ margin: "0.2rem" }} >
                             <Card style={styles.cardContainer} elevation={8} className="cookingRecipe">
                                 <CardActionArea border='dark'>
-                                    <Typography variant="h5" style={styles.green}>{recipe.name}</Typography>
-                                    <Typography variant="h6" style={styles.wheat}>Total Time: {recipe.totalTime} mins</Typography>
-                                    <Typography variant="h6" style={styles.wheat}>Serves: {recipe.serves}</Typography>
+                                    <Typography variant="h5" style={styles.green}>
+                                        {recipe.name}
+                                    </Typography>
+                                    <Typography variant="h6" style={styles.wheat}>
+                                        Total Time: {recipe.totalTime} mins
+                                    </Typography>
+                                    <Typography variant="h6" style={styles.wheat}>
+                                        Serves: {recipe.serves}
+                                    </Typography>
                                     <Grid container style={{ "textAlign": "left", "padding": "0.2em" }}>
-                                        {recipe.image ? <CardMedia component="img" image={recipe.image} alt={`The photo for ${recipe.name}`} style={styles.img} /> : null}
-                                        <Card xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", "width": "50%" }}>
-                                            <Typography variant="h5">Ingredients: </Typography>
+                                        {recipe.image ?
+                                            <CardMedia component="img" image={recipe.image} alt={`The photo for ${recipe.name}`} style={styles.img} /> : null}
+                                        <Card xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", "width": "50%", "overflowY": "scroll" }}>
+                                            <Typography variant="h5">Ingredients:
+                                            </Typography>
+                                            <hr style={{ color: "gray" }} />
                                             {recipe.ingredients.map((ingredient, i) => (
-                                                <Typography key={i}><b>{ingredient.qty}</b>  {ingredient.name}</Typography>
+                                                <Typography key={i}><b>{ingredient.qty}</b>&nbsp;
+                                                    {ingredient.name}</Typography>
                                             ))}
                                         </Card>
                                     </Grid>
 
-
                                     {recipe.steps.map((step, i) => (
 
-                                        <Accordion key={i} defaultExpanded={true} style={{ "textAlign": "left", "padding": "0.2em" }} disableGutters={true} TransitionProps={{ unmountOnExit: true }}>
+                                        <Accordion key={i} defaultExpanded={true} style={{ "textAlign": "left" }} disableGutters={true} TransitionProps={{ unmountOnExit: true }}>
 
                                             <AccordionSummary
                                                 expandIcon={<ExpandMoreIcon />}

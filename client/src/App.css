@@ -51,7 +51,7 @@ h2 {
 }
 
 hr {
-    border: var(--secondBorder);
+    padding: "0.2em";
     width: 80%;
 }
 
