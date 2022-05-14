@@ -25,7 +25,7 @@ export default function EditRecipe() {
     console.log("selectedRecipe", selectedRecipe)
 
     const [recipeFields, setRecipeFields] = useState([
-        { image: selectedRecipe.image, name: selectedRecipe.name, serves: selectedRecipe.serves },
+        { image: '', name: '', serves: '' },
     ]);
     const [ingredientsFields, setIngredientsFields] = useState([
         { name: selectedRecipe.name, qty: selectedRecipe.gty },
@@ -41,6 +41,7 @@ export default function EditRecipe() {
 
     console.log("selectedRecipe", selectedRecipe)
 
+    //  photo 
 
     const myWidget = window.cloudinary?.createUploadWidget({
         cloudName: 'ayacomputer',
@@ -58,6 +59,7 @@ export default function EditRecipe() {
         myWidget.open();
     }
 
+    //recipe
 
     const handleRecipeFormChange = (event, index) => {
         let data = [...recipeFields];
@@ -66,21 +68,54 @@ export default function EditRecipe() {
         setRecipeFields(data);
     }
 
+    // for ingredientForm
+    const handleIngredientFormChange = (event, index) => {
+        let data = [...ingredientsFields];
+        data[index][event.target.name] = event.target.value;
+        setIngredientsFields(data);
+    }
+
+    const addIngredientField = () => {
+        let object = {
+            name: '',
+            qty: ''
+        }
+        setIngredientsFields([...ingredientsFields, object])
+    }
+
+    const removeIngredientField = (index) => {
+        let data = [...ingredientsFields];
+        data.splice(index, 1)
+        setIngredientsFields(data)
+    }
+
+
+    /// for step
+
+    const handleStepFormChange = (event, index) => {
+        let data = [...stepsFields];
+        data[index][event.target.name] = event.target.value;
+        setStepsFields(data);
+    }
+
+    const addStepField = () => {
+        let object = {
+            step: '',
+        }
+        setStepsFields([...stepsFields, object])
+    }
+    const removeStepField = (index) => {
+        let data = [...stepsFields];
+        data.splice(index, 1)
+        setStepsFields(data)
+    }
+
+
+
     const handleUpdateFormSubmit = async (event) => {
         event.preventDefault();
         console.log(event.target.value);
         console.log("data-------", ...recipeFields, stepsFields, ingredientsFields);
-
-
-
-        // for ingredientForm
-
-
-
-
-
-        /// for step
-
 
 
         try {
@@ -111,19 +146,6 @@ export default function EditRecipe() {
         }
     }
 
-    const numberForms = [
-        {
-            label: "Total Time (mins)",
-            name: "totalTime",
-            id: "totalTime",
-        },
-        {
-
-            label: "Serves",
-            name: "serves",
-            id: "serves",
-        }
-    ]
     return (
         <>
             <NavBar />
@@ -145,6 +167,7 @@ export default function EditRecipe() {
                                         name="name"
                                         label="Recipe Name"
                                         type="text"
+                                        defaultValue={selectedRecipe.name}
                                         onChange={event => handleRecipeFormChange(event)}
                                         size="standard"
                                         fullWidth
@@ -154,28 +177,40 @@ export default function EditRecipe() {
                                     <Grid item xs={12} md={12}>
                                         <Fab variant="extended" onClick={openCloudinaryWidget}><AddAPhotoIcon sx={{ mr: 1 }} />Upload Image</Fab>
                                     </Grid>
-                                    {numberForms.map((numForm, i) => (
-                                        <TextField
-                                            key={i}
-                                            required
-                                            id={numForm.id}
-                                            name={numForm.name}
-                                            label={numForm.label}
-                                            type="number"
-                                            onChange={event => handleRecipeFormChange(event)}
-                                            size="standard"
-                                            autoFocus
-                                            style={{ padding: "0.3em" }}
-                                        />
 
-                                    ))}
+                                    <TextField
+                                        required
+                                        id="totalTime"
+                                        name="totalTime"
+                                        label="Total Time"
+                                        defaultValue={selectedRecipe.totalTime}
+                                        type="number"
+                                        onChange={event => handleRecipeFormChange(event)}
+                                        size="standard"
+                                        autoFocus
+                                        style={{ padding: "0.3em" }}
+                                    />
+                                    <TextField
+                                        required
+                                        id="serves"
+                                        name="serves"
+                                        label="Serves"
+                                        defaultValue={selectedRecipe.serves}
+                                        type="number"
+                                        onChange={event => handleRecipeFormChange(event)}
+                                        size="standard"
+                                        autoFocus
+                                        style={{ padding: "0.3em" }}
+                                    />
+
+
                                 </Grid>
 
 
                                 <Grid item xs={12} md={12}>
                                     <Box container style={{ padding: "0.2em" }}>
                                         <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
-                                        {ingredients.map((ingredient, index) => (
+                                        {selectedRecipe.ingredients.map((ingredient, index) => (
                                             <div key={index}>
                                                 <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                                                     <TextField
@@ -183,6 +218,7 @@ export default function EditRecipe() {
                                                         name="qty"
                                                         label="quantity"
                                                         type="text"
+                                                        defaultValue={ingredient.qty}
                                                         onChange={event => handleIngredientFormChange(event, index)}
                                                         size="standard"
                                                         style={{ marginRight: "0.2em" }}
@@ -192,6 +228,7 @@ export default function EditRecipe() {
                                                         name="name"
                                                         label="Ingredient name"
                                                         type="text"
+                                                        defaultValue={ingredient.name}
                                                         onChange={event => handleIngredientFormChange(event, index)}
                                                         size="standard"
                                                         style={{ marginLeft: "0.2em" }}
@@ -203,6 +240,30 @@ export default function EditRecipe() {
                                         ))
                                         }
                                         <Button onClick={addIngredientField}>Add More..</Button>
+                                    </Box>
+
+                                    <Box container style={{ padding: "0.2em", margin: "0.2em" }}>
+                                        <Typography variant="h5" style={{ textAlign: "left" }}>Instructions :</Typography>
+                                        {selectedRecipe.steps.map((step, index) => (
+                                            <div key={index}>
+                                                <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
+                                                    <TextField
+                                                        id="ingredientName"
+                                                        name="step"
+                                                        label={`Step ${index + 1}`}
+                                                        type="text"
+                                                        defaultValue={step}
+                                                        onChange={event => handleStepFormChange(event, index)}
+                                                        size="standard"
+                                                        fullWidth
+                                                    />
+                                                    <Button onClick={() => removeStepField(index)}>Remove </Button>
+                                                </Container>
+
+                                            </div>
+
+                                        ))}
+                                        <Button onClick={addStepField}>Add More..</Button>
                                     </Box>
 
 
