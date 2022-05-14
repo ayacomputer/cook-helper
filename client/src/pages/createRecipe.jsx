@@ -6,6 +6,9 @@ import { CREATE_RECIPE } from '../utils/mutations';
 import IngredientForm from '../components/ingredientForm';
 import StepsForm from '../components/stepsForm';
 import { useNavigate } from "react-router-dom";
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import Fab from '@mui/material/Fab';
+
 
 export default function CreateRecipe() {
     const [CreateRecipe] = useMutation(CREATE_RECIPE);
@@ -117,7 +120,9 @@ export default function CreateRecipe() {
                                         autoFocus
                                         style={{ padding: "0.3em" }}
                                     />
-                                    <Button variant="contained" onClick={openCloudinaryWidget}>Upload Image</Button>
+                                    <Grid xs={12} md={12}>
+                                        <Fab variant="extended" onClick={openCloudinaryWidget}><AddAPhotoIcon sx={{ mr: 1 }} />Upload Image</Fab>
+                                    </Grid>
                                     {numberForms.map((numForm, i) => (
                                         <TextField
                                             key={i}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-// import { selectRecipeIds, getSelectedRecipeIds } from '../utils/localStorage';
 import { GET_RECIPES } from '../utils/queries';
 import { SELECT_RECIPE, DELETE_RECIPE } from '../utils/mutations'
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
@@ -20,13 +19,6 @@ export default function Recipes() {
     const [deleteRecipe] = useMutation(DELETE_RECIPE);
     const [searchInput, setSearchInput] = useState('');
 
-    // const [selectedRecipeIds, setSelectedRecipeIds] = useState(getSelectedRecipeIds());
-
-    // useEffect(() => {
-    //     return () => selectRecipeIds(selectedRecipeIds);
-    // });
-
-
 
 
     const handleSelectRecipe = async (selectedRecipeId) => {
@@ -41,14 +33,14 @@ export default function Recipes() {
         if (!token) {
             return false;
         }
-        ///// Need to figure out the bug here: back end works  
+
         try {
             console.log('recipeToSelectId---------', recipeToSelect._id)
             console.log("typeof_", typeof (recipeToSelect._id))
             console.log("recipeId to add: ", recipeIdToAdd)
             const { data } = await selectRecipe({ variables: { id: recipeIdToAdd } });
             console.log('recipeToSelectId---------', recipeIdToAdd)
-            // setSelectedRecipeIds([...selectedRecipeIds, recipeToSelect._id]);
+
         } catch (err) {
             console.error("Error in handleSelectRecipe: ", err);
         }
