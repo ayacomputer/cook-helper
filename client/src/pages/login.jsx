@@ -80,7 +80,7 @@ export default function Login() {
                         Sign in
                     </Typography>
                     {showAlert && (
-                        <Alert color='error' icon={<ErrorIcon />} dismissible="true" onClose={() => setShowAlert(false)} >
+                        <Alert color='error' icon={<ErrorIcon />} dismissible="true" onClose={() => setShowAlert(false)} variant='danger'>
                             Something went wrong with your login!
                         </Alert>
                     )}

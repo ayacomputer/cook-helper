@@ -107,7 +107,6 @@ export default function CreateRecipe() {
                             marginTop: 3,
                             display: 'flex',
                             flexDirection: 'column',
-                            alignItems: 'center',
                         }} style={{ padding: "0.2em" }}>
                             <Grid container>
                                 <Grid item xs={12} md={12}>

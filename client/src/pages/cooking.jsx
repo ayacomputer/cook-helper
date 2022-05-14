@@ -12,13 +12,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const Cooking = () => {
     const meData = useQuery(QUERY_ME);
 
-    // const [expanded, setExpanded] = useState(true);
-    // const handleClickStep = (panel) => (event, isExpanded) => {
-    //     console.log(panel)
-    //     console.log(isExpanded)
-    //     setClosed(isExpanded ? panel : false);
-    // };
-
     const [removeRecipeId] = useMutation(REMOVE_RECIPE);
     const userData = meData.data?.me || {};
     const selectedRecipeIds = userData.selectedRecipeIds || [];
@@ -32,7 +25,6 @@ const Cooking = () => {
 
 
     console.log("---------recipes:", recipes)
-    // const errors = meData.error || results.error;
     const loading = meData.loading || results.loading;
 
     const handleRemoveRecipe = async (recipeId) => {

@@ -3,7 +3,6 @@ import { CREATE_USER } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
