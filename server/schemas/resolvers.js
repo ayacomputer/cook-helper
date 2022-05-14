@@ -79,9 +79,9 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    updateRecipe: async (_, { _id }, context) => {
+    updateRecipe: async (_, { input }, context) => {
       if (context.user) {
-        return Recipe.findOneAndUpdate({ _id }, { ...input }, { new: true });
+        return Recipe.findOneAndUpdate({ _id: input._id }, { ...input }, { new: true });
       }
       throw new AuthenticationError('You need to be logged in!');
     }

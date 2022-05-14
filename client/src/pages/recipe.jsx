@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-import { Navigate, useParams } from 'react-router-dom';
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 import { GET_ONE_RECIPE } from '../utils/queries';
-import { DELETE_RECIPE } from '../utils/mutations'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import NavBar from '../components/NavBar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';

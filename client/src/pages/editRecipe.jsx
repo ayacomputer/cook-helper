@@ -21,6 +21,10 @@ export default function EditRecipe() {
         { variables: { id: _id } });
     console.log("data", data)
 
+
+    const selectedRecipe = data?.getOneRecipe || {};
+    console.log("selectedRecipe", selectedRecipe)
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -74,6 +78,7 @@ export default function EditRecipe() {
                 variables: {
                     input: {
                         ...recipeFields[0],
+                        _id: _id,
                         totalTime: Number(recipeFields[0].totalTime),
                         image: imageUrl.current,
                         serves: Number(recipeFields[0].serves),
