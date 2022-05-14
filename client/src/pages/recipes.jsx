@@ -38,7 +38,7 @@ export default function Recipes() {
             console.log('recipeToSelectId---------', recipeToSelect._id)
             console.log("typeof_", typeof (recipeToSelect._id))
             console.log("recipeId to add: ", recipeIdToAdd)
-            const { data } = await selectRecipe({ variables: { id: recipeIdToAdd } });
+            await selectRecipe({ variables: { id: recipeIdToAdd } });
             console.log('recipeToSelectId---------', recipeIdToAdd)
 
         } catch (err) {
@@ -47,7 +47,6 @@ export default function Recipes() {
     };
 
     const handleViewRecipe = async (recipeId) => {
-        console.log(recipeId)
         navigate(`/recipes/${recipeId}`)
 
     }
