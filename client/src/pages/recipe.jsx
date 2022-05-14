@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { GET_ONE_RECIPE } from '../utils/queries';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Card, CardMedia, Grid, Typography } from '@mui/material';
 import NavBar from '../components/NavBar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
