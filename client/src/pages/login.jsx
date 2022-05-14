@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import { Container, Link } from '@mui/material';
+import { Container, Fab, Link } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -14,6 +13,9 @@ import { Alert } from '@mui/material';
 import Auth from '../utils/auth';
 import { USER_LOGIN } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
+import ErrorIcon from '@mui/icons-material/Error';
+import LoginIcon from '@mui/icons-material/Login';
+
 
 
 const theme = createTheme();
@@ -71,14 +73,14 @@ export default function Login() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary' }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
                     {showAlert && (
-                        <Alert color='error' icon="X" dismissible="true" onClose={() => setShowAlert(false)} >
+                        <Alert color='error' icon={<ErrorIcon />} dismissible="true" onClose={() => setShowAlert(false)} >
                             Something went wrong with your login!
                         </Alert>
                     )}
@@ -107,14 +109,12 @@ export default function Login() {
                             onChange={handleInputChange}
                             value={userFormData.password}
                         />
-                        <Button
+                        <Fab
                             type="submit"
-                            fullWidth
-                            variant="contained"
+                            variant="extended"
                             sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign In
-                        </Button>
+                        ><LoginIcon />  LOG IN
+                        </Fab>
                         <Grid container>
                             <Grid item>
                                 <Link href="/signup" variant="body2">

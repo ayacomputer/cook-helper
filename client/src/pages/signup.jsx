@@ -13,7 +13,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Alert } from '@mui/material';
+import { Alert, Fab } from '@mui/material';
+import ErrorIcon from '@mui/icons-material/Error';
+import LoginIcon from '@mui/icons-material/Login';
 
 
 
@@ -68,15 +70,15 @@ export default function SignUp() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary' }}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" color="gray">
                         Sign up
                     </Typography>
                     <Box component="form" noValidate validated={validated} onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         {showAlert && (
-                            <Alert dismissible="true" onClose={() => setShowAlert(false)} variant='danger'>
+                            <Alert dismissible="true" icon={<ErrorIcon />} onClose={() => setShowAlert(false)} variant='danger'>
                                 Something went wrong with your signup!
                             </Alert>
                         )}
@@ -121,14 +123,12 @@ export default function SignUp() {
                             </Grid>
 
                         </Grid>
-                        <Button
+                        <Fab
                             type="submit"
-                            fullWidth
-                            variant="contained"
+                            variant="extended"
                             sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign Up
-                        </Button>
+                        ><LoginIcon />  SIGN UP
+                        </Fab>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link href="/" variant="body2">
