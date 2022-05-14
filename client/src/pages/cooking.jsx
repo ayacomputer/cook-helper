@@ -5,7 +5,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, GET_RECIPES_BY_IDS } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
 import { Button, Box, Grid, Card, CardActionArea, CardMedia, Container, Typography, Accordion, AccordionSummary, AccordionDetails, AccordionActions } from '@mui/material';
-import NavBar from '../layouts/NavBar';
+import NavBar from '../components/NavBar';
 import { styles } from '../utils/style'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -77,7 +77,7 @@ const Cooking = () => {
                 </Container>
                 <Grid container direction="row" style={{ "justifyContent": "center", "overflowX": "scroll" }}>
                     {recipes.map((recipe, i) => (
-                        <Grid item key={recipe._id} xs={4} sm={4} md={4} xl={4} style={{ margin: "0.2rem" }} >
+                        <Grid item key={i} xs={4} sm={4} md={4} xl={4} style={{ margin: "0.2rem" }} >
                             <Card style={styles.cardContainer} elevation={8} className="cookingRecipe">
                                 <CardActionArea border='dark'>
                                     <Typography variant="h5" style={styles.green}>{recipe.name}</Typography>
@@ -85,10 +85,10 @@ const Cooking = () => {
                                     <Typography variant="h6" style={styles.wheat}>Serves: {recipe.serves}</Typography>
                                     <Grid container style={{ "textAlign": "left", "padding": "0.2em" }}>
                                         {recipe.image ? <CardMedia component="img" image={recipe.image} alt={`The photo for ${recipe.name}`} style={styles.img} /> : null}
-                                        <Card item xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", "width": "50%" }}>
+                                        <Card xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", "width": "50%" }}>
                                             <Typography variant="h5">Ingredients: </Typography>
                                             {recipe.ingredients.map((ingredient, i) => (
-                                                <Typography key={ingredient._id}><b>{ingredient.qty}</b>  {ingredient.name}</Typography>
+                                                <Typography key={i}><b>{ingredient.qty}</b>  {ingredient.name}</Typography>
                                             ))}
                                         </Card>
                                     </Grid>
@@ -96,10 +96,9 @@ const Cooking = () => {
 
                                     {recipe.steps.map((step, i) => (
 
-                                        <Accordion key={step._id} defaultExpanded={true} style={{ "textAlign": "left", "padding": "0.2em" }} disableGutters={true} TransitionProps={{ unmountOnExit: true }}>
+                                        <Accordion key={i} defaultExpanded={true} style={{ "textAlign": "left", "padding": "0.2em" }} disableGutters={true} TransitionProps={{ unmountOnExit: true }}>
 
                                             <AccordionSummary
-                                                disableSpacing={true}
                                                 expandIcon={<ExpandMoreIcon />}
                                                 aria-controls="panel1bh-content"
                                                 id="panel1bh-header">
@@ -115,11 +114,11 @@ const Cooking = () => {
                                         </Accordion>
 
                                     ))}
-                                    <Button className='btn-block btn-danger' onClick={() => handleRemoveRecipe(recipe._id)}>
-                                        Remove this Recipe!
-                                    </Button>
 
                                 </CardActionArea>
+                                <Button className='btn-block btn-danger' onClick={() => handleRemoveRecipe(recipe._id)}>
+                                    Remove this Recipe!
+                                </Button>
                             </Card>
                         </Grid>
 

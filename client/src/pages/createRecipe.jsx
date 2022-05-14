@@ -1,7 +1,7 @@
 import { Box, TextField, Typography, Container, Button, Card, FormGroup, Grid } from '@mui/material';
 import React, { useState, useRef } from 'react';
 import { useMutation } from '@apollo/client';
-import NavBar from '../layouts/NavBar';
+import NavBar from '../components/NavBar';
 import { CREATE_RECIPE } from '../utils/mutations';
 import IngredientForm from '../components/ingredientForm';
 import StepsForm from '../components/stepsForm';

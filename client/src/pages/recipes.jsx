@@ -4,9 +4,10 @@ import Auth from '../utils/auth';
 import { GET_RECIPES } from '../utils/queries';
 import { SELECT_RECIPE, DELETE_RECIPE } from '../utils/mutations'
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import NavBar from '../layouts/NavBar';
+import NavBar from '../components/NavBar';
 import { Icon } from '@iconify/react'
 import { fontFamily } from '../utils/style'
+import { useNavigate } from "react-router-dom";
 
 
 export default function Recipes() {
@@ -17,8 +18,7 @@ export default function Recipes() {
     console.log("recipes", recipes)
     const [selectRecipe] = useMutation(SELECT_RECIPE);
     const [deleteRecipe] = useMutation(DELETE_RECIPE);
-    const [searchInput, setSearchInput] = useState('');
-
+    const navigate = useNavigate();
 
 
     const handleSelectRecipe = async (selectedRecipeId) => {
@@ -46,6 +46,11 @@ export default function Recipes() {
         }
     };
 
+    const handleViewRecipe = async (recipeId) => {
+        console.log(recipeId)
+        navigate(`/${recipeId}`)
+
+    }
 
     const handleDeleteRecipe = async (recipeId) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -109,9 +114,9 @@ export default function Recipes() {
                 </h4>
                 <Grid container justify="center">
                     {recipes.map((recipe, i) => (
-                        <Grid item xs={12} sm={6} md={4} xl={3} key={recipe._id} >
+                        <Grid item xs={6} sm={6} md={4} xl={2} key={recipe._id} >
                             <Card style={styles.cardContainer} elevation={8} className="recipe">
-                                <CardActionArea>
+                                <CardActionArea onClick={() => handleViewRecipe(recipe._id)}>
                                     <CardMedia
                                         component="img"
                                         alt={`The cover for ${recipe.name}`}

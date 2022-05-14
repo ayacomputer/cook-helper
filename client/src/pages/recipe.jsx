@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import Auth from '../utils/auth';
 import { GET_ONE_RECIPE } from '../utils/queries';
 import { SELECT_RECIPE, DELETE_RECIPE } from '../utils/mutations'
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import NavBar from '../layouts/NavBar';
-// import { Icon } from '@iconify/react'
+import NavBar from '../components/NavBar';
+import { Icon } from '@iconify/react'
 
 
-export default function RecipeComponent(_id) {
+export default function Recipe(_id) {
+    console.log("-------------------------viewing single recipe page---------------------------------")
     const [getOneRecipe] = useQuery(GET_ONE_RECIPE);
     const selectedRecipe = getOneRecipe({ variables: { _id } });
 
@@ -47,12 +47,14 @@ export default function RecipeComponent(_id) {
         }
     };
 
+    const handleEditRecipe = () => {
 
+    }
 
     return (
         <>
 
-
+            <NavBar />
             <Grid container justify="center">
                 <Grid item xs={6} sm={6} md={6} xl={3} key={selectedRecipe._id} >
                     <Card style={styles.cardContainer} elevation={8} className="recipe">
@@ -83,9 +85,7 @@ export default function RecipeComponent(_id) {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-
-                            <Button variant="outlined" style={styles.wheat} onClick={() => handleEditRecipe(recipe._id)} startIcon={<Icon icon="fluent:select-all-on-20-filled" />} >Select</Button>
-                            <Button variant="outlined" style={styles.wheat} onClick={() => handleDeleteRecipe(recipe._id)} startIcon={<Icon icon="fluent:delete-24-filled" />}>Delete</Button>
+                            <Button variant="outlined" style={styles.wheat} onClick={() => handleEditRecipe(selectedRecipe._id)} startIcon={<Icon icon="fluent:select-all-on-20-filled" />} >Select</Button>
                         </CardActions>
                     </Card>
                 </Grid>
