@@ -60,7 +60,7 @@ export default function Recipe() {
         },
         img: {
             background: "rgb(32, 33, 36)",
-            maxWidth: "100%",
+            width: "100%",
             objectFit: "cover top"
         }
     };
@@ -89,11 +89,11 @@ export default function Recipe() {
                         </Box>
                         <Grid container direction="row" xs={12} sm={12} md={12} xl={12} style={{ margin: "0.2rem" }} >
 
-                            <Grid xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em" }}>
+                            <Grid xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", width: "100%" }}>
                                 {selectedRecipe.image ? <CardMedia component="img" image={selectedRecipe.image} alt={`The photo for ${selectedRecipe.name}`} style={styles.img} /> : null}
                             </Grid>
                             <Grid xs={12} sm={6} md={6} xl={6}>
-                                <Card xs={12} sm={12} md={12} xl={12} style={{ "textAlign": "left", "padding": "0.2em" }}>
+                                <Card xs={12} sm={12} md={12} xl={12} style={{ "textAlign": "left", "padding": "0.2em", width: "100%" }}>
                                     <Typography variant="h5">Ingredients: </Typography>
                                     {selectedRecipe.ingredients.map((ingredient, i) => (
                                         <Typography key={i}><b>{ingredient.qty}</b>  {ingredient.name}</Typography>
