@@ -4,8 +4,6 @@ import { useMutation, useQuery } from '@apollo/client';
 import NavBar from '../components/NavBar';
 import { UPDATE_RECIPE } from '../utils/mutations';
 import { GET_ONE_RECIPE } from '../utils/queries';
-import IngredientForm from '../components/ingredientForm';
-import StepsForm from '../components/stepsForm';
 import { useNavigate } from "react-router-dom";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Fab from '@mui/material/Fab';
@@ -15,6 +13,7 @@ export default function EditRecipe() {
     const { _id } = useParams();
     const navigate = useNavigate();
     const imageUrl = useRef('');
+    const [UpdateRecipe] = useMutation(UPDATE_RECIPE);
 
     console.log("param is:", _id)
     const { loading, data } = useQuery(GET_ONE_RECIPE,
@@ -25,23 +24,22 @@ export default function EditRecipe() {
     const selectedRecipe = data?.getOneRecipe || {};
     console.log("selectedRecipe", selectedRecipe)
 
+    const [recipeFields, setRecipeFields] = useState([
+        { image: selectedRecipe.image, name: selectedRecipe.name, serves: selectedRecipe.serves },
+    ]);
+    const [ingredientsFields, setIngredientsFields] = useState([
+        { name: selectedRecipe.name, qty: selectedRecipe.gty },
+    ]);
+    const [stepsFields, setStepsFields] = useState([
+        { step: selectedRecipe.step },
+    ])
+
+
     if (loading) {
         return <div>Loading...</div>;
     }
 
     console.log("selectedRecipe", selectedRecipe)
-
-    const [UpdateRecipe] = useMutation(UPDATE_RECIPE);
-
-    const [recipeFields, setRecipeFields] = useState([
-        { image: '', name: '', serves: '' },
-    ]);
-    const [ingredientsFields, setIngredientsFields] = useState([
-        { name: '', qty: '' },
-    ]);
-    const [stepsFields, setStepsFields] = useState([
-        { step: '' },
-    ])
 
 
     const myWidget = window.cloudinary?.createUploadWidget({
@@ -68,10 +66,22 @@ export default function EditRecipe() {
         setRecipeFields(data);
     }
 
-    const handleFormSubmit = async (event) => {
+    const handleUpdateFormSubmit = async (event) => {
         event.preventDefault();
         console.log(event.target.value);
         console.log("data-------", ...recipeFields, stepsFields, ingredientsFields);
+
+
+
+        // for ingredientForm
+
+
+
+
+
+        /// for step
+
+
 
         try {
             await UpdateRecipe({
@@ -94,7 +104,7 @@ export default function EditRecipe() {
 
 
             // redirect to /recipes
-            navigate('/recipes');
+            navigate(`/recipe/${_id}`);
 
         } catch (err) {
             console.error(err);
@@ -141,7 +151,7 @@ export default function EditRecipe() {
                                         autoFocus
                                         style={{ padding: "0.3em" }}
                                     />
-                                    <Grid xs={12} md={12}>
+                                    <Grid item xs={12} md={12}>
                                         <Fab variant="extended" onClick={openCloudinaryWidget}><AddAPhotoIcon sx={{ mr: 1 }} />Upload Image</Fab>
                                     </Grid>
                                     {numberForms.map((numForm, i) => (
@@ -163,8 +173,44 @@ export default function EditRecipe() {
 
 
                                 <Grid item xs={12} md={12}>
-                                    <IngredientForm setIngredients={setIngredientsFields} ingredients={ingredientsFields} />
-                                    <StepsForm setSteps={setStepsFields} steps={stepsFields} />
+                                    <Box container style={{ padding: "0.2em" }}>
+                                        <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
+                                        {ingredients.map((ingredient, index) => (
+                                            <div key={index}>
+                                                <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
+                                                    <TextField
+                                                        id="ingredientQty"
+                                                        name="qty"
+                                                        label="quantity"
+                                                        type="text"
+                                                        onChange={event => handleIngredientFormChange(event, index)}
+                                                        size="standard"
+                                                        style={{ marginRight: "0.2em" }}
+                                                    />
+                                                    <TextField
+                                                        id="ingredientName"
+                                                        name="name"
+                                                        label="Ingredient name"
+                                                        type="text"
+                                                        onChange={event => handleIngredientFormChange(event, index)}
+                                                        size="standard"
+                                                        style={{ marginLeft: "0.2em" }}
+                                                    />
+                                                    <Button onClick={() => removeIngredientField(index)}>Remove </Button>
+                                                </Container>
+                                            </div>
+
+                                        ))
+                                        }
+                                        <Button onClick={addIngredientField}>Add More..</Button>
+                                    </Box>
+
+
+
+
+
+
+
                                 </Grid>
 
 
@@ -177,7 +223,7 @@ export default function EditRecipe() {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
-                            onClick={event => handleFormSubmit(event)}>Edit</Button>
+                            onClick={event => handleUpdateFormSubmit(event)}>Edit</Button>
                     </Container>
                 </FormGroup>
             </Card>

@@ -5,13 +5,13 @@ import React from 'react';
 export default function IngredientForm({ ingredients, setIngredients }) {
 
 
-    const handleFormChange = (event, index) => {
+    const handleIngredientFormChange = (event, index) => {
         let data = [...ingredients];
         data[index][event.target.name] = event.target.value;
         setIngredients(data);
     }
 
-    const addFields = () => {
+    const addIngredientField = () => {
         let object = {
             name: '',
             qty: ''
@@ -19,7 +19,7 @@ export default function IngredientForm({ ingredients, setIngredients }) {
         setIngredients([...ingredients, object])
     }
 
-    const removeIngredientsFields = (index) => {
+    const removeIngredientField = (index) => {
         let data = [...ingredients];
         data.splice(index, 1)
         setIngredients(data)
@@ -37,8 +37,7 @@ export default function IngredientForm({ ingredients, setIngredients }) {
                                 name="qty"
                                 label="quantity"
                                 type="text"
-                                onChange={event => handleFormChange(event, index)}
-                                value={ingredient.qty}
+                                onChange={event => handleIngredientFormChange(event, index)}
                                 size="standard"
                                 style={{ marginRight: "0.2em" }}
                             />
@@ -47,19 +46,17 @@ export default function IngredientForm({ ingredients, setIngredients }) {
                                 name="name"
                                 label="Ingredient name"
                                 type="text"
-                                onChange={event => handleFormChange(event, index)}
-                                value={ingredient.name}
+                                onChange={event => handleIngredientFormChange(event, index)}
                                 size="standard"
                                 style={{ marginLeft: "0.2em" }}
                             />
-                            <Button onClick={() => removeIngredientsFields(index)}>Remove </Button>
+                            <Button onClick={() => removeIngredientField(index)}>Remove </Button>
                         </Container>
                     </div>
 
-                )
-                )
+                ))
                 }
-                <Button onClick={addFields}>Add More..</Button>
+                <Button onClick={addIngredientField}>Add More..</Button>
             </Box>
 
 

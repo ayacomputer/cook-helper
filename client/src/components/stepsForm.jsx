@@ -5,19 +5,19 @@ import React from 'react';
 export default function StepsForm({ steps, setSteps }) {
 
 
-    const handleFormChange = (event, index) => {
+    const handleStepFormChange = (event, index) => {
         let data = [...steps];
         data[index][event.target.name] = event.target.value;
         setSteps(data);
     }
 
-    const addFields = () => {
+    const addStepField = () => {
         let object = {
             step: '',
         }
         setSteps([...steps, object])
     }
-    const removeIngredientsFields = (index) => {
+    const removeStepField = (index) => {
         let data = [...steps];
         data.splice(index, 1)
         setSteps(data)
@@ -35,17 +35,17 @@ export default function StepsForm({ steps, setSteps }) {
                                 name="step"
                                 label={`Step ${index + 1}`}
                                 type="text"
-                                onChange={event => handleFormChange(event, index)}
+                                onChange={event => handleStepFormChange(event, index)}
                                 size="standard"
                                 fullWidth
                             />
-                            <Button onClick={() => removeIngredientsFields(index)}>Remove </Button>
+                            <Button onClick={() => removeStepField(index)}>Remove </Button>
                         </Container>
 
                     </div>
 
                 ))}
-                <Button onClick={addFields}>Add More..</Button>
+                <Button onClick={addStepField}>Add More..</Button>
             </Box>
 
         </>
