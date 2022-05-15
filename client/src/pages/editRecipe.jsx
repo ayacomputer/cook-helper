@@ -1,4 +1,4 @@
-import { Box, TextField, Typography, Container, Button, Card, FormGroup, Grid } from '@mui/material';
+import { Box, TextField, Typography, Container, Button, Card, FormGroup, Grid, ButtonBase } from '@mui/material';
 import React, { useState, useRef, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import NavBar from '../components/NavBar';
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Fab from '@mui/material/Fab';
 import { useParams } from 'react-router-dom';
+
 
 export default function EditRecipe() {
     const [recipeFields, setRecipeFields] = useState([
@@ -80,7 +81,7 @@ export default function EditRecipe() {
     const handleIngredientFormChange = (event, index) => {
         event.preventDefault();
         setSelectedRecipe(recipe => {
-            let remainingIngredients = [...recipe.ingredients];
+            let remainingIngredients = recipe.ingredients.map(x => Object.assign({}, x));
             remainingIngredients[index][event.target.name] = event.target.value;
             return {
                 ...recipe,
@@ -122,7 +123,7 @@ export default function EditRecipe() {
         setSelectedRecipe(recipe => {
             let remainingSteps = [...recipe.steps];
             console.log(remainingSteps);
-            remainingSteps[index][event.target.name] = event.target.value;
+            remainingSteps[index] = event.target.value;
             return {
                 ...recipe,
                 steps: remainingSteps
@@ -172,11 +173,11 @@ export default function EditRecipe() {
                     input: {
                         ...selectedRecipe[0],
                         _id: _id,
-                        totalTime: Number(recipeFields[0].totalTime),
+                        totalTime: Number(selectedRecipe[0].totalTime),
                         image: imageUrl.current,
-                        serves: Number(recipeFields[0].serves),
-                        steps: stepsFields.map((s) => s.step),
-                        ingredients: ingredientsFields
+                        serves: Number(selectedRecipe[0].serves),
+                        steps: selectedRecipe.steps.map((s) => s.step),
+                        ingredients: selectedRecipe.ingredients
                     }
                 }
             });
@@ -311,7 +312,7 @@ export default function EditRecipe() {
                                             </div>
 
                                         ))}
-                                        <Button onClick={addStepField}>Add More..</Button>
+                                        <Button variant="contained" onClick={addStepField}>Add More..</Button>
                                     </Box>
 
                                 </Grid>
