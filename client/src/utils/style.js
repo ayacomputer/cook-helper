@@ -11,7 +11,7 @@ export const styles = {
         overFlowX: "scroll"
     },
     cardContainer: {
-        maxwidth: "80%",
+        paddingTop: "0.3em",
         margin: "3rem auto",
         background: "inherit",
     },
@@ -29,7 +29,8 @@ export const styles = {
     img: {
         background: "rgb(32, 33, 36)",
         width: "50%",
-        height: "100px",
-        objectFit: "cover top"
+        height: "28vh",
+        objectFit: "cover top",
+        borderRadius: "3px",
     }
 };

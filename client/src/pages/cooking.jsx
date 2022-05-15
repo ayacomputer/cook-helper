@@ -4,10 +4,11 @@ import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, GET_RECIPES_BY_IDS } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
-import { Button, Box, Grid, Card, CardActionArea, CardMedia, Container, Typography, Accordion, AccordionSummary, AccordionDetails, AccordionActions } from '@mui/material';
+import { Button, Box, Grid, Card, CardActionArea, CardMedia, Container, Typography, Accordion, AccordionSummary, AccordionDetails, AccordionActions, Fab } from '@mui/material';
 import NavBar from '../components/NavBar';
 import { styles } from '../utils/style'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 const Cooking = () => {
     const meData = useQuery(QUERY_ME);
@@ -67,11 +68,11 @@ const Cooking = () => {
                             : 'You have not selected any recipe yet!'}
                     </h4>
                 </Container>
-                <Grid container direction="row" style={{ "justifyContent": "center", "overflowX": "scroll" }}>
+                <Grid container style={{ "justifyContent": "center", "overflowX": "scroll", "display": "flex", "flexDirection": "row" }}>
                     {recipes.map((recipe, i) => (
                         <Grid item key={i} xs={4} sm={4} md={4} xl={4} style={{ margin: "0.2rem" }} >
                             <Card style={styles.cardContainer} elevation={8} className="cookingRecipe">
-                                <CardActionArea border='dark'>
+                                <Box border='dark'>
                                     <Typography variant="h5" style={styles.green}>
                                         {recipe.name}
                                     </Typography>
@@ -84,14 +85,20 @@ const Cooking = () => {
                                     <Grid container style={{ "textAlign": "left", "padding": "0.2em" }}>
                                         {recipe.image ?
                                             <CardMedia component="img" image={recipe.image} alt={`The photo for ${recipe.name}`} style={styles.img} /> : null}
-                                        <Card xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", "width": "50%", "overflowY": "scroll" }}>
-                                            <Typography variant="h5">Ingredients:
-                                            </Typography>
+                                        <Card xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", "width": "50%" }}>
+                                            <Typography variant="h5">Ingredients:    </Typography>
                                             <hr style={{ color: "gray" }} />
-                                            {recipe.ingredients.map((ingredient, i) => (
-                                                <Typography key={i}><b>{ingredient.qty}</b>&nbsp;
-                                                    {ingredient.name}</Typography>
-                                            ))}
+                                            <Grid style={{ "overflowY": "scroll" }}>
+
+                                                {recipe.ingredients.map((ingredient, i) => (
+                                                    <Typography key={i}><b>{ingredient.qty}</b>&nbsp;
+                                                        {ingredient.name}</Typography>
+                                                ))}
+
+
+                                            </Grid>
+
+
                                         </Card>
                                     </Grid>
 
@@ -116,10 +123,13 @@ const Cooking = () => {
 
                                     ))}
 
-                                </CardActionArea>
-                                <Button className='btn-block btn-danger' onClick={() => handleRemoveRecipe(recipe._id)}>
-                                    Remove this Recipe!
-                                </Button>
+                                </Box>
+                                <Box style={{ "padding": "0.8rem" }}>
+                                    <Fab variant="extended" onClick={() => handleRemoveRecipe(recipe._id)}>
+                                        <RemoveCircleIcon /> Remove this Recipe!</Fab>
+                                </Box>
+
+
                             </Card>
                         </Grid>
 
