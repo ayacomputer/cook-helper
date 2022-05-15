@@ -56,7 +56,7 @@ export default function EditRecipe() {
         myWidget.open();
     }
 
-    //recipe
+    //for recipe form except for ingredients and steps
 
     const handleRecipeFormChange = (event, index) => {
         event.preventDefault();
@@ -108,8 +108,7 @@ export default function EditRecipe() {
         })
     }
 
-    // / for step
-
+    // / for steps
     const handleStepFormChange = (event, index) => {
         setSelectedRecipe(recipe => {
             let remainingSteps = [...recipe.steps];
@@ -147,7 +146,6 @@ export default function EditRecipe() {
             }
         })
     }
-
 
 
 
