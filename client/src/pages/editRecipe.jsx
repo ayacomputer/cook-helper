@@ -1,5 +1,5 @@
 import { Box, TextField, Typography, Container, Button, Card, FormGroup, Grid } from '@mui/material';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import NavBar from '../components/NavBar';
 import { UPDATE_RECIPE } from '../utils/mutations';
@@ -10,32 +10,37 @@ import Fab from '@mui/material/Fab';
 import { useParams } from 'react-router-dom';
 
 export default function EditRecipe() {
-    const { _id } = useParams();
-    const navigate = useNavigate();
-    const imageUrl = useRef('');
-    const [UpdateRecipe] = useMutation(UPDATE_RECIPE);
-
-    console.log("param is:", _id)
-    const { loading, data } = useQuery(GET_ONE_RECIPE,
-        { variables: { id: _id } });
-    console.log("data", data)
-
-
-    const selectedRecipe = data?.getOneRecipe || {};
-    console.log("selectedRecipe", selectedRecipe)
-
     const [recipeFields, setRecipeFields] = useState([
         { image: '', name: '', serves: '' },
     ]);
     const [ingredientsFields, setIngredientsFields] = useState([
-        { name: selectedRecipe.name, qty: selectedRecipe.gty },
+        { name: '', qty: '' },
     ]);
     const [stepsFields, setStepsFields] = useState([
-        { step: selectedRecipe.step },
+        { step: '' },
     ])
+    const [selectedRecipe, setSelectedRecipe] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+
+    const { _id } = useParams();
+    const navigate = useNavigate();
+    const imageUrl = useRef('');
+
+    const [UpdateRecipe] = useMutation(UPDATE_RECIPE);
+
+    const { loading, data } = useQuery(GET_ONE_RECIPE,
+        { variables: { id: _id } });
+
+    useEffect(() => {
+        const selectedRecipe = data?.getOneRecipe || {};
+        setSelectedRecipe(selectedRecipe);
+        setIsLoading(loading);
+    }, [loading, data]);
 
 
-    if (loading) {
+
+
+    if (isLoading) {
         return <div>Loading...</div>;
     }
 
@@ -68,47 +73,93 @@ export default function EditRecipe() {
         setRecipeFields(data);
     }
 
+
+
     // for ingredientForm
     const handleIngredientFormChange = (event, index) => {
-        let data = [...ingredientsFields];
-        data[index][event.target.name] = event.target.value;
-        setIngredientsFields(data);
+        event.preventDefault();
+        setSelectedRecipe(recipe => {
+            const remainingIngredients = [...recipe.ingredients];
+            remainingIngredients[index][event.target.name] = event.target.value;
+            return {
+                ...recipe,
+                ingredients: remainingIngredients
+
+            }
+
+        })
     }
 
-    const addIngredientField = () => {
-        let object = {
-            name: '',
-            qty: ''
-        }
-        setIngredientsFields([...ingredientsFields, object])
+
+    const addIngredientField = (event) => {
+        event.preventDefault();
+        setSelectedRecipe(recipe => ({
+            ...recipe,
+            ingredients: [
+                ...recipe.ingredients,
+                { name: " ", qty: " " },
+            ]
+        }))
     }
+
 
     const removeIngredientField = (index) => {
-        let data = [...ingredientsFields];
-        data.splice(index, 1)
-        setIngredientsFields(data)
+        setSelectedRecipe(recipe => {
+            const remainingIngredients = [...recipe.ingredients];
+            remainingIngredients.splice(index, 1);
+            return {
+                ...recipe,
+                ingredients: remainingIngredients
+
+            }
+        })
     }
 
-
-    /// for step
+    // / for step
 
     const handleStepFormChange = (event, index) => {
         let data = [...stepsFields];
         data[index][event.target.name] = event.target.value;
         setStepsFields(data);
+
+        setSelectedRecipe(recipe => {
+            const remainingSteps = [...recipe.steps];
+            remainingSteps[index][event.target.name] = event.target.value;
+            return {
+                ...recipe,
+                steps: remainingSteps
+            }
+        })
+
     }
 
-    const addStepField = () => {
-        let object = {
-            step: '',
-        }
-        setStepsFields([...stepsFields, object])
+    const addStepField = (event) => {
+        event.preventDefault();
+        setSelectedRecipe(recipe => ({
+            ...recipe,
+            steps: [
+                ...recipe.steps,
+                '',
+            ]
+        }));
     }
+
     const removeStepField = (index) => {
-        let data = [...stepsFields];
-        data.splice(index, 1)
-        setStepsFields(data)
+        console.log(selectedRecipe.steps)
+        // const steps = [...selectedRecipe.steps].splice(index, 1)
+        console.log("-------selectedRecipe steps and steps", selectedRecipe.steps);
+        setSelectedRecipe(recipe => {
+            const remainingSteps = [...recipe.steps];
+            remainingSteps.splice(index, 1);
+
+            return {
+                ...recipe,
+                steps: remainingSteps
+
+            }
+        })
     }
+
 
 
 
@@ -211,7 +262,7 @@ export default function EditRecipe() {
                                     <Box container style={{ padding: "0.2em" }}>
                                         <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
                                         {selectedRecipe.ingredients.map((ingredient, index) => (
-                                            <div key={index}>
+                                            <div key={`${ingredient.name}-${index}`} >
                                                 <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                                                     <TextField
                                                         id="ingredientQty"
@@ -245,7 +296,7 @@ export default function EditRecipe() {
                                     <Box container style={{ padding: "0.2em", margin: "0.2em" }}>
                                         <Typography variant="h5" style={{ textAlign: "left" }}>Instructions :</Typography>
                                         {selectedRecipe.steps.map((step, index) => (
-                                            <div key={index}>
+                                            <div key={`${step}-${index}`}>
                                                 <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                                                     <TextField
                                                         id="ingredientName"

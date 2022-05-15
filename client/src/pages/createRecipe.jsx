@@ -127,7 +127,7 @@ export default function CreateRecipe() {
                                     </Grid>
                                     {numberForms.map((numForm, i) => (
                                         <TextField
-                                            key={i}
+                                            key={numForm.id}
                                             required
                                             id={numForm.id}
                                             name={numForm.name}
