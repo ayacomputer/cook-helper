@@ -165,7 +165,7 @@ export default function EditRecipe() {
                         ...selectedRecipe[0],
                         _id: _id,
                         totalTime: Number(recipeFields[0].totalTime),
-                        image: imageUrl.current,
+                        image: `${imageUrl.current ? imageUrl.current : selectedRecipe[0].image}`,
                         serves: Number(recipeFields[0].serves),
                         steps: selectedRecipe.steps.map((s) => s.step),
                         ingredients: selectedRecipe.ingredients
