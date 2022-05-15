@@ -67,6 +67,7 @@ export default function EditRecipe() {
     //recipe
 
     const handleRecipeFormChange = (event, index) => {
+        event.preventDefault();
         let data = [...recipeFields];
         data[index || 0][event.target.name] = event.target.value;
 
@@ -79,7 +80,7 @@ export default function EditRecipe() {
     const handleIngredientFormChange = (event, index) => {
         event.preventDefault();
         setSelectedRecipe(recipe => {
-            const remainingIngredients = [...recipe.ingredients];
+            let remainingIngredients = [...recipe.ingredients];
             remainingIngredients[index][event.target.name] = event.target.value;
             return {
                 ...recipe,
@@ -105,7 +106,7 @@ export default function EditRecipe() {
 
     const removeIngredientField = (index) => {
         setSelectedRecipe(recipe => {
-            const remainingIngredients = [...recipe.ingredients];
+            let remainingIngredients = [...recipe.ingredients];
             remainingIngredients.splice(index, 1);
             return {
                 ...recipe,
@@ -118,12 +119,9 @@ export default function EditRecipe() {
     // / for step
 
     const handleStepFormChange = (event, index) => {
-        let data = [...stepsFields];
-        data[index][event.target.name] = event.target.value;
-        setStepsFields(data);
-
         setSelectedRecipe(recipe => {
-            const remainingSteps = [...recipe.steps];
+            let remainingSteps = [...recipe.steps];
+            console.log(remainingSteps);
             remainingSteps[index][event.target.name] = event.target.value;
             return {
                 ...recipe,
@@ -146,10 +144,8 @@ export default function EditRecipe() {
 
     const removeStepField = (index) => {
         console.log(selectedRecipe.steps)
-        // const steps = [...selectedRecipe.steps].splice(index, 1)
-        console.log("-------selectedRecipe steps and steps", selectedRecipe.steps);
         setSelectedRecipe(recipe => {
-            const remainingSteps = [...recipe.steps];
+            let remainingSteps = [...recipe.steps];
             remainingSteps.splice(index, 1);
 
             return {
@@ -167,13 +163,14 @@ export default function EditRecipe() {
         event.preventDefault();
         console.log(event.target.value);
         console.log("data-------", ...recipeFields, stepsFields, ingredientsFields);
+        console.log("-----HERE changed?----", selectedRecipe)
 
 
         try {
             await UpdateRecipe({
                 variables: {
                     input: {
-                        ...recipeFields[0],
+                        ...selectedRecipe[0],
                         _id: _id,
                         totalTime: Number(recipeFields[0].totalTime),
                         image: imageUrl.current,
@@ -211,7 +208,7 @@ export default function EditRecipe() {
                             alignItems: 'center',
                         }} style={{ padding: "0.2em" }}>
                             <Grid container>
-                                <Grid item xs={12} md={12}>
+                                <Grid item xs={12}>
                                     <TextField
                                         required
                                         id="name"
@@ -225,7 +222,7 @@ export default function EditRecipe() {
                                         autoFocus
                                         style={{ padding: "0.3em" }}
                                     />
-                                    <Grid item xs={12} md={12}>
+                                    <Grid item xs={12} >
                                         <Fab variant="extended" onClick={openCloudinaryWidget}><AddAPhotoIcon sx={{ mr: 1 }} />Upload Image</Fab>
                                     </Grid>
 
@@ -258,7 +255,7 @@ export default function EditRecipe() {
                                 </Grid>
 
 
-                                <Grid item xs={12} md={12}>
+                                <Grid item xs={12}>
                                     <Box container style={{ padding: "0.2em" }}>
                                         <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
                                         {selectedRecipe.ingredients.map((ingredient, index) => (
@@ -317,17 +314,8 @@ export default function EditRecipe() {
                                         <Button onClick={addStepField}>Add More..</Button>
                                     </Box>
 
-
-
-
-
-
-
                                 </Grid>
-
-
                             </Grid>
-
                         </Box>
 
                         <Button
