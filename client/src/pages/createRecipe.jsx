@@ -100,7 +100,7 @@ export default function CreateRecipe() {
         <>
             <NavBar />
             <Card style={{ padding: "3rem" }}>
-                <Typography variant="h3">Create Recipe</Typography>
+                <h3>Create Recipe</h3>
                 <FormGroup>
                     <Container component="main">
                         <Box sx={{

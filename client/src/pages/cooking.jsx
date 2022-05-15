@@ -6,12 +6,15 @@ import { QUERY_ME, GET_RECIPES_BY_IDS } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
 import { Button, Box, Grid, Card, CardActionArea, CardMedia, Container, Typography, Accordion, AccordionSummary, AccordionDetails, AccordionActions, Fab } from '@mui/material';
 import NavBar from '../components/NavBar';
-import { styles } from '../utils/style'
+import { styles } from '../utils/style';
+import { useNavigate } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Cooking = () => {
     const meData = useQuery(QUERY_ME);
+    const navigate = useNavigate();
 
     const [removeRecipeId] = useMutation(REMOVE_RECIPE);
     const userData = meData.data?.me || {};
@@ -52,22 +55,32 @@ const Cooking = () => {
     if (loading) {
         return <h2>LOADING...</h2>;
     }
-
+    const handleBackToRecipes = () => {
+        navigate("/recipes")
+    }
 
     return (
         <>
             <NavBar />
             <Box component="div" style={styles.mainContainer}>
-                <Container fluid="true" className='text-light bg-dark'>
-                    <Typography justify="center">
-                        Today's Meal
-                    </Typography>
-                    <h4 style={{ "textAlign": "center" }}>
-                        {recipes.length
-                            ? `Viewing ${recipes.length} selected ${recipes.length === 1 ? 'recipe' : 'recipes'}:`
-                            : 'You have not selected any recipe yet!'}
-                    </h4>
-                </Container>
+
+                <Grid container fluid="true" className='text-light' style={{ "padding": "0.8rem" }}>
+                    <Grid item xs={1}>
+                        <Fab justify="left" onClick={handleBackToRecipes}><ArrowBackIcon /></Fab>
+                    </Grid>
+
+                    <Grid item xs={11}>
+                        <h3>COOKING</h3>
+                        <p>
+                            {recipes.length
+                                ? `Viewing ${recipes.length} selected ${recipes.length === 1 ? 'recipe' : 'recipes'}:`
+                                : 'You have not selected any recipe yet!'}
+                        </p>
+
+                    </Grid>
+
+                </Grid>
+
                 <Grid container style={{ "justifyContent": "center", "overflowX": "scroll", "display": "flex", "flexDirection": "row" }}>
                     {recipes.map((recipe, i) => (
                         <Grid item key={i} xs={4} sm={4} md={4} xl={4} style={{ margin: "0.2rem" }} >

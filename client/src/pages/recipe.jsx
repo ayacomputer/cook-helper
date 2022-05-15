@@ -45,6 +45,7 @@ export default function Recipe() {
         cardContainer: {
             maxWidth: "80%",
             margin: "3rem auto",
+            padding: "0.8rem",
             background: "inherit",
         },
         wheat: {
@@ -61,7 +62,8 @@ export default function Recipe() {
         img: {
             background: "rgb(32, 33, 36)",
             width: "100%",
-            objectFit: "cover top"
+            objectFit: "cover top",
+            borderRadius: "3px"
         }
     };
 
@@ -122,10 +124,12 @@ export default function Recipe() {
                                 ))}
 
                             </Grid>
+                            <Grid style={{ "textAlign": "center" }}>
+                                <Fab variant="extended" onClick={() => handleEditRecipe(selectedRecipe._id)}><EditIcon sx={{ mr: 1 }} />
+                                    Edit
+                                </Fab>
+                            </Grid>
 
-                            <Fab variant="extended" onClick={() => handleEditRecipe(selectedRecipe._id)}><EditIcon sx={{ mr: 1 }} />
-                                Edit
-                            </Fab>
                         </Grid>
                     </Card>
 
