@@ -11,15 +11,15 @@ import { useParams } from 'react-router-dom';
 
 
 export default function EditRecipe() {
-    const [recipeFields, setRecipeFields] = useState([
-        { image: '', name: '', serves: '' },
-    ]);
-    const [ingredientsFields, setIngredientsFields] = useState([
-        { name: '', qty: '' },
-    ]);
-    const [stepsFields, setStepsFields] = useState([
-        { step: '' },
-    ])
+    // const [recipeFields, setRecipeFields] = useState([
+    //     { image: '', name: '', serves: '' },
+    // ]);
+    // const [ingredientsFields, setIngredientsFields] = useState([
+    //     { name: '', qty: '' },
+    // ]);
+    // const [stepsFields, setStepsFields] = useState([
+    //     { step: '' },
+    // ])
     const [selectedRecipe, setSelectedRecipe] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
@@ -37,9 +37,6 @@ export default function EditRecipe() {
         setSelectedRecipe(selectedRecipe);
         setIsLoading(loading);
     }, [loading, data]);
-
-
-
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -69,10 +66,10 @@ export default function EditRecipe() {
 
     const handleRecipeFormChange = (event, index) => {
         event.preventDefault();
-        let data = [...recipeFields];
+        let data = [...selectedRecipe];
         data[index || 0][event.target.name] = event.target.value;
 
-        setRecipeFields(data);
+        setSelectedRecipe(data);
     }
 
 
@@ -163,7 +160,6 @@ export default function EditRecipe() {
     const handleUpdateFormSubmit = async (event) => {
         event.preventDefault();
         console.log(event.target.value);
-        console.log("data-------", ...recipeFields, stepsFields, ingredientsFields);
         console.log("-----HERE changed?----", selectedRecipe)
 
 
@@ -182,9 +178,10 @@ export default function EditRecipe() {
                 }
             });
 
-            setRecipeFields([{ image: '', name: '', serves: '' },]);
-            setIngredientsFields([{ name: '', qty: '' },]);
-            setStepsFields([{ step: '' },]);
+            // setRecipeFields([{ image: '', name: '', serves: '' },]);
+            // setIngredientsFields([{ name: '', qty: '' },]);
+            // setStepsFields([{ step: '' },]);
+            setSelectedRecipe({});
 
 
             // redirect to /recipes
