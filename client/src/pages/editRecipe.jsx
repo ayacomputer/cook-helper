@@ -113,7 +113,7 @@ export default function EditRecipe() {
     const handleStepFormChange = (event, index) => {
         setSelectedRecipe(recipe => {
             let remainingSteps = [...recipe.steps];
-            console.log(remainingSteps);
+            console.log("-----------remainingSteps", remainingSteps);
             remainingSteps[index] = event.target.value;
             return {
                 ...recipe,
@@ -155,7 +155,7 @@ export default function EditRecipe() {
         event.preventDefault();
         console.log(event.target.value);
         console.log("-----HERE changed?----", selectedRecipe, recipeFields)
-        console.log("selectedRecipe.image", selectedRecipe.image)
+        console.log("selectedRecipe.steps", selectedRecipe.steps)
 
 
 
@@ -168,7 +168,7 @@ export default function EditRecipe() {
                         totalTime: Number(recipeFields[0].totalTime),
                         image: `${imageUrl.current ? imageUrl.current : selectedRecipe.image}`,
                         serves: Number(recipeFields[0].serves),
-                        steps: selectedRecipe.steps.map((s) => s.step),
+                        steps: selectedRecipe.steps,
                         ingredients: selectedRecipe.ingredients
                     }
                 }
