@@ -99,15 +99,17 @@ export default function CreateRecipe() {
     return (
         <>
             <NavBar />
-            <Card style={{ padding: "3rem" }}>
+            <Box style={{ padding: "3rem" }}>
                 <h3>Create Recipe</h3>
+            </Box>
+            <Card style={{ padding: "3rem" }}>
                 <FormGroup>
                     <Container component="main">
                         <Box sx={{
-                            marginTop: 3,
+                            marginTop: 1,
                             display: 'flex',
                             flexDirection: 'column',
-                        }} style={{ padding: "0.2em" }}>
+                        }}>
                             <Grid container>
                                 <Grid item xs={12} md={12}>
                                     <TextField
