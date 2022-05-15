@@ -110,7 +110,7 @@ export default function Recipe() {
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel1bh-content"
                                             id="panel1bh-header">
-                                            <Typography key={step._id}>
+                                            <Typography key={`step-${i}`}>
                                                 Step {i + 1}:
                                             </Typography>
                                         </AccordionSummary>

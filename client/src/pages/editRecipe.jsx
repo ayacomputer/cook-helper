@@ -249,7 +249,7 @@ export default function EditRecipe() {
                                 <Grid item xs={12}>
                                     <Box container style={{ padding: "0.2em" }}>
                                         <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
-                                        {selectedRecipe.ingredients.map((ingredient, index) => (
+                                        {selectedRecipe.ingredients?.map((ingredient, index) => (
                                             <div key={`ingredient-${index}`} >
                                                 <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                                                     <TextField
@@ -283,7 +283,7 @@ export default function EditRecipe() {
 
                                     <Box container style={{ padding: "0.2em", margin: "0.2em" }}>
                                         <Typography variant="h5" style={{ textAlign: "left" }}>Instructions :</Typography>
-                                        {selectedRecipe.steps.map((step, index) => (
+                                        {selectedRecipe.steps?.map((step, index) => (
                                             <div key={`step-${index}`}>
                                                 <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                                                     <TextField
