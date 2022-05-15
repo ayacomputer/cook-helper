@@ -23,7 +23,7 @@ export default function EditRecipe() {
 
     const [UpdateRecipe] = useMutation(UPDATE_RECIPE);
 
-    const { loading, data } = useQuery(GET_ONE_RECIPE,
+    const { loading, data, refetch: refetchRecipe } = useQuery(GET_ONE_RECIPE,
         { variables: { id: _id } });
 
     useEffect(() => {
@@ -155,6 +155,7 @@ export default function EditRecipe() {
         event.preventDefault();
         console.log(event.target.value);
         console.log("-----HERE changed?----", selectedRecipe, recipeFields)
+        console.log("selectedRecipe.image", selectedRecipe.image)
 
 
 
@@ -165,7 +166,7 @@ export default function EditRecipe() {
                         ...selectedRecipe[0],
                         _id: _id,
                         totalTime: Number(recipeFields[0].totalTime),
-                        image: `${imageUrl.current ? imageUrl.current : selectedRecipe[0].image}`,
+                        image: `${imageUrl.current ? imageUrl.current : selectedRecipe.image}`,
                         serves: Number(recipeFields[0].serves),
                         steps: selectedRecipe.steps.map((s) => s.step),
                         ingredients: selectedRecipe.ingredients
@@ -176,7 +177,7 @@ export default function EditRecipe() {
             setRecipeFields([{ image: '', name: '', serves: '' },]);
             setSelectedRecipe({});
 
-
+            await refetchRecipe();
             // redirect to /recipes
             navigate(`/recipe/${_id}`);
 
