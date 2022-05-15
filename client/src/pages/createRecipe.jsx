@@ -8,6 +8,8 @@ import StepsForm from '../components/stepsForm';
 import { useNavigate } from "react-router-dom";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Fab from '@mui/material/Fab';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import LibraryAdd from '@mui/icons-material/LibraryAdd';
 
 
 export default function CreateRecipe() {
@@ -105,28 +107,31 @@ export default function CreateRecipe() {
             <Card style={{ padding: "3rem" }}>
                 <FormGroup>
                     <Container component="main">
-                        <Box sx={{
+
+                        <Grid container sx={{
                             marginTop: 1,
-                            display: 'flex',
                             flexDirection: 'column',
                         }}>
-                            <Grid container>
-                                <Grid item xs={12} md={12}>
-                                    <TextField
-                                        required
-                                        id="name"
-                                        name="name"
-                                        label="Recipe Name"
-                                        type="text"
-                                        onChange={event => handleRecipeFormChange(event)}
-                                        size="standard"
-                                        fullWidth
-                                        autoFocus
-                                        style={{ padding: "0.3em" }}
-                                    />
-                                    <Grid xs={12} md={12}>
-                                        <Fab variant="extended" onClick={openCloudinaryWidget}><AddAPhotoIcon sx={{ mr: 1 }} />Upload Image</Fab>
-                                    </Grid>
+                            <Grid item xs={12}>
+                                <Grid xs={12}>
+                                    <Fab variant="extended" onClick={openCloudinaryWidget}><AddAPhotoIcon sx={{ mr: 1 }} />Upload Image</Fab>
+                                </Grid>
+                                <Typography variant="h5" style={{ textAlign: "left" }} >Recipe Name :</Typography>
+                                <TextField
+                                    required
+                                    id="name"
+                                    name="name"
+                                    label="Recipe Name"
+                                    type="text"
+                                    onChange={event => handleRecipeFormChange(event)}
+                                    size="standard"
+                                    fullWidth
+                                    autoFocus
+                                    style={{ padding: "0.3em" }}
+                                />
+
+
+                                <Grid>
                                     {numberForms.map((numForm, i) => (
                                         <TextField
                                             key={numForm.id}
@@ -144,23 +149,25 @@ export default function CreateRecipe() {
                                     ))}
                                 </Grid>
 
-
-                                <Grid item xs={12} md={12}>
-                                    <IngredientForm setIngredients={setIngredientsFields} ingredients={ingredientsFields} />
-                                    <StepsForm setSteps={setStepsFields} steps={stepsFields} />
-                                </Grid>
-
-
                             </Grid>
 
-                        </Box>
 
-                        <Button
+                            <Grid item xs={12} md={12}>
+                                <IngredientForm setIngredients={setIngredientsFields} ingredients={ingredientsFields} />
+                                <StepsForm setSteps={setStepsFields} steps={stepsFields} />
+                            </Grid>
+
+
+                        </Grid>
+
+
+
+                        <Fab
                             type="submit"
                             fullWidth
-                            variant="contained"
+                            variant="extended"
                             sx={{ mt: 3, mb: 2 }}
-                            onClick={event => handleFormSubmit(event)}>Save</Button>
+                            onClick={event => handleFormSubmit(event)}><LibraryAddIcon sx={{ mr: 1 }} />Save this Recipe!</Fab>
                     </Container>
                 </FormGroup>
             </Card>
