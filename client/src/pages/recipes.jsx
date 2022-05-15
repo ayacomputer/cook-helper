@@ -116,14 +116,23 @@ export default function Recipes() {
                         <Grid item xs={6} sm={6} md={4} xl={2} key={recipe._id} >
                             <Card style={styles.cardContainer} elevation={8} className="recipe">
                                 <CardActionArea onClick={() => handleViewRecipe(recipe._id)}>
-                                    <CardMedia
+
+                                    {recipe.image ? <CardMedia
                                         component="img"
                                         alt={`The cover for ${recipe.name}`}
                                         height="300vh"
                                         image={recipe.image}
                                         style={styles.img}
 
-                                    />
+                                    /> : <CardMedia
+                                        component="img"
+                                        alt={`The cover for ${recipe.name}`}
+                                        height="300vh"
+                                        image="https://www.divesupply.com/wp-content/uploads/2020/04/No-image.jpg"
+                                        style={styles.img}
+                                    />}
+
+
                                     <CardContent>
                                         <Typography variant="h5" gutterBottom style={styles.green}>
                                             {recipe.name}

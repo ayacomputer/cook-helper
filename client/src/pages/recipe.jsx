@@ -92,7 +92,8 @@ export default function Recipe() {
                         <Grid container direction="row" style={{ margin: "0.2rem" }} >
 
                             <Grid item xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", width: "100%" }}>
-                                {selectedRecipe.image ? <CardMedia component="img" image={selectedRecipe.image} alt={`The photo for ${selectedRecipe.name}`} style={styles.img} /> : null}
+                                {selectedRecipe.image ? <CardMedia component="img" image={selectedRecipe.image} alt={`The photo for ${selectedRecipe.name}`} style={styles.img} />
+                                    : <CardMedia component="img" image="https://www.divesupply.com/wp-content/uploads/2020/04/No-image.jpg" alt={`The photo for ${selectedRecipe.name}`} style={styles.img} />}
                             </Grid>
                             <Grid item xs={12} sm={6} md={6} xl={6}>
                                 <Card style={{ "textAlign": "left", "padding": "0.2em", width: "100%" }}>

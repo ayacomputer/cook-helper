@@ -100,14 +100,15 @@ const Cooking = () => {
                                         </Typography>
                                         <Grid container style={{ "textAlign": "left", "padding": "0.2em" }}>
                                             {recipe.image ?
-                                                <CardMedia component="img" image={recipe.image} alt={`The photo for ${recipe.name}`} style={styles.img} /> : null}
+                                                <CardMedia component="img" image={recipe.image} alt={`The photo for ${recipe.name}`} style={styles.img} />
+                                                : <CardMedia component="img" image="https://www.divesupply.com/wp-content/uploads/2020/04/No-image.jpg" alt={`The photo for ${recipe.name}`} style={styles.img} />}
                                             <Card xs={12} sm={6} md={6} xl={6} style={{ "textAlign": "left", "padding": "0.2em", "width": "50%" }}>
                                                 <Typography variant="h5">Ingredients:    </Typography>
                                                 <hr style={{ color: "gray" }} />
                                                 <Grid style={{ "overflowY": "scroll" }}>
 
                                                     {recipe.ingredients.map((ingredient, i) => (
-                                                        <Typography key={i}><b>{ingredient.qty}</b>&nbsp;
+                                                        <Typography key={`ingredient-${i}`}><b>{ingredient.qty}</b>&nbsp;
                                                             {ingredient.name}</Typography>
                                                     ))}
 
@@ -126,7 +127,7 @@ const Cooking = () => {
                                                     expandIcon={<ExpandMoreIcon />}
                                                     aria-controls="panel1bh-content"
                                                     id="panel1bh-header">
-                                                    <Typography key={step._id}>
+                                                    <Typography key={`step-${i}`}>
                                                         Step {i + 1}:
                                                     </Typography>
                                                 </AccordionSummary>
