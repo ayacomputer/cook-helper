@@ -11,15 +11,9 @@ import { useParams } from 'react-router-dom';
 
 
 export default function EditRecipe() {
-    // const [recipeFields, setRecipeFields] = useState([
-    //     { image: '', name: '', serves: '' },
-    // ]);
-    // const [ingredientsFields, setIngredientsFields] = useState([
-    //     { name: '', qty: '' },
-    // ]);
-    // const [stepsFields, setStepsFields] = useState([
-    //     { step: '' },
-    // ])
+    const [recipeFields, setRecipeFields] = useState([
+        { image: '', name: '', serves: '' },
+    ]);
     const [selectedRecipe, setSelectedRecipe] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
@@ -66,10 +60,10 @@ export default function EditRecipe() {
 
     const handleRecipeFormChange = (event, index) => {
         event.preventDefault();
-        let data = [...selectedRecipe];
+        let data = [...recipeFields];
         data[index || 0][event.target.name] = event.target.value;
 
-        setSelectedRecipe(data);
+        setRecipeFields(data);
     }
 
 
@@ -160,7 +154,8 @@ export default function EditRecipe() {
     const handleUpdateFormSubmit = async (event) => {
         event.preventDefault();
         console.log(event.target.value);
-        console.log("-----HERE changed?----", selectedRecipe)
+        console.log("-----HERE changed?----", selectedRecipe, recipeFields)
+
 
 
         try {
@@ -169,18 +164,16 @@ export default function EditRecipe() {
                     input: {
                         ...selectedRecipe[0],
                         _id: _id,
-                        totalTime: Number(selectedRecipe[0].totalTime),
+                        totalTime: Number(recipeFields[0].totalTime),
                         image: imageUrl.current,
-                        serves: Number(selectedRecipe[0].serves),
+                        serves: Number(recipeFields[0].serves),
                         steps: selectedRecipe.steps.map((s) => s.step),
                         ingredients: selectedRecipe.ingredients
                     }
                 }
             });
 
-            // setRecipeFields([{ image: '', name: '', serves: '' },]);
-            // setIngredientsFields([{ name: '', qty: '' },]);
-            // setStepsFields([{ step: '' },]);
+            setRecipeFields([{ image: '', name: '', serves: '' },]);
             setSelectedRecipe({});
 
 
@@ -257,7 +250,7 @@ export default function EditRecipe() {
                                     <Box container style={{ padding: "0.2em" }}>
                                         <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
                                         {selectedRecipe.ingredients.map((ingredient, index) => (
-                                            <div key={`${ingredient.name}-${index}`} >
+                                            <div key={`ingredient-${index}`} >
                                                 <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                                                     <TextField
                                                         id="ingredientQty"
@@ -291,7 +284,7 @@ export default function EditRecipe() {
                                     <Box container style={{ padding: "0.2em", margin: "0.2em" }}>
                                         <Typography variant="h5" style={{ textAlign: "left" }}>Instructions :</Typography>
                                         {selectedRecipe.steps.map((step, index) => (
-                                            <div key={`${step}-${index}`}>
+                                            <div key={`step-${index}`}>
                                                 <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                                                     <TextField
                                                         id="ingredientName"
