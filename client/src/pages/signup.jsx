@@ -11,14 +11,13 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Alert, Fab } from '@mui/material';
 import ErrorIcon from '@mui/icons-material/Error';
 import LoginIcon from '@mui/icons-material/Login';
+import Card from '@mui/material/Card';
+import logo from '../components/logo.png'
 
 
-
-const theme = createTheme();
 
 export default function SignUp() {
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
@@ -58,9 +57,9 @@ export default function SignUp() {
     };
 
     return (
-        <ThemeProvider theme={theme}>
+
+        <Card maxWidth="xs">
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
                 <Box
                     sx={{
                         marginTop: 8,
@@ -70,14 +69,15 @@ export default function SignUp() {
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'secondary' }}>
-                        <LockOutlinedIcon />
+
+                        <img src={logo} style={{ "width": "2em", "height": "2em", "margin": "0.8em" }} alt="logo" />
                     </Avatar>
-                    <Typography component="h1" variant="h5" color="gray">
-                        Sign up
-                    </Typography>
+                    <h4 component="h1" variant="h5" className="text-dark">
+                        Cook Helper
+                    </h4>
                     <Box component="form" noValidate validated={validated} onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         {showAlert && (
-                            <Alert dismissible="true" icon={<ErrorIcon />} onClose={() => setShowAlert(false)} variant='danger'>
+                            <Alert dismissible="true" icon={<ErrorIcon />} onClose={() => setShowAlert(false)} color='error'>
                                 Something went wrong with your signup!
                             </Alert>
                         )}
@@ -93,6 +93,7 @@ export default function SignUp() {
                                     id="username"
                                     label="Username"
                                     autoFocus
+                                    color="success"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -105,6 +106,7 @@ export default function SignUp() {
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
+                                    color="success"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -118,6 +120,7 @@ export default function SignUp() {
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
+                                    color="success"
                                 />
                             </Grid>
 
@@ -130,7 +133,7 @@ export default function SignUp() {
                         </Fab>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link href="/" variant="body2">
+                                <Link href="/" variant="body2" className="text-dark">
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>
@@ -139,6 +142,10 @@ export default function SignUp() {
                 </Box>
 
             </Container>
-        </ThemeProvider>
+
+        </Card>
+
+
+
     );
 }

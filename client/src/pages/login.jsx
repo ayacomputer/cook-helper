@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import { Container, Fab, Link } from '@mui/material';
+import { Container, Fab, Link, Card } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import { Alert } from '@mui/material';
 
 import Auth from '../utils/auth';
@@ -15,10 +15,11 @@ import { USER_LOGIN } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import ErrorIcon from '@mui/icons-material/Error';
 import LoginIcon from '@mui/icons-material/Login';
+import logo from '../components/logo.png'
 
 
 
-const theme = createTheme();
+
 
 export default function Login() {
     const [userFormData, setUserFormData] = useState({ email: '', password: '' });
@@ -61,9 +62,10 @@ export default function Login() {
     };
 
     return (
-        <ThemeProvider theme={theme}>
+
+        <Card maxWidth="xs">
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
+
                 <Box
                     sx={{
                         marginTop: 8,
@@ -72,12 +74,12 @@ export default function Login() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary' }}>
-                        <LockOutlinedIcon />
+                    <Avatar sx={{ m: 3, className: 'dark' }}>
+                        <img src={logo} style={{ "width": "2em", "height": "2em", "margin": "0.8em" }} alt="logo" />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
-                    </Typography>
+                    <h4 component="h1" variant="h5" className="text-dark">
+                        Cook Helper
+                    </h4>
                     {showAlert && (
                         <Alert color='error' icon={<ErrorIcon />} dismissible="true" onClose={() => setShowAlert(false)} variant='danger'>
                             Something went wrong with your login!
@@ -95,6 +97,7 @@ export default function Login() {
                             onChange={handleInputChange}
                             value={userFormData.email}
                             autoFocus
+                            color="success"
                         />
                         <TextField
                             margin="normal"
@@ -107,6 +110,7 @@ export default function Login() {
                             autoComplete="current-password"
                             onChange={handleInputChange}
                             value={userFormData.password}
+                            color="success"
                         />
                         <Fab
                             type="submit"
@@ -116,7 +120,7 @@ export default function Login() {
                         </Fab>
                         <Grid container>
                             <Grid item>
-                                <Link href="/signup" variant="body2">
+                                <Link href="/signup" variant="body2" className="text-dark">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
@@ -124,6 +128,10 @@ export default function Login() {
                     </Box>
                 </Box>
             </Container>
-        </ThemeProvider >
+
+
+        </Card>
+
+
     );
 }
