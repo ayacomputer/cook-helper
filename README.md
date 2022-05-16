@@ -73,7 +73,8 @@ Unwanted recipes can be deleted here.
 [Cooking page] : displays the recipes selected on the recipe page. 
 Multiple recipes can be displayed.
 All of the ingredients are displayed at the top so that you can plan your shopping quicker.
-The instruction steps are collapsible, so you can hide finished steps and multitask easily when cooking!
+The instruction steps are collapsible, 
+so you can hide finished steps and multitask easily when cooking!
 ```
 ```
 [Create Recipe page] : This page allows you to create a new recipe. 
@@ -123,7 +124,7 @@ See LICENSE.txt for more information.
 
 <p align ="right">(<a href="#top">back to top</a>)</>
 
- ## Contact Me
+ ## Contact
 
 Ayako Woollan - ayako.woollan@gmail.com
 
