@@ -26,8 +26,6 @@ export default function Recipes() {
 
         const recipeToSelect = recipes.find((recipe) => recipe._id === selectedRecipeId);
         const recipeIdToAdd = recipeToSelect._id
-        console.log("recipeToSelect", recipeToSelect)
-        console.log("recipeIdToADD", recipeIdToAdd)
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {

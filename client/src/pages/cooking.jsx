@@ -20,8 +20,6 @@ const Cooking = () => {
     const userData = meData.data?.me || {};
     const selectedRecipeIds = userData.selectedRecipeIds || [];
 
-    console.log("-----selectedRecipesIds : ", selectedRecipeIds)
-    console.log("-----userData", userData)
 
     let results = useQuery(GET_RECIPES_BY_IDS, { variables: { id: selectedRecipeIds } })
     let recipes = results?.data?.getRecipesByIds || [];
