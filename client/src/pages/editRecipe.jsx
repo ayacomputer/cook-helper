@@ -1,4 +1,4 @@
-import { Box, TextField, Typography, Container, Button, Card, FormGroup, Grid } from '@mui/material';
+import { Box, TextField, Typography, Container, Button, IconButton, Card, FormGroup, Grid } from '@mui/material';
 import React, { useState, useRef, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import NavBar from '../components/NavBar';
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Fab from '@mui/material/Fab';
 import { useParams } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function EditRecipe() {
@@ -201,6 +202,9 @@ export default function EditRecipe() {
                         }} style={{ padding: "0.2em" }}>
                             <Grid container>
                                 <Grid item xs={12}>
+                                    <Grid item xs={12} >
+                                        <Fab variant="extended" onClick={openCloudinaryWidget}><AddAPhotoIcon sx={{ mr: 1 }} />Upload Image</Fab>
+                                    </Grid>
                                     <TextField
                                         required
                                         id="name"
@@ -215,9 +219,7 @@ export default function EditRecipe() {
                                         style={{ padding: "0.3em" }}
                                         color="success"
                                     />
-                                    <Grid item xs={12} >
-                                        <Fab variant="extended" onClick={openCloudinaryWidget}><AddAPhotoIcon sx={{ mr: 1 }} />Upload Image</Fab>
-                                    </Grid>
+
 
                                     <TextField
                                         required
@@ -278,13 +280,15 @@ export default function EditRecipe() {
                                                         style={{ marginLeft: "0.2em" }}
                                                         color="success"
                                                     />
-                                                    <Button variant="outlined" color="success" onClick={() => removeIngredientField(index)}>Remove </Button>
+                                                    <IconButton style={{ "marginLeft": "0.5em" }} onClick={() => removeIngredientField(index)}>
+                                                        <DeleteIcon />
+                                                    </IconButton>
                                                 </Container>
                                             </div>
 
                                         ))
                                         }
-                                        <Button onClick={addIngredientField}>Add More..</Button>
+                                        <Button color="success" variant="outlined" onClick={addIngredientField}>Add More..</Button>
                                     </Box>
 
                                     <Box container style={{ padding: "0.2em", margin: "0.2em" }}>
@@ -303,13 +307,16 @@ export default function EditRecipe() {
                                                         fullWidth
                                                         color="success"
                                                     />
-                                                    <Button onClick={() => removeStepField(index)}>Remove </Button>
+                                                    <IconButton style={{ "marginLeft": "0.8em" }} onClick={() => removeStepField(index)}>
+                                                        <DeleteIcon />
+                                                    </IconButton>
                                                 </Container>
 
                                             </div>
 
                                         ))}
-                                        <Button variant="contained" onClick={addStepField}>Add More..</Button>
+                                        <Button
+                                            color="success" variant="outlined" onClick={addStepField}>Add More..</Button>
                                     </Box>
 
                                 </Grid>

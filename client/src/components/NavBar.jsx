@@ -30,7 +30,7 @@ export default function NavBar() {
 
         },
         {
-            title: "Log Out",
+            title: "LogOut",
             link: "/",
             onClick: function () {
                 auth.logout();
