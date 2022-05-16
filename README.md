@@ -41,7 +41,7 @@
  ## About The Project
 
 
- ![ProductScreen Shot](./assets/product.gif)
+ ![ProductScreen Shot](./assets/product.png)
 
 Cook helper helps users to cook and organise cooking efficiently! You can select recipes to cook and add, edit and delete recipes to customize your Cook helper. You can view several recipes at the same time and see which ingredients you need. Each step can be collapsed so you can see how far you have cooked and multitask easily. 
 
@@ -63,6 +63,7 @@ Cook helper helps users to cook and organise cooking efficiently! You can select
 <p align = "right"> (<a href="#top">back to top</a>)</>
 
 ## Usage
+![ProductScreen Shot](./assets/product2.png)
 To use this app,  please create your account in sign up page. 
 ```
 [Recipes page] : you can view all recipes and click on the photo to view a recipe 
@@ -84,8 +85,9 @@ Recipe photos can be added from your PC, Instagram or Google Drive, unsplash etc
 ```
 
 Following image shows this application's functionality.
-![This is an image of the product.](./assets/product.png)
-  [Click here to view the Deployed app]() (still  editing)
+![This is an image of the product.](./assets/product.png)<br>
+
+[Click here to view the Deployed app](https://ayacomputer-cook-helper.herokuapp.com/)
 <p align ="right">(<a href="#top">back to top</a>)</>
 
 ## Getting Started
