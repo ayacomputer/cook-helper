@@ -128,6 +128,7 @@ export default function CreateRecipe() {
                                     fullWidth
                                     autoFocus
                                     style={{ padding: "0.3em" }}
+                                    color="success"
                                 />
 
 
@@ -144,6 +145,7 @@ export default function CreateRecipe() {
                                             size="standard"
                                             autoFocus
                                             style={{ padding: "0.3em" }}
+                                            color="success"
                                         />
 
                                     ))}

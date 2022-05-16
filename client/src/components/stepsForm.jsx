@@ -1,5 +1,6 @@
-import { TextField, Typography, Container, Button, Box } from '@mui/material';
+import { TextField, Typography, Container, Button, Box, IconButton } from '@mui/material';
 import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function StepsForm({ steps, setSteps }) {
@@ -38,14 +39,18 @@ export default function StepsForm({ steps, setSteps }) {
                                 onChange={event => handleStepFormChange(event, index)}
                                 size="standard"
                                 fullWidth
+                                color="success"
                             />
-                            <Button onClick={() => removeStepField(index)}>Remove </Button>
+                            <IconButton style={{ "marginLeft": "0.8em" }} onClick={() => removeStepField(index)}>
+                                <DeleteIcon />
+                            </IconButton>
+
                         </Container>
 
                     </div>
 
                 ))}
-                <Button onClick={addStepField}>Add More..</Button>
+                <Button color="success" variant="outlined" onClick={addStepField}>Add More..</Button>
             </Box>
 
         </>

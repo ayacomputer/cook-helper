@@ -1,5 +1,7 @@
-import { TextField, Typography, Container, Button, Box } from '@mui/material';
+import { TextField, Typography, Container, Button, Box, IconButton, Grid } from '@mui/material';
 import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 export default function IngredientForm({ ingredients, setIngredients }) {
@@ -27,10 +29,12 @@ export default function IngredientForm({ ingredients, setIngredients }) {
 
     return (
         <>
-            <Box container style={{ padding: "0.2em" }}>
-                <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
+            <Grid container direction="column" style={{ "padding": "0.2em", "width": "50%", "justifyContent": "center" }}>
+                <Grid item>
+                    <Typography variant="h5" style={{ textAlign: "left" }} >Ingredients :</Typography>
+                </Grid>
                 {ingredients.map((ingredient, index) => (
-                    <div key={index}>
+                    <Grid item key={`ingredient-${index}`} xs={10}>
                         <Container style={{ display: "flex", justifyDirection: "column", textAlign: "center", margin: "0.4em" }}>
                             <TextField
                                 id="ingredientQty"
@@ -40,6 +44,7 @@ export default function IngredientForm({ ingredients, setIngredients }) {
                                 onChange={event => handleIngredientFormChange(event, index)}
                                 size="standard"
                                 style={{ marginRight: "0.2em" }}
+                                color="success"
                             />
                             <TextField
                                 id="ingredientName"
@@ -49,15 +54,24 @@ export default function IngredientForm({ ingredients, setIngredients }) {
                                 onChange={event => handleIngredientFormChange(event, index)}
                                 size="standard"
                                 style={{ marginLeft: "0.2em" }}
+                                color="success"
                             />
-                            <Button onClick={() => removeIngredientField(index)}>Remove </Button>
-                        </Container>
-                    </div>
+                            <IconButton style={{ "marginLeft": "0.5em" }} onClick={() => removeIngredientField(index)}>
+                                <DeleteIcon />
+                            </IconButton>
 
+                        </Container>
+
+                    </Grid>
                 ))
                 }
-                <Button onClick={addIngredientField}>Add More..</Button>
-            </Box>
+                <Grid item container style={{ justifyContent: "center" }}>
+                    <Grid>
+                        <Button color="success" variant="outlined" onClick={addIngredientField} style={{ "marginRight": "10em" }}>Add More..</Button>
+                    </Grid>
+                </Grid>
+
+            </Grid>
 
 
 

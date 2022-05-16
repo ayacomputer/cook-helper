@@ -213,6 +213,7 @@ export default function EditRecipe() {
                                         fullWidth
                                         autoFocus
                                         style={{ padding: "0.3em" }}
+                                        color="success"
                                     />
                                     <Grid item xs={12} >
                                         <Fab variant="extended" onClick={openCloudinaryWidget}><AddAPhotoIcon sx={{ mr: 1 }} />Upload Image</Fab>
@@ -229,6 +230,7 @@ export default function EditRecipe() {
                                         size="standard"
                                         autoFocus
                                         style={{ padding: "0.3em" }}
+                                        color="success"
                                     />
                                     <TextField
                                         required
@@ -241,6 +243,7 @@ export default function EditRecipe() {
                                         size="standard"
                                         autoFocus
                                         style={{ padding: "0.3em" }}
+                                        color="success"
                                     />
 
 
@@ -262,6 +265,7 @@ export default function EditRecipe() {
                                                         onChange={event => handleIngredientFormChange(event, index)}
                                                         size="standard"
                                                         style={{ marginRight: "0.2em" }}
+                                                        color="success"
                                                     />
                                                     <TextField
                                                         id="ingredientName"
@@ -272,8 +276,9 @@ export default function EditRecipe() {
                                                         onChange={event => handleIngredientFormChange(event, index)}
                                                         size="standard"
                                                         style={{ marginLeft: "0.2em" }}
+                                                        color="success"
                                                     />
-                                                    <Button onClick={() => removeIngredientField(index)}>Remove </Button>
+                                                    <Button variant="outlined" color="success" onClick={() => removeIngredientField(index)}>Remove </Button>
                                                 </Container>
                                             </div>
 
@@ -296,6 +301,7 @@ export default function EditRecipe() {
                                                         onChange={event => handleStepFormChange(event, index)}
                                                         size="standard"
                                                         fullWidth
+                                                        color="success"
                                                     />
                                                     <Button onClick={() => removeStepField(index)}>Remove </Button>
                                                 </Container>
