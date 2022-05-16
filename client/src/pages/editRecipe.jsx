@@ -9,6 +9,7 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Fab from '@mui/material/Fab';
 import { useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 
 export default function EditRecipe() {
@@ -323,12 +324,15 @@ export default function EditRecipe() {
                             </Grid>
                         </Box>
 
-                        <Button
+
+                        <Fab
                             type="submit"
                             fullWidth
-                            variant="contained"
+                            variant="extended"
                             sx={{ mt: 3, mb: 2 }}
-                            onClick={event => handleUpdateFormSubmit(event)}>Edit</Button>
+                            onClick={event => handleUpdateFormSubmit(event)}><LibraryAddIcon sx={{ mr: 1 }} />Save this Edit!</Fab>
+
+
                     </Container>
                 </FormGroup>
             </Card>
