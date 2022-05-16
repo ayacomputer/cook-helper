@@ -128,6 +128,6 @@ See LICENSE.txt for more information.
 
 Ayako Woollan - ayako.woollan@gmail.com
 
-Project Link: [https://github.com/ayacomputer/ayacomputer](https://github.com/ayacomputer/ayacomputer)
+Project Link: [https://github.com/ayacomputer/cook-helper](https://github.com/ayacomputer/cook-helper)
 
 <p align="right">(<a href="#top">back to top</a>)</>
