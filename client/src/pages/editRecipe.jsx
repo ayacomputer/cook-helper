@@ -29,6 +29,7 @@ export default function EditRecipe() {
     useEffect(() => {
         const selectedRecipe = data?.getOneRecipe || {};
         setSelectedRecipe(selectedRecipe);
+
         setIsLoading(loading);
     }, [loading, data]);
 
@@ -62,7 +63,7 @@ export default function EditRecipe() {
         event.preventDefault();
         let data = [...recipeFields];
         data[index || 0][event.target.name] = event.target.value;
-
+        console.log(data)
         setRecipeFields(data);
     }
 
@@ -187,15 +188,16 @@ export default function EditRecipe() {
     return (
         <>
             <NavBar />
+            <Box style={{ padding: "3rem" }}>
+                <h3>Edit Recipe</h3>
+            </Box>
             <Card style={{ padding: "3rem" }}>
-                <Typography variant="h3">Edit Recipe</Typography>
+
                 <FormGroup>
                     <Container component="main">
                         <Box sx={{
-                            marginTop: 3,
-                            display: 'flex',
+                            marginTop: 1,
                             flexDirection: 'column',
-                            alignItems: 'center',
                         }} style={{ padding: "0.2em" }}>
                             <Grid container>
                                 <Grid item xs={12}>
