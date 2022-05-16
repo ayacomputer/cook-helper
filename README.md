@@ -65,15 +65,21 @@ Cook helper helps users to cook and organise cooking efficiently! You can select
 ## Usage
 To use this app,  please create your account in sign up page. 
 ```
-[Recipes page] : you can view all recipes and click on the photo to view a recipe and edit its details. Unwanted recipes can be deleted here.
+[Recipes page] : you can view all recipes and click on the photo to view a recipe </br>
+and edit its details by clicking the edit button and update. </br>
+Unwanted recipes can be deleted here. 
 ```
 ```
-[Cooking page] : displays the recipes selected on the recipe page. Multiple recipes can be displayed.
-All of the ingredients are displayed at the top so that you can plan your shopping quicker.
+[Cooking page] : displays the recipes selected on the recipe page. <br/>
+Multiple recipes can be displayed.<br/>
+All of the ingredients are displayed at the top so that you can plan your shopping quicker.<br/>
 The instruction steps are collapsible, so you can hide finished steps and multitask easily when cooking!
 ```
 ```
-[Create Recipe page] : This page allows you to create a new recipe. Fill in the fields according to your recipe. Ingredients and steps are adjustable, so you can add more or less. Recipe photos can be added from your PC, Instagram or Google Drive, unsplash etc.
+[Create Recipe page] : This page allows you to create a new recipe. </b>
+Fill in the fields according to your recipe. <br/>
+Ingredients and steps are adjustable, so you can add more or less.<br/> 
+Recipe photos can be added from your PC, Instagram or Google Drive, unsplash etc.
 ```
 
 Following image shows this application's functionality.
