@@ -43,7 +43,8 @@
 
  ![ProductScreen Shot](./assets/product.gif)
 
-CookHelper helps users to cook and organise cooking efficiently! You can select recipes to cook and add, edit and delete recipes. No more cookbooks are needed. You can view several recipes at the same time and see which ingredients you need. Each step can be collapsed so you can see how far you have cooked and multitask easily.
+Cook helper helps users to cook and organise cooking efficiently! You can select recipes to cook and add, edit and delete recipes to customize your Cook helper. You can view several recipes at the same time and see which ingredients you need. Each step can be collapsed so you can see how far you have cooked and multitask easily. 
+
 
 <p align = "right">(<a href="#top">back to top</a>)</>
 
@@ -63,12 +64,17 @@ CookHelper helps users to cook and organise cooking efficiently! You can select 
 
 ## Usage
 To use this app,  please create your account in sign up page. 
-
+`
 [Recipes page] : you can view all recipes and click on the photo to view a recipe and edit its details. Unwanted recipes can be deleted here.
+`
+`
 [Cooking page] : displays the recipes selected on the recipe page. Multiple recipes can be displayed.
 All of the ingredients are displayed at the top so that you can plan your shopping quicker.
 The instruction steps are collapsible, so you can hide finished steps and multitask easily when cooking!
+`
+`
 [Create Recipe page] : This page allows you to create a new recipe. Fill in the fields according to your recipe. Ingredients and steps are adjustable, so you can add more or less. Recipe photos can be added from your PC, Instagram or Google Drive, unsplash etc.
+`
 
 Following image shows this application's functionality.
 ![This is an image of the product.](./assets/product.png)
