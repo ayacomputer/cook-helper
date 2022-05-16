@@ -5,6 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import auth from '../utils/auth';
+import logo from './logo.png'
 
 
 
@@ -92,6 +93,7 @@ export default function NavBar() {
             <AppBar position="static" style={styles.navBar} elevation={0} maxwidth="xl">
                 <Container maxwidth="xl">
                     <Toolbar disableGutters>
+                        <img src={logo} style={{ "width": "1.8em", "height": "1.8em", "margin": "0.8em" }} alt="logo" />
                         <Typography
                             variant="h6"
                             noWrap
