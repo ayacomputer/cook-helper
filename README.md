@@ -64,6 +64,7 @@ Cook helper helps users to cook and organise cooking efficiently! You can select
 
 ## Usage
 ![ProductScreen Shot](./client/public/assets/product.png)
+
 To use this app,  please create your account in sign up page. 
 ```
 [Recipes page] : you can view all recipes and click on the photo to view a recipe 
