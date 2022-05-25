@@ -14,7 +14,7 @@ import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 export default function EditRecipe() {
     const [recipeFields, setRecipeFields] = useState([
-        { image: '', name: '', serves: '', },
+        { image: '', name: '', serves: '', totalTime: '' },
     ]);
     const [selectedRecipe, setSelectedRecipe] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -176,7 +176,7 @@ export default function EditRecipe() {
                 }
             });
 
-            setRecipeFields([{ image: '', name: '', serves: '' },]);
+            setRecipeFields([{ image: '', name: '', serves: '', totalTime: '' },]);
             setSelectedRecipe({});
 
             await refetchRecipe();

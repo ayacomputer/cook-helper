@@ -45,7 +45,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    createRecipe: async (_, { input },) => {
+    createRecipe: async (_, { input }, context) => {
       console.log(input)
       if (context.user) {
         return await Recipe.create(input);
