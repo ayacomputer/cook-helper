@@ -47,11 +47,10 @@ const resolvers = {
     },
     createRecipe: async (_, { input },) => {
       console.log(input)
-      // if (context.user) {
-      return await Recipe.create(input);
-      // // }
-      // throw new AuthenticationError('You need to be logged in!');
-
+      if (context.user) {
+        return await Recipe.create(input);
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     selectRecipe: async (_, { _id }, context) => {
       console.log("input for selectRecipe mutation", _id)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { GET_RECIPES } from '../utils/queries';

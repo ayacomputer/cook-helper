@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import { Container, Fab, Link, Card } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
+
 
 import { Alert } from '@mui/material';
 
@@ -63,7 +61,7 @@ export default function Login() {
 
     return (
 
-        <Card maxWidth="xs">
+        <Card>
             <Container component="main" maxWidth="xs">
 
                 <Box

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, GET_RECIPES_BY_IDS } from '../utils/queries';
 import { REMOVE_RECIPE } from '../utils/mutations';
-import { Button, Box, Grid, Card, CardActionArea, CardMedia, Container, Typography, Accordion, AccordionSummary, AccordionDetails, AccordionActions, Fab } from '@mui/material';
+import { Box, Grid, Card, CardMedia, Typography, Accordion, AccordionSummary, AccordionDetails, Fab } from '@mui/material';
 import NavBar from '../components/NavBar';
 import { styles } from '../utils/style';
 import { useNavigate } from 'react-router-dom';

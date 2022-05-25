@@ -14,7 +14,7 @@ import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 export default function EditRecipe() {
     const [recipeFields, setRecipeFields] = useState([
-        { image: '', name: '', serves: '' },
+        { image: '', name: '', serves: '', },
     ]);
     const [selectedRecipe, setSelectedRecipe] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -164,11 +164,12 @@ export default function EditRecipe() {
             await UpdateRecipe({
                 variables: {
                     input: {
-                        ...selectedRecipe[0],
+                        ...selectedRecipe,
                         _id: _id,
-                        totalTime: Number(recipeFields[0].totalTime),
-                        image: `${imageUrl.current ? imageUrl.current : selectedRecipe.image}`,
-                        serves: Number(recipeFields[0].serves),
+                        name: recipeFields[0].name ? recipeFields[0].name : selectedRecipe.name,
+                        totalTime: recipeFields[0].totalTime ? Number(recipeFields[0].totalTime) : selectedRecipe.totalTime,
+                        image: imageUrl.current ? imageUrl.current : selectedRecipe.image,
+                        serves: recipeFields[0].serves ? Number(recipeFields[0].serves) : selectedRecipe.serves,
                         steps: selectedRecipe.steps,
                         ingredients: selectedRecipe.ingredients
                     }
