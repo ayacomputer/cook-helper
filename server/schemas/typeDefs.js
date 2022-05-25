@@ -49,6 +49,16 @@ const typeDefs = gql`
     serves: Int
   }
 
+  input UpdateRecipeInput {
+    _id: String 
+    image: String
+    name: String
+    ingredients: [IngredientInput]
+    steps: [String]
+    totalTime: Int
+    serves: Int
+    createdAt: String
+  }
   input IngredientInput {
     name: String
     qty: String
@@ -61,7 +71,7 @@ const typeDefs = gql`
     selectRecipe(_id: String! ): User
     createRecipe( input: RecipeInput!): Recipe
     removeRecipe(_id: ID!): User
-    updateRecipe( input: RecipeInput!): Recipe
+    updateRecipe( input: UpdateRecipeInput!): Recipe
     deleteRecipe(_id: ID!): Recipe
    }
 `;

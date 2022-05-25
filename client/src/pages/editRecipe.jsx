@@ -171,7 +171,8 @@ export default function EditRecipe() {
                         image: imageUrl.current ? imageUrl.current : selectedRecipe.image,
                         serves: recipeFields[0].serves ? Number(recipeFields[0].serves) : selectedRecipe.serves,
                         steps: selectedRecipe.steps,
-                        ingredients: selectedRecipe.ingredients
+                        ingredients: selectedRecipe.ingredients,
+                        createdAt: new Date(),
                     }
                 }
             });

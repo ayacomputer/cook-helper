@@ -86,7 +86,7 @@ mutation DeleteRecipe($id: ID!) {
   }`
 
 export const UPDATE_RECIPE = gql`
-mutation UpdateRecipe($input: RecipeInput!) {
+mutation UpdateRecipe($input: UpdateRecipeInput!) {
     updateRecipe(input: $input) {
       _id
       name
