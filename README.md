@@ -64,7 +64,7 @@ Cook helper helps users to cook and organise cooking efficiently! You can select
 ## Usage
 Following image shows this application's functionality.
 ![This is an image of the product.](./client/public/assets/product2.png)<br>
-[Click here to view walk through video](https://drive.google.com/file/d/1E4cRnwdmzBma4K08l0RGHjAIJhOYUF39/view?usp=sharing) <br>
+<!-- [Click here to view walk through video](https://drive.google.com/file/d/1E4cRnwdmzBma4K08l0RGHjAIJhOYUF39/view?usp=sharing) <br> -->
 
 To use this app,  please create your account in sign up page. 
 ```
