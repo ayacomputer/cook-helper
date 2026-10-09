@@ -1,5 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const { rateLimit } = require('express-rate-limit');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 
@@ -17,11 +18,16 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+const staticFileRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 100,
+});
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.get('/*', (req, res) => {
+app.get('/*', staticFileRateLimiter, (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
